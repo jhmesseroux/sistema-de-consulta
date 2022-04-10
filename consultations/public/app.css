@@ -8,9 +8,9 @@ ul {
     list-style: none;
 }
 
-li a {
+a {
     text-decoration: none;
-    color: white !important;
+    color: white;
 }
 .btn-primary {
     /* background-color: rgb(117, 190, 0) !important; */
