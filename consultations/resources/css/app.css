@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: red;
+}
+
+body {
+    display: none;
+}
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+.btn-primary {
+    background-color: rgb(117, 190, 0) !important;
+}
