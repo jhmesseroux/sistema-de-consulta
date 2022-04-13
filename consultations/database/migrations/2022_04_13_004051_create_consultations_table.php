@@ -18,11 +18,12 @@ class CreateConsultationsTable extends Migration
             $table->foreignId('teacher_id')->constrained('users')->default(null);
             $table->foreignId('admin_id')->constrained('users');
             $table->foreignId('subject_id')->constrained('subjects');
-            $table->string('alternative')->default(null);
+            $table->string('alternative')->nullable();
             $table->boolean('active')->default(true);
             $table->string('dayOfWeek');
-            $table->string('link_place')->default(null);
-            $table->string('reasonCancel')->default(null);
+            $table->string('link')->nullable();
+            $table->string('place')->nullable();
+            $table->string('reasonCancel')->nullable();
             $table->time('time');
             $table->string('type');
             $table->timestamps();
