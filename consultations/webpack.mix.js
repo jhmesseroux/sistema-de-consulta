@@ -11,10 +11,15 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js").sass(
-    "resources/sass/app.sass",
+// mix.js("resources/js/app.js", "public/js").sass(
+//     "resources/sass/app.sass",
+//     "public/css",
+//     {
+//         implementation: require("node-sass"),
+//     }
+// );
+mix.js("resources/js/app.js", "public/js").postCss(
+    "resources/css/app.css",
     "public/css",
-    {
-        implementation: require("node-sass"),
-    }
+    [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );

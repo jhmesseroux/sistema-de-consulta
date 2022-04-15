@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -33,14 +34,28 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(request()->all());
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'legajo' => ['required', 'string', 'max:8'],
+            'role_id' => ['required', 'string'],
+            'dni' => ['required', 'string', 'max:8'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // dd(request()->all());
+        $role = Role::find($request->role_id);
+        // dd($role);
+
         $user = User::create([
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'legajo' => $request->legajo,
+            'verified' => $role->name === 'Profesor'  ? false : true,
+            'dni' => $request->dni,
+            'role_id' => $request->role_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
