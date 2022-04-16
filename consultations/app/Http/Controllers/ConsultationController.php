@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultation;
+use App\Models\Subject;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Const_;
 
 class ConsultationController extends Controller
 {
@@ -13,7 +18,11 @@ class ConsultationController extends Controller
      */
     public function index()
     {
-        //
+
+        $consultations = Consultation::latest()->get();
+        return view('consultation.index',[
+            'consultations' => $consultations
+        ]);
     }
 
     /**
@@ -23,7 +32,15 @@ class ConsultationController extends Controller
      */
     public function create()
     {
-        //
+        $teachers = User::latest()->get();
+        $subjects = Subject::latest()->get();
+
+
+        return view('consultation.create',[
+
+            'teachers' => $teachers,
+            'subjects' => $subjects
+        ]);
     }
 
     /**
