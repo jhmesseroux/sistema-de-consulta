@@ -1,9 +1,15 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use App\Models\Consultation;
+use App\Models\Subject;
+use Illuminate\Bus\UpdatedBatchJobCounts;
 use Illuminate\Support\Facades\Route;
+use Mockery\Matcher\Subset;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +53,21 @@ Route::middleware('auth')->group(function () {
 
 // user routes
 
+// subject routes
+
+Route::get('admin/subject/',[SubjectController::class, 'index']);
+Route::get('admin/subject/create',[SubjectController::class, 'create'])->name('subject.create');
+Route::get('admin/subject/update/{subject:id}',[SubjectController::class, 'update'])->name('subject.update');
+Route::post('admin/subject',[SubjectController::class, 'store'])->name('subject.store');
+Route::patch('admin/subject/save',[SubjectController::class,'save'])->name('subject.save');
+
+
+// consultation routes
+Route::get('consultation',[ConsultationController::class, 'index']);
+Route::get('consultation/create',[ConsultationController::class, 'create']);
+Route::get('consultation/update/{subject:id}',[ConsultationController::class, 'update'])->name('subject.update');
+Route::post('consultation',[SubjectController::class, 'store'])->name('subject.store');
+Route::patch('consultation/save',[SubjectController::class,'save'])->name('subject.save');
 
 
 Route::get('/dashboard', function () {
