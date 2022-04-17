@@ -63,10 +63,10 @@ Route::patch('admin/subject/save',[SubjectController::class,'save'])->name('subj
 
 
 // consultation routes
-Route::get('consultation',[ConsultationController::class, 'index']);
+Route::get('consultation',[ConsultationController::class, 'index'])->name('consultation.index');
 Route::get('consultation/create',[ConsultationController::class, 'create']);
 Route::get('consultation/update/{subject:id}',[ConsultationController::class, 'update'])->name('subject.update');
-Route::post('consultation',[SubjectController::class, 'store'])->name('subject.store');
+Route::post('consultation',[ConsultationController::class, 'store']);
 Route::patch('consultation/save',[SubjectController::class,'save'])->name('subject.save');
 
 

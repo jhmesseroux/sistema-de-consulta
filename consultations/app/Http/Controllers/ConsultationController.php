@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Consultation;
 use App\Models\Subject;
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Const_;
 
 class ConsultationController extends Controller
 {
@@ -32,7 +30,7 @@ class ConsultationController extends Controller
      */
     public function create()
     {
-        $teachers = User::latest()->get();
+        $teachers = User::latest()->get()->where('role_id','=','2');
         $subjects = Subject::latest()->get();
 
 
@@ -49,9 +47,22 @@ class ConsultationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $newConsultation = request()->validate(
+            [
+                'teacher_id' => 'required|min:1|unique:consultations,teacher_id',
+                'subject_id' => 'required|min:1|unique:consultations,subject_id',
+                'dayOfWeek'=>'required|min:2',
+                'time' => 'required|min:1',
+                'type' => 'required'
+
+
+            ]
+        );
+
+        Consultation::create($newConsultation);
+        return redirect('consultation.index');
     }
 
     /**
