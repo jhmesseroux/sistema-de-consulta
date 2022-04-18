@@ -30,6 +30,8 @@
                         <x-tables.th text='reasonCancel' />
                         <x-tables.th text='time' />
                         <x-tables.th text='type' />
+                        <x-tables.th text='accion' />
+
                     </tr>
                 <tbody>
                     @foreach ($consultations as $consultation)
@@ -41,6 +43,7 @@
                             <x-tables.td>               {{ $consultation->admin_id }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->alternative }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->active }} </x-tables.td>
+                            <x-tables.td>               {{ $consultation->dayOfWeek }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->link }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->place }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->reasonCancel }} </x-tables.td>
@@ -55,7 +58,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg></a>
-                                <a class="text-red-500" href="consultation/update/{{ $consultation->id }}"><svg
+                                <a class="text-red-500" href="consultation/delete/{{ $consultation->id }}"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
