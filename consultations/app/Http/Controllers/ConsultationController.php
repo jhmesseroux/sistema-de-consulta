@@ -55,9 +55,9 @@ class ConsultationController extends Controller
                 'subject_id' => 'required|min:1|unique:consultations,subject_id',
                 'dayOfWeek'=>'required|min:2',
                 'time' => 'required|min:1',
-                'type' => 'required'
-
-
+                'type' => 'required',
+                'place' => '',
+                'link' => ''
             ]
         );
 
@@ -73,7 +73,7 @@ class ConsultationController extends Controller
      */
     public function show($id)
     {
-        //
+      //
     }
 
     /**
@@ -82,9 +82,19 @@ class ConsultationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Consultation $consultation)
     {
-        //
+        $teachers = User::latest()->get()->where('role_id','=','2');
+        $subjects = Subject::latest()->get();
+
+        //$consultation = Consultation::latest()->get()->where('id','=',$id);
+
+        return view('consultation.update',[
+
+            'teachers' => $teachers,
+            'subjects' => $subjects,
+            'consultation' => $consultation
+        ]);
     }
 
     /**
@@ -94,9 +104,23 @@ class ConsultationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function save()
     {
-        //
+        $newConsultation = request()->validate(
+            [
+
+                'dayOfWeek'=>'required|min:2',
+                'time' => 'required|min:1',
+                'type' => 'required',
+                'id' => '',
+                'place' => '',
+                'link' => ''
+            ]
+        );
+
+
+         Consultation::where('id','=', $newConsultation['id']) ->update($newConsultation);
+         return redirect('consultation.index');
     }
 
     /**
