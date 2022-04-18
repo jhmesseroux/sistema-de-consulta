@@ -120,7 +120,7 @@ class ConsultationController extends Controller
 
 
          Consultation::where('id','=', $newConsultation['id']) ->update($newConsultation);
-         return redirect('consultation.index');
+         return redirect('/consultation');
     }
 
     /**

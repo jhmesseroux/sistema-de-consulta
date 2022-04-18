@@ -30,6 +30,7 @@
                         <x-tables.th text='reasonCancel' />
                         <x-tables.th text='time' />
                         <x-tables.th text='type' />
+                        <x-tables.th text='accion' />
 
                     </tr>
                 <tbody>
