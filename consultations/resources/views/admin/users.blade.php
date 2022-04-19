@@ -128,7 +128,7 @@
                         </tr>
                     @endforeach
 
-
+                    <!-- TODO: remove the following row -->
                     <tr class="h-24 border-gray-300 border-b">
                         <td
                             class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">

@@ -22,6 +22,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // TODO: check this. Invalid columns. Should remove this factory? Useful for unit testing.
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,

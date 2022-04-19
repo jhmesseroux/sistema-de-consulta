@@ -19,12 +19,14 @@ class RoleController extends Controller
     {
         return view('role.create');
     }
+
     public function update( Role $role)
     {
         return view('role.update', [
             'role' => $role
         ]);
     }
+
     public function store()
     {
         $role = request()->validate([
@@ -33,8 +35,9 @@ class RoleController extends Controller
         ]);
 
         Role::create($role);
-        return redirect('/role');
+        return redirect('/admin/roles');
     }
+
     public function save()
     {
         $attributes = request()->validate([
@@ -49,6 +52,21 @@ class RoleController extends Controller
         // other way
         Role::where('id', $attributes['id'])
             ->update($attributes);
-        return redirect('/role');
+        return redirect('/admin/roles');
+    }
+
+    public function remove(Role $role)
+    {
+        return view('role.remove', [
+            'role' => $role
+        ]);
+    }
+
+    public function delete()
+    {
+        $attributes = request();
+        Role::where('id', $attributes['id'])
+            ->delete($attributes);
+        return redirect('/admin/roles');
     }
 }

@@ -1,5 +1,5 @@
-<div class="role-create">
-    <form action="/role/save" method="post">
+<div class="role-update">
+    <form action="/admin/role/save" method="post">
         @csrf
         <input type="hidden" value="{{ $role->id }}" name="id" id="name">
 
