@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <title>Sistema de Consulta</title>
 </head>
 
@@ -369,7 +367,7 @@
                     <img src="/image 2.png" width="250" alt="LOGO">
                 </div>
                 <div class="content__left-side p-6  w-100">
-                    <form action="#">
+                    <form method="GET" action="/search">
                         <div class="flex mb-3">
                             <label class="bg-red-500 hidden sm:flex p-2 px-3 text-white " for="search">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -456,7 +454,7 @@
             }
         };
     </script>
-    <x-flash type='Success' message='Hello' />
+    {{-- <x-flash type='Success' message='Hello' /> --}}
 
 </body>
 
