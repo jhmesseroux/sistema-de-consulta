@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use App\Models\Consultation;
@@ -55,20 +56,21 @@ Route::middleware('auth')->group(function () {
 
 // subject routes
 
-Route::get('admin/subject/',[SubjectController::class, 'index']);
-Route::get('admin/subject/create',[SubjectController::class, 'create'])->name('subject.create');
-Route::get('admin/subject/update/{subject:id}',[SubjectController::class, 'update'])->name('subject.update');
-Route::post('admin/subject',[SubjectController::class, 'store'])->name('subject.store');
-Route::patch('admin/subject/save',[SubjectController::class,'save'])->name('subject.save');
+Route::get('admin/subject/', [SubjectController::class, 'index']);
+Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
+Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
+Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
+Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
 
 
 // consultation routes
-Route::get('consultation',[ConsultationController::class, 'index'])->name('consultation.index');
-Route::get('consultation/create',[ConsultationController::class, 'create'])->name('consultation.create');
-Route::get('consultation/update/{consultation:id}',[ConsultationController::class, 'update'])->name('consultation.update');
-Route::post('consultation',[ConsultationController::class, 'store'])->name('consultation.store');
-Route::patch('consultation/save',[ConsultationController::class,'save'])->name('consultation.save');
+Route::get('consultation', [ConsultationController::class, 'index'])->name('consultation.index');
+Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
+Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update');
+Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
+Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
 
+Route::get('/search', [SearchConsultationController::class, 'show'])->name('consultation.search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
