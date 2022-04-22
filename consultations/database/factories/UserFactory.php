@@ -23,17 +23,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        // $table->string('avatar')->nullable();
-        // $table->string('firstname');
-        // $table->string('lastname');
-        // $table->string('legajo')->unique();
-        // $table->string('dni')->unique();
-        // $table->string('email')->unique();
-        // $table->boolean('verified');
-        // $table->foreignId('role_id')->constrained('roles')->restrictOnDelete()->cascadeOnUpdate();
-        // $table->timestamp('email_verified_at')->nullable();
-        // $table->string('password');
-        return [
+                return [
             'firstname' => $this->faker->firstName(),
             'verified' => $this->faker->boolean(),
             'legajo' => $this->faker->unique()->randomNumber(8),

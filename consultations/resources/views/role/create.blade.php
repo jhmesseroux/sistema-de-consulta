@@ -1,5 +1,5 @@
 <div class="role-create">
-    <form action="/role" method="post">
+    <form action="/admin/role" method="post">
         @csrf
         <fieldset>
             <label for="name">Nombre</label>

@@ -35,10 +35,12 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // role routes
     Route::get('admin/roles', [RoleController::class, 'index']);
-    Route::post('/admin/role', [RoleController::class, 'store'])->name('role.store');
     Route::get('admin/role/create', [RoleController::class, 'create'])->name('role.create');
-    Route::post('admin/role/save', [RoleController::class, 'save'])->name('role.create');
+    Route::post('admin/role', [RoleController::class, 'store'])->name('role.store');
     Route::get('admin/role/update/{role:id}', [RoleController::class, 'update']);
+    Route::post('admin/role/save', [RoleController::class, 'save'])->name('role.save');
+    Route::get('admin/role/remove/{role:id}', [RoleController::class, 'remove']);
+    Route::post('admin/role/delete', [RoleController::class, 'delete']);
 
 
     Route::get('admin/users', [UserController::class, 'index']);
