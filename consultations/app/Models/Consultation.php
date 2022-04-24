@@ -17,4 +17,9 @@ class Consultation extends Model
     //     'type'
     // ];
     protected $guarded = [];
+
+    public function teacher()
+    {
+        return Consultation::belongsTo(User::class, 'teacher_id');
+    }
 }

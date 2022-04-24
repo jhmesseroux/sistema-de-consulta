@@ -10,7 +10,7 @@ class SearchConsultationController extends Controller
     public function show()
     {
         // dd(request('search'));
-        $results = Consultation::get()->where('alternative',  request('search'));
+        $results = Consultation::where('alternative', 'like',  '%' . request('search') . '%')->get();
         return view('consultation.search', [
             'consultations' => $results
         ]);

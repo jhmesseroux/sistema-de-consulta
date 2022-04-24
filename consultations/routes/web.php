@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
@@ -51,6 +52,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/{dni}', [UserController::class, 'show'])->name('user.profile');
     Route::post('user/update', [UserController::class, 'update'])->name('user.update');
+
+    // meeting routes
+    Route::post('meeting/save', [MeetingController::class, 'save'])->name('meeting.save');
+    Route::get('meeting/user', [MeetingController::class, 'index'])->name('meeting.user');
 });
 
 
