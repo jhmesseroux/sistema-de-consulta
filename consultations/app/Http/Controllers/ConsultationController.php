@@ -62,7 +62,7 @@ class ConsultationController extends Controller
         );
 
         Consultation::create($newConsultation);
-        return redirect('consultation.index');
+        return redirect('/consultation');
     }
 
     /**
@@ -131,6 +131,7 @@ class ConsultationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Consultation::where('id','=',$id)->delete();
+        return redirect('/consultation');
     }
 }
