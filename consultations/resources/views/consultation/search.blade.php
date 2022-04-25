@@ -27,7 +27,7 @@
                 <form action="/meeting/save" method="POST" id="reserva-consultation"
                     class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
                     @csrf
-                    <h3 class="text-xl font-medium text-gray-900 ">Confirma tu reserva</h3>
+                    <h3 class="text-xl font-medium text-gray-900 ">Confirma tu consulta</h3>
                     <div>
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Descripcion
@@ -58,8 +58,8 @@
                 {{-- <li>{{ $con->alternative }}</li> --}}
                 <li
                     class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
-                    <div class="flex items-center space-x-4">
-                        <div class="flex-shrink-0">
+                    <div class="flex gap-2 sm:items-center sm:flex-row flex-col sm:space-x-4">
+                        <div class="flex-shrink-0 flex items-center  gap-1">
                             @if ($con->teacher?->avatar)
                                 <img class="w-8 h-8 rounded-full"
                                     src="{{ asset('storage/' . $con->teacher?->avatar) }}"
@@ -69,16 +69,24 @@
                                     src="{{ asset('storage/avatars/default-avatar.png') }}"
                                     alt=" {{ $con->teacher->firstname . $con->teacher->lastname }}">
                             @endif
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate">
+                                    {{ $con->teacher->firstname }}
+                                </p>
+                                <p class="text-sm text-gray-500 truncate ">
+                                    {{ $con->teacher->email }}
+                                </p>
+                            </div>
 
                         </div>
-                        <div class="flex-1 min-w-0">
+                        {{-- <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate">
                                 {{ $con->teacher->firstname }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
                                 {{ $con->teacher->email }}
                             </p>
-                        </div>
+                        </div> --}}
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium capitalize text-gray-900 truncate">
                                 {{ $con->alternative }}
@@ -93,9 +101,23 @@
                             </p>
                         </div>
                         <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                            <x-button onclick="dothat({{ $con }})"> Reservar </x-button>
+                            @if ($con->active)
+                                <x-button type='button' onclick="dothat({{ $con }})">
+                                    Reservar
+                                </x-button>
+                            @else
+                                <x-button class="bg-red-500" type='button' disabled>
+                                    Supendido
+                                </x-button>
+                            @endif
                         </div>
                     </div>
+                    @if (!$con->active)
+                        <div class="reason-cancel">
+                            <span class="p-1 text-sm text-red-300"> Esta consulta está suspendida por el momento!
+                            </span>
+                        </div>
+                    @endif
                     {{-- <form class="mt-4 hidden form-confirm" action="">
                         <div class="flex justify-between">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">

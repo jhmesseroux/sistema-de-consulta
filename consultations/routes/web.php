@@ -26,7 +26,7 @@ use Mockery\Matcher\Subset;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 // admin routes
 
 Route::middleware('admin')->group(function () {

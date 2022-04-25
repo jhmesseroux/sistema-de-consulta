@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="header">
-
         <span class="font-bold text-gray-700">
             Mis Consultas
         </span>
