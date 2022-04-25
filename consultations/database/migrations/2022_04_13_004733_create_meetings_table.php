@@ -15,11 +15,11 @@ class CreateMeetingsTable extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained('subjects');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('consultation_id')->constrained('consultations');
             $table->string('comment')->default(null);
             $table->string('state')->default("pendiente");
-            $table->dateTime('dateTimeCancelled')->default(null);
+            $table->dateTime('dateTimeCancelled')->nullable();
             $table->timestamps();
         });
     }
