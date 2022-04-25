@@ -76,6 +76,8 @@ Route::get('consultation/create', [ConsultationController::class, 'create'])->na
 Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update');
 Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
 Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
+Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
+
 
 Route::get('/search', [SearchConsultationController::class, 'show'])->name('consultation.search');
 
