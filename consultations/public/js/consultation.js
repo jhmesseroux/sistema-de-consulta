@@ -17,6 +17,12 @@ function mostrarSegunTipoDeConsulta()
 
     }
 
-
-
 }
+
+function darDeBajaConsulta()
+{
+    document.getElementById('div_reasonCancel').style.display = 'block';
+    document.getElementById('div_alternative').style.display = 'block';
+}
+
+

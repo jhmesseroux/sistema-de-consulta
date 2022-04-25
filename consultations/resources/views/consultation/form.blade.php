@@ -108,20 +108,31 @@
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
 
                   <label for="email-address" class="block text-sm font-medium text-gray-700">Estado de la consulta</label>
-                  <input type="text" name="email-address" value="activa" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" disabled>
+                  <x-input  type="text" name="email-address" value="{{ isset($consultation->active)? $consultation->active : 'activa' }}" id="email-address" autocomplete="email" disabled/>
+
                   </div>
                   <div class="col-span-6 sm:col-span-3 lg:col-span-2 ">
                     <label for="email-address" class="block text-sm font-medium text-gray-700">.</label>
-                    <button type="submit" class=" justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Dar de baja</button>
+                    @if ($consultation->active)
+                    <x-button class="bg-red-500" type="button" onclick="darDeBajaConsulta()">
+                        Dar de baja
+                    </x-button>
+
+                    @else
+                    <button
+                    class=" justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Dar de alta</button>
+                    @endif
+
 
                 </div>
 
-                <div class="col-span-6">
+                <div class="col-span-6 hidden" id="div_reasonCancel" >
                   <label for="street-address" class="block text-sm font-medium text-gray-700">Razón cancelada</label>
                   <input type="textarea" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
 
-                <div class="col-span-6">
+                <div class="col-span-6 hidden" id="div_alternative">
                   <label for="street-address" class="block text-sm font-medium text-gray-700">Consulta alternativa</label>
                   <input type="textarea" name="street-address" id="street-address" autocomplete="street-address" placeholder="Ingresar dia, horario, lugar o link de la consulta alternativa" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
