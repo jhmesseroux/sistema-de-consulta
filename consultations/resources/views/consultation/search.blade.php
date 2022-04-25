@@ -9,7 +9,7 @@
     {{-- modal confirm --}}
 
     <div id="confirm-condultation-modal" tabindex="-1" aria-hidden="true"
-        class="overflow-y-auto hidden flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
+        class="overflow-y-auto  flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-gray-100 shadow-md ">
                 <div class="flex justify-end p-2">
@@ -32,15 +32,30 @@
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Descripcion
                         </label>
-                        <input type="text" name="comment" id="comment"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            placeholder="breve descripcion de la duda" required="">
+                        <textarea onkeyup="updateCounter()" minlength="5" type="text" name="comment" id="comment" {{-- maxlength="100" --}}
+                            class="bg-gray-50 h-20 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                            placeholder="breve descripcion de la duda" required=""></textarea>
+                        <div class="flex justify-between items-center">
+                            <span id="comment-error" class="text-red-300 hidden p-1">Debe entre 5 a 100 caracteres!
+                            </span>
+                            <span class="self-end">
+                                <span id="counter" class="">0</span>
+                                <span>
+                                    /100
+                                </span>
+                            </span>
+                        </div>
                     </div>
+                    <div class="flex gap-4 justify-end items-center self-end flex-end">
 
+                        <x-button class="!bg-gray-100 duration-200 hover:!bg-gray-300 !text-gray-700" type="button">
+                            Cancelar
+                        </x-button>
 
-                    <x-button type="submit">
-                        Confirma
-                    </x-button>
+                        <x-button id="confirm" type="submit">
+                            Confirma
+                        </x-button>
+                    </div>
 
                 </form>
             </div>
