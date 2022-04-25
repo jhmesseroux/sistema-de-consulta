@@ -1,7 +1,7 @@
 <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
 
-      <div class="mt-5 md:mt-0 md:col-span-2">
+      <div class="mt-5 md:mt-0 md:col-span-2" onload="mostrarSegunTipoDeConsulta()">
         <form action="#" method="POST">
           <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
@@ -33,11 +33,27 @@
                 <div class="col-span-6 sm:col-span-6">
                   <label for="type" class="block text-sm font-medium text-gray-700">Tipo de consulta</label>
                   <select id="type"
-                  value="{{ isset($consultation->type)? $consultation->type : '' }}"
+
+                  onclick="mostrarSegunTipoDeConsulta()"
                   name="type" autocomplete="type" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option>Presencial</option>
-                    <option>Virtual</option>
-                    <option>Hibrida</option>
+                   @if ($consultation->type == 'Presencial')
+                   <option selected>Presencial</option>
+                   @else
+                   <option>Presencial</option>
+                   @endif
+
+                   @if ($consultation->type == 'Virtual')
+                   <option selected>Virtual</option>
+                   @else
+                   <option>Virtual</option>
+                   @endif
+
+                   @if ($consultation->type == 'Hibrida')
+                   <option selected>Hibrida</option>
+                   @else
+                   <option>Hibrida</option>
+                   @endif
+
                   </select>
                 </div>
 
@@ -67,16 +83,26 @@
                   name="time" id="time"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
 
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="postal-code" class="block text-sm font-medium text-gray-700">Lugar</label>
-                  <input type="text"
-                  value="{{ isset($consultation->place)? $consultation->place : '' }}"
-                  name="place" id="place" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_place" style="display:block">
+                    <label for="postal-code" class="block text-sm font-medium text-gray-700">Lugar</label>
+                    <input type="text"
+                    value="{{ isset($consultation->place)? $consultation->place : '' }}"
+                    name="place" id="place" autocomplete="place-consultation" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_link" style="display: none">
+                      <label for="postal-code" class="block text-sm font-medium text-gray-700">Link</label>
+                      <input type="text"
+                      value="{{ isset($consultation->link)? $consultation->link : '' }}"
+                      name="link" id="link" autocomplete="link-consultation" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
 
                 @if ($modo == 'crear')
 
+
                 @else
+
 
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -118,3 +144,4 @@
     </div>
   </div>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{{ asset('js/consultation.js') }}"></script>

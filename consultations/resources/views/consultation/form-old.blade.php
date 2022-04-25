@@ -67,9 +67,9 @@
 
             <br/>
               <label for="type">Tipo de consulta</label>
-                    <select name="type" id="type" value="{{ isset($consultation->type)? $consultation->type : '' }}">
-                        <option value="Presencial">Presencial</option>
-                        <option  value="Virtual">Virtual</option>
+                    <select name="type" id="type">
+                        <option value="Presencial" >Presencial</option>
+                        <option  value="Virtual" selected>Virtual</option>
 
                     </select>
 
