@@ -1,5 +1,12 @@
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Mis Consultas
+        </span>
+    </x-slot>
+
 <div class="consultation-update">
-    <form action="/consultation/save" method="post">
+    <form action="{{url('/consultation/save')}}" method="post">
         @csrf
         @method('PATCH')
 
@@ -9,3 +16,4 @@
 
         ])
 </div>
+</x-app-layout>

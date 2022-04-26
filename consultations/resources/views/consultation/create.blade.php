@@ -1,5 +1,11 @@
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Mis Consultas
+        </span>
+    </x-slot>
 <div class="consultation-create">
-    <form action="/consultation" method="post">
+    <form action="{{url('/consultation')}}" method="post">
         @csrf
         @include('consultation.form',
         [
@@ -7,3 +13,4 @@
 
         ])
 </div>
+</x-app-layout>

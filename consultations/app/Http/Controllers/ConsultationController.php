@@ -47,9 +47,9 @@ class ConsultationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $newConsultation = request()->validate(
+        $newConsultation = $request->validate(
             [
                 'teacher_id' => 'required|min:1|unique:consultations,teacher_id',
                 'subject_id' => 'required|min:1|unique:consultations,subject_id',
