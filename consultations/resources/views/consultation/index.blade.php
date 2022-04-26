@@ -1,9 +1,15 @@
-
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Consultas
+        </span>
+    </x-slot>
+    <br/>
     <div class="mx-auto container bg-white   shadow rounded">
         <div class="header-table flex justify-between gap-4 items-center p-4">
             <h3>Listado de consultas</h3>
             <x-button class="">
-                <a class="flex gap-4 items-center justify-center" href="consultation/create">
+                <a class="flex gap-4 items-center justify-center" href="{{url('consultation/create')}}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -19,18 +25,18 @@
                 <thead>
                     <tr class="w-full h-16 border-gray-300 border-b py-8">
                         <x-tables.th class="pl-4" text='ID' />
-                        <x-tables.th text='teacher_id' />
-                        <x-tables.th text='subject_id' />
-                        <x-tables.th text='admin_id' />
-                        <x-tables.th text='alternative' />
-                        <x-tables.th text='active' />
-                        <x-tables.th text='dayOfWeek' />
+                        <x-tables.th text='Profesor ID' />
+                        <x-tables.th text='Materia ID' />
+                        <x-tables.th text='Admin ID' />
+                        <x-tables.th text='Fecha Alternativa' />
+                        <x-tables.th text='Activa' />
+                        <x-tables.th text='Dia de la semana' />
                         <x-tables.th text='link' />
-                        <x-tables.th text='place' />
-                        <x-tables.th text='reasonCancel' />
-                        <x-tables.th text='time' />
-                        <x-tables.th text='type' />
-                        <x-tables.th text='accion' />
+                        <x-tables.th text='lugar' />
+                        <x-tables.th text='razon cancelado' />
+                        <x-tables.th text='hora' />
+                        <x-tables.th text='tipo' />
+                        <x-tables.th text=' ' />
 
                     </tr>
                 <tbody>
@@ -52,7 +58,7 @@
 
 
                             <x-tables.td class="flex h-10 gap-2 items-center justify-center">
-                                <a class="text-yellow-500 " href="consultation/update/{{ $consultation->id }}"><svg
+                                <a class="text-yellow-500 " href="{{url('consultation/update/'.$consultation->id)}}"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -73,3 +79,4 @@
         </div>
     </div>
 
+</x-app-layout>

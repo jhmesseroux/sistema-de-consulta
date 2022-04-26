@@ -1,7 +1,14 @@
-<div class="mt-10 sm:mt-0">
-    <div class="md:grid md:grid-cols-3 md:gap-6">
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Agregar/Editar Consultas
+        </span>
+    </x-slot>
+<br/>
+<div class="flex justify-center  mt-10 sm:mt-0 ">
+    <div class="md:grid md:grid-cols-3 place-content-center md:gap-6">
 
-      <div class="mt-5 md:mt-0 md:col-span-2" onload="mostrarSegunTipoDeConsulta()">
+      <div class=" md:col-span-12" onload="mostrarSegunTipoDeConsulta()">
         <form action="#" method="POST">
           <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
@@ -36,19 +43,19 @@
 
                   onclick="mostrarSegunTipoDeConsulta()"
                   name="type" autocomplete="type" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                   @if ($consultation->type == 'Presencial')
+                   @if (isset($consultation->type ) && $consultation->type == 'Presencial')
                    <option selected>Presencial</option>
                    @else
                    <option>Presencial</option>
                    @endif
 
-                   @if ($consultation->type == 'Virtual')
+                   @if (isset($consultation->type ) && $consultation->type  == 'Virtual')
                    <option selected>Virtual</option>
                    @else
                    <option>Virtual</option>
                    @endif
 
-                   @if ($consultation->type == 'Hibrida')
+                   @if ( isset($consultation->type ) && $consultation->type == 'Hibrida')
                    <option selected>Hibrida</option>
                    @else
                    <option>Hibrida</option>
@@ -119,9 +126,11 @@
                     </x-button>
 
                     @else
-                    <button
-                    class=" justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Dar de alta</button>
+
+                    <x-button type="button" onclick="darDeBajaConsulta()">
+                        Dar de alta
+                    </x-button>
+
                     @endif
 
 
@@ -142,10 +151,12 @@
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+
                 @if ($modo == 'crear')
-                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Guardar</button>
+                <x-button type="submit">Guardar</x-button>
+
                 @else
-                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Modificar</button>
+                <x-button type="submit">Modificar</x-button>
                 @endif
 
             </div>
@@ -154,5 +165,6 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.tailwindcss.com"></script>
+
   <script src="{{ asset('js/consultation.js') }}"></script>
+</x-app-layout>
