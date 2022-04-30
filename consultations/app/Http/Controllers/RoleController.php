@@ -20,12 +20,13 @@ class RoleController extends Controller
         return view('role.create');
     }
 
-    public function update( Role $role)
+    public function update(Role $role)
     {
         return view('role.update', [
             'role' => $role
         ]);
     }
+
 
     public function store()
     {

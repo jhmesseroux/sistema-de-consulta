@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -24,7 +25,7 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         <div class="flex">
-            <x-sideBarAdmin />
+            <x-SideBarAdmin />
             <div class="mx-auto overflow-hidden  w-full ">
                 @include('layouts.navigation')
                 <main class="p-4 mt-4">

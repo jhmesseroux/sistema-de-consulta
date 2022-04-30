@@ -52,3 +52,14 @@ const updateCounter = (e) => {
     }
     console.log(comment.value.length);
 };
+
+const PreviewAvatar = (e) => {
+    console.log(e.files);
+    const [file] = e.files;
+    if (file) {
+        document.querySelector(".preview-box").classList.remove("hidden");
+        const imagePreview = document.querySelector("#imagePreview");
+        document.querySelector(".filename").textContent = file.name;
+        imagePreview.src = URL.createObjectURL(file);
+    }
+};

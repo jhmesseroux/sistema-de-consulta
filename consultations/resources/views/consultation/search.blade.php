@@ -9,7 +9,7 @@
     {{-- modal confirm --}}
 
     <div id="confirm-condultation-modal" tabindex="-1" aria-hidden="true"
-        class="overflow-y-auto  flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
+        class="overflow-y-auto hidden flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-gray-100 shadow-md ">
                 <div class="flex justify-end p-2">
