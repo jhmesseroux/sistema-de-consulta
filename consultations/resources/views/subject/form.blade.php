@@ -21,8 +21,12 @@
 
 
                 <br />
-                <div class="mt-4">
-                    <x-button type="submit">Editar</x-button>
+
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+
+                    <x-button type="button" class="bg-red-500">Cancelar</x-button>
+                    <x-button type="submit">Guardar</x-button>
+
 
                 </div>
 
