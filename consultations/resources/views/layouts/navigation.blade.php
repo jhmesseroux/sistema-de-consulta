@@ -45,11 +45,11 @@
                                 <div class="flex items-center justify-center gap-3">
                                     @if (Auth::user()->avatar)
                                         <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
-                                            src="{{ asset('storage/' . Auth::user()->avatar) }}"
+                                            src="{{ url('storage/' . Auth::user()->avatar) }}"
                                             alt="{{ Auth::user()->firstname }}">
                                     @else
                                         <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
-                                            src="{{ asset('storage/avatars/default-avatar.png') }}"
+                                            src="{{ url('storage/avatars/default-avatar.png') }}"
                                             alt="{{ Auth::user()->firstname }}">
                                     @endif
                                     <span>

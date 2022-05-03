@@ -1,4 +1,5 @@
 function dothat(data) {
+    console.log(data);
     document
         .querySelector("#confirm-condultation-modal")
         .classList.toggle("hidden");
@@ -6,7 +7,7 @@ function dothat(data) {
     const inputConsultation = document.createElement("input");
     inputConsultation.type = "hidden";
     inputConsultation.name = "consultation_id";
-    inputConsultation.value = data.id;
+    inputConsultation.value = data;
     form.appendChild(inputConsultation);
     console.log(form);
     // console.log(data);
