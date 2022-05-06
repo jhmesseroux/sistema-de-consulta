@@ -1,17 +1,14 @@
-<div class="subject-create">
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Editar Materia
+        </span>
+    </x-slot>
     <form action="/admin/subject/save" method="post">
         @csrf
         @method('PATCH')
-        <input type="hidden" value="{{ $subject->id }}" name="id" id="id">
+        @include('subject.form')
 
-        <fieldset>
-            <label for="name">Nombre</label>
-            <input type="text" value="{{ $subject->name }}" name="name" id="name" placeholder="Ingrese un nombre">
-            @error('name')
-                <p class="text-red-400 text-xs p-1">{{ $message }}</p>
-            @enderror
-        </fieldset>
-
-        <button type="submit">Editar</button>
     </form>
-</div>
+
+</x-app-layout>

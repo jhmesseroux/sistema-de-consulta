@@ -1,14 +1,11 @@
-<div class="subject-create">
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+            Crear materia
+        </span>
+    </x-slot>
     <form action="/admin/subject" method="post">
         @csrf
-        <fieldset>
-            <label for="name">Nombre</label>
-            <input type="text" name="name" id="name" placeholder="Ingrese nombre de la materia">
-            @error('name')
-                <p class="text-red-400 text-xs p-1">{{ $message }}</p>
-            @enderror
-        </fieldset>
-
-        <button type="submit">Crear</button>
+        @include('subject.form')
     </form>
-</div>
+</x-app-layout>

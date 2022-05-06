@@ -1,4 +1,10 @@
-
+<x-app-layout>
+    <x-slot name="header">
+        <span class="font-bold text-gray-700">
+          Materias
+        </span>
+    </x-slot>
+<br/>
     <div class="mx-auto container bg-white   shadow rounded">
         <div class="header-table flex justify-between gap-4 items-center p-4">
             <h3>Listados de Materias</h3>
@@ -20,7 +26,7 @@
                     <tr class="w-full h-16 border-gray-300 border-b py-8">
                         <x-tables.th class="pl-4" text='ID' />
                         <x-tables.th text='Nombre' />
-
+                        <x-tables.th text='dsa' />
 
                     </tr>
                 <tbody>
@@ -35,6 +41,7 @@
 
                                 {{ $subject->name }}
                             </x-tables.td>
+
 
                             <x-tables.td class="flex h-10 gap-2 items-center justify-center">
                                 <a class="text-yellow-500 " href="/admin/subject/update/{{ $subject->id }}"><svg
@@ -58,6 +65,6 @@
         </div>
     </div>
 
-
+</x-app-layout>
 
 
