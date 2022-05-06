@@ -15,8 +15,8 @@ class CreateMeetingsTable extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('consultation_id')->constrained('consultations');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('consultation_id')->constrained('consultations')->cascadeOnUpdate();
             $table->string('comment')->default(null);
             $table->string('state')->default("pendiente");
             $table->dateTime('dateTimeCancelled')->nullable();

@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -34,7 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(request()->all());
+
         $request->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
@@ -45,9 +46,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // dd(request()->all());
         $role = Role::find($request->role_id);
-        // dd($role);
 
         $user = User::create([
             'firstname' => $request->firstname,
@@ -61,9 +60,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
         // Auth::login($user);
-
         return redirect('login');
     }
 }

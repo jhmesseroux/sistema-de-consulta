@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
 
 class UserController extends Controller
 {
-    public function show()
-    {
-        return view('user.profile');
-    }
 
     public function index()
     {
@@ -19,13 +20,25 @@ class UserController extends Controller
             'users' => User::latest()->get(),
         ]);
     }
+    public function show()
+    {
+        return view('user.profile');
+    }
+    public function create()
+    {
+        return view('admin.users.create');
+    }
     public function verify(User $user)
     {
         $res = $user->update(['verified' => true]);
         if ($res) {
-            return back();
+            return back()->with('success', 'Cuenta verificada exitosamente!!!✅✅');
         }
-        ddd($res);
+    }
+    public function delete(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'Usuario borrado con exito!!!✅✅');
     }
 
     public function update(Request $request)
@@ -44,6 +57,37 @@ class UserController extends Controller
 
         User::where('id', auth()->id())
             ->update($attributes);
-        return back();
+        return back()->with('success', 'usuario actualizado con exito!!!✅✅');
+    }
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'legajo' => ['required', 'string', 'max:8'],
+            'role_id' => ['required', 'string'],
+            'dni' => ['required', 'string', 'max:8'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $role = Role::find($request->role_id);
+
+        $user = User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'legajo' => $request->legajo,
+            'verified' => $role->name === 'Profesor'  ? false : true,
+            'dni' => $request->dni,
+            'role_id' => $request->role_id,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+        return redirect()->route('admin.users')->with('success', 'usuario agregado con exito!!!✅✅');
     }
 }

@@ -8,10 +8,13 @@ use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingController;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+
+    // dd(Gate::allows('admin'));
     return view('home');
 })->name('home');
 
@@ -29,7 +32,11 @@ Route::middleware('admin')->group(function () {
     Route::post('admin/role/delete', [RoleController::class, 'delete']);
 
 
-    Route::get('admin/users', [UserController::class, 'index']);
+    Route::get('admin/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('admin/user/add', [UserController::class, 'create'])->name('user.create');
+    Route::post('admin/user/create', [UserController::class, 'store'])->name('admin.store.user');
+    Route::post('admin/user/delete/{user:id}', [UserController::class, 'delete'])->name('ADMIN.user.delete');
+
     Route::post('admin/{user:id}/verify', [UserController::class, 'verify'])->name('admin.user.verify');
 });
 
