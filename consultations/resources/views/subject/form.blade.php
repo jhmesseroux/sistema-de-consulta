@@ -4,10 +4,8 @@
 
         <fieldset>
             <label for="name">Nombre</label>
-            <input type="text" value="{{ isset($subject->name)? $subject->name : '' }}" name="name" id="name" placeholder="Ingrese un nombre">
-            @error('name')
-                <p class="text-red-400 text-xs p-1">{{ $message }}</p>
-            @enderror
+            <input type="text" id="name" value="{{ isset($subject->name)? $subject->name : '' }}" name="name" id="name" placeholder="Ingrese un nombre">
+            <x-errorInput name='name' />
         </fieldset>
 
         <button type="submit">Editar</button>

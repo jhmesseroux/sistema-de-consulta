@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <span class="font-bold text-gray-700">
             Crear materia
@@ -8,4 +8,4 @@
         @csrf
         @include('subject.form')
     </form>
-</x-app-layout>
+</x-admin>
