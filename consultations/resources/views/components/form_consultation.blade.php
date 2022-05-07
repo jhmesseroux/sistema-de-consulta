@@ -18,6 +18,9 @@
                                 value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
                                 autocomplete="techer_id" list="drawTeachers"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                <x-errorInput name='teacher_id' />
+
                             <datalist id="drawTeachers">
                                 @foreach ( $teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{$teacher->firstname.' '.$teacher->lastname}}</option>
@@ -31,7 +34,9 @@
                                 value="{{ isset($consultation->subject_id)? $consultation->subject_id : '' }}"
                                 autocomplete="subject_id"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                            <datalist id="drawSubject">
+                            <x-errorInput name='subject_id' />
+
+                                <datalist id="drawSubject">
                                 @foreach ( $subjects as $subject)
                                 <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
@@ -60,6 +65,9 @@
                                 @endif
 
                             </select>
+                            @error('type')
+                            <p class="text-red-400 text-xs p-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -69,6 +77,9 @@
                                 value="{{ isset($consultation->dayOfWeek)? $consultation->dayOfWeek : '' }}"
                                 name="dayOfWeek" id="dayOfWeek" list="dayOfWeekList" autocomplete="dayOfWeek"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                @error('dayOfWeek')
+                                <p class="text-red-400 text-xs p-1">{{ $message }}</p>
+                                @enderror
 
                             <datalist id="dayOfWeekList">
 
@@ -92,7 +103,11 @@
 
 
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_place" style="display:block">
-                            <label for="place" class="block text-sm font-medium text-gray-700">Lugar</label>
+
+                            <label for="place" class="block text-sm font-medium text-gray-700">
+
+
+                                   Lugar</label>
                             <x-input type="text" value="{{ isset($consultation->place)? $consultation->place : '' }}"
                                 name="place" id="place" autocomplete="place-consultation"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
