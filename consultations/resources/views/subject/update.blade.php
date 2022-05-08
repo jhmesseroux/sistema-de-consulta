@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <span class="font-bold text-gray-700">
             Editar Materia
@@ -11,4 +11,4 @@
 
     </form>
 
-</x-app-layout>
+</x-admin>

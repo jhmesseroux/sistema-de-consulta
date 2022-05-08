@@ -10,20 +10,37 @@
                 <div class="px-4 py-5 bg-white sm:p-6">
 
                     <div class="grid grid-cols-6 gap-6">
-                        <div class="col-span-6 sm:col-span-3">
-                            <x-input type="hidden" value="{{ isset($consultation->id)? $consultation->id : '' }}"
-                                name="id" id="id" />
+
+                        @if ( isset(Auth::user()->role_id) && Auth::user()->role_id == "1")
+
+                        <x-input type="hidden" value="{{ isset($consultation->id)? $consultation->id : '' }}" name="id"
+                            id="id" />
+                        <div class="col-span-6 sm:col-span-3" name="teacher_field">
+
                             <label for="teacher_id" class="block text-sm font-medium text-gray-700">Profesor</label>
-                            <input type="text" name="teacher_id" id="teacher_id"
-                                value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
-                                autocomplete="techer_id" list="drawTeachers"
-                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            <datalist id="drawTeachers">
-                                @foreach ( $teachers as $teacher)
-                                <option value="{{$teacher->id}}">{{$teacher->firstname.' '.$teacher->lastname}}</option>
-                                @endforeach
-                            </datalist>
+
+
+                                <input type="text" name="teacher_id" id="teacher_id"
+                                    value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
+                                    autocomplete="techer_id" list="drawTeachers"
+                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <x-errorInput name='teacher_id' />
+
+                                <datalist id="drawTeachers">
+                                    @foreach ( $teachers as $teacher)
+
+                                    <option value="{{$teacher->id}}" onclick="showTeacherAvatar({{$teacher->avatar}})">
+                                        {{$teacher->firstname.' '.$teacher->lastname}}
+                                    </option>
+                                    @endforeach
+                                </datalist>
+
                         </div>
+                        @else
+                        <input type="text" name="teacher_id" id="teacher_id"
+                            value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
+                            autocomplete="techer_id" class="hidden">
+                        @endif
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="subject_id" class="block text-sm font-medium text-gray-700">Materia</label>
@@ -31,6 +48,8 @@
                                 value="{{ isset($consultation->subject_id)? $consultation->subject_id : '' }}"
                                 autocomplete="subject_id"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            <x-errorInput name='subject_id' />
+
                             <datalist id="drawSubject">
                                 @foreach ( $subjects as $subject)
                                 <option value="{{$subject->id}}">{{$subject->name}}</option>
@@ -60,6 +79,7 @@
                                 @endif
 
                             </select>
+                            <x-errorInput name='type' />
                         </div>
 
                         <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -69,6 +89,7 @@
                                 value="{{ isset($consultation->dayOfWeek)? $consultation->dayOfWeek : '' }}"
                                 name="dayOfWeek" id="dayOfWeek" list="dayOfWeekList" autocomplete="dayOfWeek"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            <x-errorInput name='dayOfWeek' />
 
                             <datalist id="dayOfWeekList">
 
@@ -88,14 +109,20 @@
                             <x-input type="time" value="{{ isset($consultation->time)? $consultation->time : '' }}"
                                 name="time" id="time"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            <x-errorInput name='time' />
                         </div>
 
 
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_place" style="display:block">
-                            <label for="place" class="block text-sm font-medium text-gray-700">Lugar</label>
+
+                            <label for="place" class="block text-sm font-medium text-gray-700">
+
+
+                                Lugar</label>
                             <x-input type="text" value="{{ isset($consultation->place)? $consultation->place : '' }}"
                                 name="place" id="place" autocomplete="place-consultation"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            <x-errorInput name='place' />
                         </div>
 
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_link" style="display: none">
@@ -103,6 +130,7 @@
                             <input type="text" value="{{ isset($consultation->link)? $consultation->link : '' }}"
                                 name="link" id="link" autocomplete="link-consultation"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <x-errorInput name='link' />
                         </div>
 
                         @if ($modo == 'crear')
@@ -117,14 +145,15 @@
                             <label for="active" class="block text-sm font-medium text-gray-700">Estado de la
                                 consulta</label>
                             <x-input type="text" name="active"
-                                value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}"
-                                id="active" autocomplete="" disabled />
-
+                                value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}" id="active"
+                                autocomplete="" disabled />
+                            <x-errorInput name='active' />
                         </div>
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2 ">
                             <label for=" " class="block text-sm font-medium text-gray-700">.</label>
                             @if ($consultation->active)
-                            <x-button id="darDeBajaButton" class="bg-red-500" type="button" onclick="darDeBajaConsulta()">
+                            <x-button id="darDeBajaButton" class="bg-red-500" type="button"
+                                onclick="darDeBajaConsulta()">
                                 Dar de baja
                             </x-button>
 
@@ -140,11 +169,11 @@
                         </div>
 
                         <div class="col-span-6 hidden" id="div_reasonCancel">
-                            <label for="street-address" class="block text-sm font-medium text-gray-700">Razón
+                            <label for="reasonCancel" class="block text-sm font-medium text-gray-700">Razón
                                 cancelada</label>
                             <x-input type="textarea" name="reasonCancel" id="reasonCancel" autocomplete="reasonCancel"
-                                class="mt-1
-                  w-full  " />
+                                class="mt-1  w-full  " />
+                            <x-errorInput name='reasonCancel' />
                         </div>
 
                         <div class="col-span-6 hidden" id="div_alternative">
@@ -154,7 +183,7 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 type="textarea" name="" id="alternative" autocomplete="alternative"
                                 placeholder="Ingresar dia, horario, lugar o link de la consulta alternativa" />
-
+                            <x-errorInput name='alternative' />
                         </div>
 
 
@@ -162,7 +191,10 @@
                     </div>
                 </div>
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <x-button type="button" class="bg-red-500">Cancelar</x-button>
+                    <a href="{{url('consultation')}}">
+                        <x-button type="button" class="bg-red-500">Cancelar</x-button>
+
+                    </a>
                     @if ($modo == 'crear')
                     <x-button type="submit" class="bg-green-500">Guardar</x-button>
 

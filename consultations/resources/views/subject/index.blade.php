@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <span class="font-bold text-gray-700">
           Materias
@@ -65,6 +65,6 @@
         </div>
     </div>
 
-</x-app-layout>
+</x-admin>
 
 

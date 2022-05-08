@@ -28,6 +28,5 @@
             </div>
         </div>
     </div>
-    <x-guest-footer />
 
 </x-app-layout>

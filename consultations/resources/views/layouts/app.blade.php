@@ -37,6 +37,8 @@
         <main>
             {{ $slot }}
         </main>
+        <x-guest-footer />
+
     </div>
 </body>
 

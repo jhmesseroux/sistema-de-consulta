@@ -51,7 +51,6 @@ const updateCounter = (e) => {
             "focus:ring-green-500"
         );
     }
-    console.log(comment.value.length);
 };
 
 const PreviewAvatar = (e) => {

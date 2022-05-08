@@ -4,7 +4,7 @@
         Admin /users
     </x-slot>
 
-    <div class="mx-auto container bg-white  shadow rounded">
+    <div class="mx-auto  container bg-white  shadow rounded">
         <div class="header p-4 flex place-items-center gap-8">
             <span>Listado de usuarios({{ $users->count() }})</span>
             <a href="/admin/user/add">
@@ -70,7 +70,7 @@
                             </x-tables.td>
                             <x-tables.td>
                                 <div class="place-items-center flex ">
-                                    <a class="text-yellow-500 " href="/admin/user/update/{{ $user->id }}"><svg
+                                    <a class="text-yellow-500 " href="/admin/user/edit/{{ $user->id }}"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,8 +79,8 @@
                                     <form class="inline" method="POST"
                                         action="/admin/user/delete/{{ $user->id }}">
                                         @csrf
-                                        <x-button
-                                            class="text-red-500 !p-0 bg-transparent hover:bg-transparent  hover:text-red-700 ">
+                                        <x-button data-tooltip='editar'
+                                            class="text-red-500 tooltip !p-0 bg-transparent hover:bg-transparent  hover:text-red-700 ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
