@@ -136,7 +136,7 @@ class ConsultationController extends Controller
         $newConsultation = request()->validate(
             [
                 'admin_id' => '',
-                'subject_id' => 'required|min:1|unique:consultations,subject_id',
+                'subject_id' => 'required|min:1',
                 'dayOfWeek'=>'required|min:2',
                 'time' => 'required|min:1',
                 'type' => 'required',
@@ -147,7 +147,8 @@ class ConsultationController extends Controller
                 'reasonCancel'=>''
             ]
         );
-        $newConsultation['active'] = ($newConsultation["active"] == "Activada")? 1 : 0;
+
+        $newConsultation['active'] = ($newConsultation['active'] == "Activada")? 1 : 0;
 
          Consultation::where('id','=', $newConsultation['id']) ->update($newConsultation);
          return redirect('/consultation');

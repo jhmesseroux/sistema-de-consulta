@@ -44,9 +44,8 @@
                 <tbody>
                     @foreach ($consultations as $consultation)
                         <tr class="p-6 border-gray-300 border-b">
-
-                            <x-tables.td class="pl-4">  {{ $consultation->teacher_id }}  </x-tables.td>
-                            <x-tables.td>               {{ $consultation->admin_id }}  </x-tables.td>
+                            <x-tables.td class="pl-4">  {{ $consultation->id }}  </x-tables.td>
+                            <x-tables.td >              {{ $consultation->teacher_id }}  </x-tables.td>
                             <x-tables.td>               {{ $consultation->subject_id }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->admin_id }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->alternative }} </x-tables.td>

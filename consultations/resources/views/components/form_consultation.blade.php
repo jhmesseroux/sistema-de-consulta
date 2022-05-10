@@ -18,8 +18,6 @@
                         <div class="col-span-6 sm:col-span-3" name="teacher_field">
 
                             <label for="teacher_id" class="block text-sm font-medium text-gray-700">Profesor</label>
-
-
                                 <input type="text" name="teacher_id" id="teacher_id"
                                     value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
                                     autocomplete="techer_id" list="drawTeachers"
@@ -144,8 +142,8 @@
 
                             <label for="active" class="block text-sm font-medium text-gray-700">Estado de la
                                 consulta</label>
-                            <x-input type="text" name="active"
-                                value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}" id="active"
+                            <x-input type="text" name="active" id="active"
+                                value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}"
                                 autocomplete="" disabled />
                             <x-errorInput name='active' />
                         </div>
