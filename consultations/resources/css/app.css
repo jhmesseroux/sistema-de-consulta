@@ -1,11 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-.gradient {
-    background: rgb(117, 190, 227);
-    background: linear-gradient(
-        156deg,
-        rgba(117, 190, 227, 0.896796218487395) 0%,
-        rgba(9, 109, 177, 1) 91%
-    );
+
+body {
+    background-color: red !important;
 }

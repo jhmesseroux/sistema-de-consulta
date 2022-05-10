@@ -1,15 +1,13 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<x-admin>
+    <x-slot name="header" class="">
+        Admin /Create Usuario
+    </x-slot>
+    {{-- @include('auth.register') --}}
+    <div class="w-full p-6 border-2  sm:w-4/6 m-auto bg-white shadow-md rounded">
 
-        <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('admin.store.user') }}">
             @csrf
 
             <h3 class="form-title gradient">Crear Cuenta</h3>
@@ -113,5 +111,7 @@
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+
+    </div>
+
+</x-admin>

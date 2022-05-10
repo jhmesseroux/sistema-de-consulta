@@ -25,6 +25,7 @@ class ConsultationController extends Controller
             $consultations = Consultation::latest()->get()->where('teacher_id','=',$teacher_id);
         }
 
+        $consultations = Consultation::latest()->get();
          return view('consultation.index',[
             'consultations' => $consultations
         ]);
@@ -37,12 +38,13 @@ class ConsultationController extends Controller
      */
     public function create()
     {
+        $teachers = User::latest()->get()->where('role_id', '=', '2');
 
         $teachers = User::latest()->get()->where('role_id','=','2');
         $subjects = Subject::latest()->get();
 
 
-        return view('consultation.create',[
+        return view('consultation.create', [
 
             'teachers' => $teachers,
             'subjects' => $subjects
@@ -57,6 +59,17 @@ class ConsultationController extends Controller
      */
     public function store(Request $request)
     {
+        $newConsultation = $request->validate(
+            [
+                'teacher_id' => 'required|min:1|unique:consultations,teacher_id',
+                'subject_id' => 'required|min:1|unique:consultations,subject_id',
+                'dayOfWeek' => 'required|min:2',
+                'time' => 'required|min:1',
+                'type' => 'required',
+                'place' => '',
+                'link' => ''
+            ]
+        );
         if (Auth::user()->role_id == 1) {
             $newConsultation = $request->validate(
                 [
@@ -89,7 +102,7 @@ class ConsultationController extends Controller
         $newConsultation['teacher_id'] = Auth::user()->id;
 
         Consultation::create($newConsultation);
-        return redirect('/consultation');
+        return redirect('/consultations');
     }
 
     /**
@@ -100,7 +113,7 @@ class ConsultationController extends Controller
      */
     public function show($id)
     {
-      //
+        //
     }
 
     /**
@@ -111,12 +124,12 @@ class ConsultationController extends Controller
      */
     public function update(Consultation $consultation)
     {
-        $teachers = User::latest()->get()->where('role_id','=','2');
+        $teachers = User::latest()->get()->where('role_id', '=', '2');
         $subjects = Subject::latest()->get();
 
         //$consultation = Consultation::latest()->get()->where('id','=',$id);
 
-        return view('consultation.update',[
+        return view('consultation.update', [
 
             'teachers' => $teachers,
             'subjects' => $subjects,
@@ -135,6 +148,8 @@ class ConsultationController extends Controller
     {
         $newConsultation = request()->validate(
             [
+
+                'dayOfWeek' => 'required|min:2',
                 'admin_id' => '',
                 'subject_id' => 'required|min:1',
                 'dayOfWeek'=>'required|min:2',
@@ -150,8 +165,8 @@ class ConsultationController extends Controller
 
         $newConsultation['active'] = ($newConsultation['active'] == "Activada")? 1 : 0;
 
-         Consultation::where('id','=', $newConsultation['id']) ->update($newConsultation);
-         return redirect('/consultation');
+        Consultation::where('id', '=', $newConsultation['id'])->update($newConsultation);
+        return redirect('/consultations');
     }
 
     /**
@@ -162,7 +177,7 @@ class ConsultationController extends Controller
      */
     public function destroy($id)
     {
-        Consultation::where('id','=',$id)->delete();
-        return redirect('/consultation');
+        Consultation::where('id', '=', $id)->delete();
+        return redirect('/consultations');
     }
 }

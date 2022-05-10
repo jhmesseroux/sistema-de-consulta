@@ -18,6 +18,7 @@ const mix = require("laravel-mix");
 //         implementation: require("node-sass"),
 //     }
 // );
+
 mix.js("resources/js/app.js", "public/js").postCss(
     "resources/css/app.css",
     "public/css",

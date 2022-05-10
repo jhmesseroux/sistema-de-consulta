@@ -1482,3 +1482,68 @@ select {
 .bg-overlay {
     background-color: rgba(0, 0, 0, 0.466);
 }
+.form-title {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(90deg, #6fb8d5, #287cb4);
+    color: transparent;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.tooltip {
+    max-width: 200px;
+    background-color: red;
+}
+
+.tooltip::before,
+.tooltip::after {
+    --scale: 0;
+    --arrow-size: 10px;
+    --tooltip-color: #333;
+
+    position: absolute;
+    top: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0))
+        scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+}
+
+.tooltip::before {
+    --translate-y: calc(-100% - var(--arrow-size));
+    content: attr(data-tooltip);
+    margin: 0 0.5rem;
+
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    overflow: hidden;
+    /* width: max-content; */
+    -webkit-min-width: -webkit-fill-available;
+    -moz-min-width: -moz-fit-content;
+    -moz-min-width: fit-content;
+    min-width: fit-content;
+    max-width: 170px;
+    background: var(--tooltip-color);
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+    --scale: 1;
+}
+
+.tooltip::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
+}

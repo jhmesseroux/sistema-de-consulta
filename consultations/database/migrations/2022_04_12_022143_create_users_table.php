@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('dni')->unique();
             $table->string('email')->unique();
             $table->boolean('verified');
-            $table->foreignId('role_id')->constrained('roles')->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

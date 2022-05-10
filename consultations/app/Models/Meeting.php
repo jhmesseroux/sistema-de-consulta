@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Meeting extends Model
 {
     use HasFactory;
+
+    // default value 
+    protected $attributes = [
+        'dateTimeCancelled' => null,
+    ];
+
+    public function consultation()
+    {
+        return Meeting::belongsTo(Consultation::class);
+    }
 }

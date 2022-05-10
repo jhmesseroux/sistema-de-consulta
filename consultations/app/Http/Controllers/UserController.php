@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
+
+    
     public function show()
     {
         return view('user.profile');
     }
-
-    public function index()
-    {
-        return view('admin.users', [
-            'users' => User::latest()->get(),
-        ]);
-    }
-    public function verify(User $user)
-    {
-        $res = $user->update(['verified' => true]);
-        if ($res) {
-            return back();
-        }
-        ddd($res);
-    }
+   
 
     public function update(Request $request)
     {
@@ -44,6 +36,8 @@ class UserController extends Controller
 
         User::where('id', auth()->id())
             ->update($attributes);
-        return back();
+        return back()->with('success', 'usuario actualizado con exito!!!✅✅');
     }
+
+   
 }
