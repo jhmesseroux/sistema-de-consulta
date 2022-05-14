@@ -20,9 +20,11 @@
                             <label for="teacher_id" class="block text-sm font-medium text-gray-700">Profesor</label>
                                 <input type="text" name="teacher_id" id="teacher_id"
                                     value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
+                                    maxlength="510"
                                     autocomplete="techer_id" list="drawTeachers"
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                <x-errorInput name='teacher_id' />
+                                
+                                    <x-errorInput name='teacher_id' />
 
                                 <datalist id="drawTeachers">
                                     @foreach ( $teachers as $teacher)
@@ -45,6 +47,7 @@
                             <x-input type="text" name="subject_id" id="subject_id" list="drawSubject"
                                 value="{{ isset($consultation->subject_id)? $consultation->subject_id : '' }}"
                                 autocomplete="subject_id"
+                                maxlength="255"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             <x-errorInput name='subject_id' />
 
@@ -86,6 +89,7 @@
                             <x-input type="text"
                                 value="{{ isset($consultation->dayOfWeek)? $consultation->dayOfWeek : '' }}"
                                 name="dayOfWeek" id="dayOfWeek" list="dayOfWeekList" autocomplete="dayOfWeek"
+                                maxlength="10"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             <x-errorInput name='dayOfWeek' />
 
@@ -114,11 +118,11 @@
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_place" style="display:block">
 
                             <label for="place" class="block text-sm font-medium text-gray-700">
-
-
                                 Lugar</label>
                             <x-input type="text" value="{{ isset($consultation->place)? $consultation->place : '' }}"
                                 name="place" id="place" autocomplete="place-consultation"
+                                maxlength="255"
+                                onchange="dontAllowURL('place')"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             <x-errorInput name='place' />
                         </div>
@@ -127,6 +131,7 @@
                             <label for="link" class="block text-sm font-medium text-gray-700">Link</label>
                             <input type="text" value="{{ isset($consultation->link)? $consultation->link : '' }}"
                                 name="link" id="link" autocomplete="link-consultation"
+                                maxlength="255"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             <x-errorInput name='link' />
                         </div>
@@ -144,7 +149,9 @@
                                 consulta</label>
                             <x-input type="text" name="active" id="active"
                                 value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}"
+                                maxlength="1"
                                 autocomplete="" disabled />
+                               
                             <x-errorInput name='active' />
                         </div>
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2 ">
@@ -170,7 +177,9 @@
                             <label for="reasonCancel" class="block text-sm font-medium text-gray-700">Razón
                                 cancelada</label>
                             <x-input type="textarea" name="reasonCancel" id="reasonCancel" autocomplete="reasonCancel"
-                                class="mt-1  w-full  " />
+                            maxlength="255"    
+                            class="mt-1  w-full  " />
+                               
                             <x-errorInput name='reasonCancel' />
                         </div>
 
@@ -180,7 +189,9 @@
                             <x-input
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 type="textarea" name="" id="alternative" autocomplete="alternative"
+                                maxlength="255"
                                 placeholder="Ingresar dia, horario, lugar o link de la consulta alternativa" />
+                                
                             <x-errorInput name='alternative' />
                         </div>
 
@@ -208,3 +219,4 @@
 </div>
 
 <script src="{{ asset('js/consultation.js') }}"></script>
+<script src="{{ asset('js/validations.js') }}"></script>
