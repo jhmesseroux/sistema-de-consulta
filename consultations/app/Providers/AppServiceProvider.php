@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('admin', function () {
-            return request()->user()?->role->name === 'Admin';
+            //return request()->user()->role->name === 'Admin';
         });
     }
 }
