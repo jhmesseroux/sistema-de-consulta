@@ -44,10 +44,8 @@
                 <tbody>
                     @foreach ($consultations as $consultation)
                         <tr class="p-6 border-gray-300 border-b">
-<<<<<<< HEAD
-
-                            <x-tables.td class="pl-4"> {{ $consultation->teacher_id }} </x-tables.td>
-                            <x-tables.td> {{ $consultation->admin_id }} </x-tables.td>
+                            <x-tables.td class="pl-4"> {{ $consultation->id }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->teacher_id }} </x-tables.td>
                             <x-tables.td> {{ $consultation->subject_id }} </x-tables.td>
                             <x-tables.td> {{ $consultation->admin_id }} </x-tables.td>
                             <x-tables.td> {{ $consultation->alternative }} </x-tables.td>
@@ -58,20 +56,6 @@
                             <x-tables.td> {{ $consultation->reasonCancel }} </x-tables.td>
                             <x-tables.td> {{ $consultation->time }} </x-tables.td>
                             <x-tables.td> {{ $consultation->type }} </x-tables.td>
-=======
-                            <x-tables.td class="pl-4">  {{ $consultation->id }}  </x-tables.td>
-                            <x-tables.td >              {{ $consultation->teacher_id }}  </x-tables.td>
-                            <x-tables.td>               {{ $consultation->subject_id }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->admin_id }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->alternative }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->active }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->dayOfWeek }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->link }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->place }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->reasonCancel }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->time }} </x-tables.td>
-                            <x-tables.td>               {{ $consultation->type }} </x-tables.td>
->>>>>>> 56de9d42eeb0f239695dca15f32d98647f9df592
 
 
                             <x-tables.td class="flex h-10 gap-2 items-center justify-center">
