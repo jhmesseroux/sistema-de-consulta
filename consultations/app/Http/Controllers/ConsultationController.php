@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Arr;
 
 class ConsultationController extends Controller
 {
@@ -16,16 +17,53 @@ class ConsultationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private function getConsultation()
+    {
+        return Consultation::
+                  join('subjects','consultations.subject_id','=','subjects.id')
+                ->join('users','consultations.teacher_id','=','users.id')
+                ->orderByDesc('consultations.created_at')
+                ->get();
+    }
+
+    private function getWeek()
+    {
+         
+        return  ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+    }
+
+    private function weekDayExists($day)
+    {
+        $Weekend = $this->getWeek();
+
+        $filtered = Arr::where($Weekend, function ($value) {
+            return $value == $day;
+        });
+
+        return empty($filtered);
+    }
+
+    private function getTeachers()
+    {
+        return User::latest()->get()->where('role_id', '=', '2');
+    }
+
+    private function getSubject()
+    {
+        return Subject::latest()->get();
+    }
+
+
     public function index()
     {
         if (Auth::user()->role_id == 1) {
-            $consultations = Consultation::latest()->get();
+            $consultations = $this->getConsultation();
         } else {
             $teacher_id = Auth::user()->id;
-            $consultations = Consultation::latest()->get()->where('teacher_id','=',$teacher_id);
+            $consultations = $this->getConsultation()->where('teacher_id','=',$teacher_id);
         }
-
-        $consultations = Consultation::latest()->get();
+ 
          return view('consultation.index',[
             'consultations' => $consultations
         ]);
@@ -38,16 +76,15 @@ class ConsultationController extends Controller
      */
     public function create()
     {
-        $teachers = User::latest()->get()->where('role_id', '=', '2');
-
-        $teachers = User::latest()->get()->where('role_id','=','2');
-        $subjects = Subject::latest()->get();
-
+        $teachers = $this->getTeachers(); 
+        $subjects = $this->getSubject();
+        $week = $this->getWeek();
 
         return view('consultation.create', [
 
             'teachers' => $teachers,
-            'subjects' => $subjects
+            'subjects' => $subjects,
+            'week' => $week
         ]);
     }
 
@@ -59,47 +96,31 @@ class ConsultationController extends Controller
      */
     public function store(Request $request)
     {
-        $newConsultation = $request->validate(
-            [
-                'teacher_id' => 'required|min:1|unique:consultations,teacher_id',
-                'subject_id' => 'required|min:1|unique:consultations,subject_id',
-                'dayOfWeek' => 'required|min:2',
-                'time' => 'required|min:1',
-                'type' => 'required',
-                'place' => '',
-                'link' => ''
-            ]
-        );
-        if (Auth::user()->role_id == 1) {
-            $newConsultation = $request->validate(
-                [
-                    'teacher_id' => 'required|min:1|unique:consultations,teacher_id',
-                    'subject_id' => 'required|min:1|unique:consultations,subject_id',
-                    'dayOfWeek'=>'required|min:2',
-                    'time' => 'required|min:1',
-                    'type' => 'required',
-                    'place' => '',
-                    'link' => '',
-                    'admin_id' => ''
+        $consultationRequest = 
+        [
+            'teacher_legajo' => 'required|min:1',
+            'subject_name' => 'required|min:1',
+            'dayOfWeek' => 'required|min:2',
+            'time' => 'required|min:1',
+            'type' => 'required',
+            'place' => '',
+            'link' => ''
+        ];
 
-                ]
-            );
+
+        if (Auth::user()->role_id == 1) {
+            $consultationRequest = Arr::add($consultationRequest,'admin_id','' );
+
+            $newConsultation = $request->validate($consultationRequest);
         } else {
-            $newConsultation = $request->validate(
-                [
-                    'teacher_id'=>'',
-                    'subject_id' => 'required|min:1|unique:consultations,subject_id',
-                    'dayOfWeek'=>'required|min:2',
-                    'time' => 'required|min:1',
-                    'type' => 'required',
-                    'place' => '',
-                    'link' => '',
-                    'admin_id' => ''
-                ]
-            );
+            Arr::forget($consultationRequest,'teacher_legajo');
+            $consultationRequest = Arr::add($consultationRequest,'teacher_legajo','' );
+            $newConsultation = $request->validate($consultationRequest);
         }
 
         $newConsultation['teacher_id'] = Auth::user()->id;
+
+
 
         Consultation::create($newConsultation);
         return redirect('/consultations');
@@ -124,8 +145,8 @@ class ConsultationController extends Controller
      */
     public function update(Consultation $consultation)
     {
-        $teachers = User::latest()->get()->where('role_id', '=', '2');
-        $subjects = Subject::latest()->get();
+        $teachers = $this->getTeachers();
+        $subjects = $this->getSubject();
 
         //$consultation = Consultation::latest()->get()->where('id','=',$id);
 
@@ -139,9 +160,6 @@ class ConsultationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function save()

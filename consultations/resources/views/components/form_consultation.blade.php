@@ -17,19 +17,19 @@
                             id="id" />
                         <div class="col-span-6 sm:col-span-3" name="teacher_field">
 
-                            <label for="teacher_id" class="block text-sm font-medium text-gray-700">Profesor</label>
-                                <input type="text" name="teacher_id" id="teacher_id"
-                                    value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
+                            <label for="teacher_legajo" class="block text-sm font-medium text-gray-700">Profesor</label>
+                                <input type="text" name="teacher_legajo" id="teacher_legajo"
+                                    value="{{ isset($consultation->teacher_legajo)? $consultation->teacher_legajo : '' }}"
                                     maxlength="510"
                                     autocomplete="techer_id" list="drawTeachers"
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 
-                                    <x-errorInput name='teacher_id' />
+                                    <x-errorInput name='teacher_legajo' />
 
                                 <datalist id="drawTeachers">
                                     @foreach ( $teachers as $teacher)
 
-                                    <option value="{{$teacher->id}}" onclick="showTeacherAvatar({{$teacher->avatar}})">
+                                    <option value="{{$teacher->legajo}}" onclick="showTeacherAvatar({{$teacher->avatar}})">
                                         {{$teacher->firstname.' '.$teacher->lastname}}
                                     </option>
                                     @endforeach
@@ -39,7 +39,7 @@
                         @else
                         <input type="text" name="teacher_id" id="teacher_id"
                             value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
-                            autocomplete="techer_id" class="hidden">
+                            autocomplete="teacher_id" class="hidden">
                         @endif
 
                         <div class="col-span-6 sm:col-span-3">
@@ -48,12 +48,14 @@
                                 value="{{ isset($consultation->subject_id)? $consultation->subject_id : '' }}"
                                 autocomplete="subject_id"
                                 maxlength="255"
+                                spellcheck="false"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                
                             <x-errorInput name='subject_id' />
 
                             <datalist id="drawSubject">
                                 @foreach ( $subjects as $subject)
-                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                <option value="{{$subject->name}}"></option>
                                 @endforeach
                             </datalist>
                         </div>
@@ -94,15 +96,9 @@
                             <x-errorInput name='dayOfWeek' />
 
                             <datalist id="dayOfWeekList">
-
-                                <option value="Lunes">Lunes</option>
-                                <option value="Martes">Martes</option>
-                                <option value="Miercoles">Miercoles</option>
-                                <option value="Jueves">Jueves</option>
-                                <option value="Viernes">Viernes</option>
-                                <option value="Sabado">Sabado</option>
-                                <option value="Domingo">Domingo</option>
-
+                            @foreach ($week as $day)
+                                <option value="{{$day}}"></option>
+                            @endforeach
                             </datalist>
                         </div>
 
