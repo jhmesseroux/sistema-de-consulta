@@ -4,14 +4,14 @@
             Consultas
         </span>
     </x-slot>
-    <br/>
+    <br />
     <div class="mx-auto container bg-white   shadow rounded">
         <div class="header-table flex justify-between gap-4 items-center p-4">
             <h3>Listado de consultas</h3>
             <x-button type="button">
 
 
-                <a class="flex gap-4 items-center justify-center" href="{{url('consultation/create')}}">
+                <a class="flex gap-4 items-center justify-center" href="{{ url('consultation/create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -44,6 +44,21 @@
                 <tbody>
                     @foreach ($consultations as $consultation)
                         <tr class="p-6 border-gray-300 border-b">
+<<<<<<< HEAD
+
+                            <x-tables.td class="pl-4"> {{ $consultation->teacher_id }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->admin_id }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->subject_id }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->admin_id }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->alternative }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->active }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->dayOfWeek }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->link }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->place }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->reasonCancel }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->time }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->type }} </x-tables.td>
+=======
                             <x-tables.td class="pl-4">  {{ $consultation->id }}  </x-tables.td>
                             <x-tables.td >              {{ $consultation->teacher_id }}  </x-tables.td>
                             <x-tables.td>               {{ $consultation->subject_id }} </x-tables.td>
@@ -56,16 +71,19 @@
                             <x-tables.td>               {{ $consultation->reasonCancel }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->time }} </x-tables.td>
                             <x-tables.td>               {{ $consultation->type }} </x-tables.td>
+>>>>>>> 56de9d42eeb0f239695dca15f32d98647f9df592
 
 
                             <x-tables.td class="flex h-10 gap-2 items-center justify-center">
-                                <a class="text-yellow-500 " href="{{url('consultation/update/'.$consultation->id.'')}}"><svg
+                                <a class="text-yellow-500 "
+                                    href="{{ url('consultation/update/' . $consultation->id . '') }}"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg></a>
-                                <a class="text-red-500" href="{{url('consultation/delete/'.$consultation->id.'')}}"><svg
+                                <a class="text-red-500"
+                                    href="{{ url('consultation/delete/' . $consultation->id . '') }}"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"

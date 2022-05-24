@@ -39,6 +39,4 @@
             </label>
         </div>
     </div>
-
-
 </x-app-layout>

@@ -1,4 +1,4 @@
-<div class="relative flex justify-start md:justify-center md:items-end bg-blue-500 ">
+<div class="relative flex justify-start md:justify-center mt-6 md:items-end bg-blue-500 ">
     <!-- <img class="absolute  object-cover top-10 h-full w-full xl:mt-10 z-0"
     src="https://tuk-cdn.s3.amazonaws.com/can-uploader/footer_5_marketing_background.png" alt="background"> -->
     <div

@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li
-                    class=" {{ request()->is('admin/consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                    class=" {{ request()->is('consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
                     <a href="/consultations"
                         class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
@@ -242,8 +242,8 @@
                     </a>
                 </li>
                 <li
-                    class=" {{ request()->is('admin/consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/consultations"
+                    class=" {{ request()->is('consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                    <a href="/consultations"
                         class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
