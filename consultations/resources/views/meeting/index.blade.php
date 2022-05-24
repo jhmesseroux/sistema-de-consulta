@@ -12,7 +12,7 @@
                 <p class="p-2 text-red-500 my-4">{{ $message }}</p>
             @enderror
             @foreach ($meeting as $meet)
-                {{-- {{ dd($meet->teacher) }} --}}
+                {{-- {{ dd($meet->consultation->subject->name) }} --}}
                 {{-- <li>{{ $meet->alternative }}</li> --}}
                 <li
                     class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
@@ -54,7 +54,7 @@
                                         d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
                                 <span>
-                                    {{ $meet->consultation->alternative }}
+                                    {{ $meet->consultation->subject->name }}
                                 </span>
                             </p>
                             <p class="text-sm flex gap-2 items-center text-gray-500 truncate ">

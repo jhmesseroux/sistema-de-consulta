@@ -16,7 +16,7 @@ class SearchConsultationController extends Controller
             ->join('users', 'users.id', '=', 'consultations.teacher_id')
             ->where('subjects.name', 'like',  '%' .  strtolower(request('search')) . '%')->orWhere('users.firstname', 'like',  '%' .  strtolower(request('search')) . '%')->orWhere('users.lastname', 'like',  '%' .  strtolower(request('search')) . '%')
             ->select('consultations.*', 'users.firstname', 'users.lastname', 'users.email', 'users.avatar', 'subjects.name')
-            ->get();
+            ->paginate(10);
         // var_dump(strtolower(request('search')));
 
         // $r = DB::table('subjects')->join('consultations', function ($join) {

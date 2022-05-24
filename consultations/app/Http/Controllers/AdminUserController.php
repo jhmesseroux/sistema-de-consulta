@@ -14,10 +14,10 @@ class AdminUserController extends Controller
     public function index()
     {
         return view('admin.users', [
-            'users' => User::latest()->get(),
+            'users' => User::latest()->paginate(10),
         ]);
     }
-     public function update(Request $request)
+    public function update(Request $request)
     {
         $attributes = $request->validate([
             'id' => ['required'],
@@ -33,17 +33,17 @@ class AdminUserController extends Controller
             ->update($attributes);
         return redirect()->route('admin.users')->with('success', 'Usuario actualizado con exito!!!✅✅');
     }
-     public function edit(User $user)
+    public function edit(User $user)
     {
-        return view('admin.users.edit',[
+        return view('admin.users.edit', [
             'user' => $user
         ]);
     }
-     public function create()
+    public function create()
     {
         return view('admin.users.create');
     }
-     public function store(Request $request)
+    public function store(Request $request)
     {
 
         $request->validate([
@@ -73,20 +73,19 @@ class AdminUserController extends Controller
 
         return redirect()->route('admin.users')->with('success', 'usuario agregado con exito!!!✅✅');
     }
-   
-   
+
+
     public function delete(User $user)
     {
         $user->delete();
         return back()->with('success', 'Usuario borrado con exito!!!✅✅');
     }
 
-     public function verify(User $user)
+    public function verify(User $user)
     {
         $res = $user->update(['verified' => true]);
         if ($res) {
             return back()->with('success', 'Cuenta verificada exitosamente!!!✅✅');
         }
     }
-    
 }

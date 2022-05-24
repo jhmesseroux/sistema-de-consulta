@@ -4,10 +4,10 @@
         Admin /users
     </x-slot>
 
-    <div class="mx-auto  container bg-white  shadow rounded">
-        <div class="header p-4 flex place-items-center gap-8">
+    <div class="mx-auto  container">
+        <div class="header p-4 flex place-items-center gap-8 ">
             <span>Listado de usuarios({{ $users->count() }})</span>
-            <a href="/admin/user/add">
+            <a title="Agregar un nuevo Usuario" href="/admin/user/add">
                 <x-button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -18,8 +18,8 @@
 
         </div>
 
-        <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
-            <table class="min-w-full bg-white ">
+        <div class="w-full overflow-x-auto xl:overflow-x-hidden">
+            <table class="min-w-full bg-white shadow rounded">
                 <thead class="p-4">
                     <tr class="w-full h-16 border-gray-300 border-b py-8">
                         <x-tables.th text='Avatar' class="pl-4" role="columnheader">
@@ -33,8 +33,8 @@
                             Company Contact</x-tables.th> --}}
                         <x-tables.th text='Rol' role="columnheader">
                         </x-tables.th>
-                        <x-tables.th text='Email' role="columnheader">
-                        </x-tables.th>
+                        {{-- <x-tables.th text='Email' role="columnheader"> --}}
+                        {{-- </x-tables.th> --}}
                         <x-tables.th text='Active'>
                         </x-tables.th>
                         <x-tables.th text='Accion' role="columnheader">
@@ -62,15 +62,16 @@
                             </x-tables.td>
                             <x-tables.td>
                                 {{ $user->role->name }}</x-tables.td>
-                            <x-tables.td>
+                            {{-- <x-tables.td>
                                 {{ $user->email }}
-                            </x-tables.td>
+                            </x-tables.td> --}}
                             <x-tables.td>
-                                {!! $user->verified ? "<div class='flex gap-1 items-center justify-center'> <span> Si</span> <span class='w-2 h-2 rounded-full bg-green-600'></span></div>" : "<div class='flex gap-1 items-center justify-center'> <span> Si</span> <span class='w-2 h-2 rounded-full bg-red-600'></span></div>" !!}
+                                {!! $user->verified ? "<div class='flex gap-1 items-center justify-center'> <span> Si</span> <span class='w-2 h-2 rounded-full bg-green-600'></span></div>" : "<div class='flex gap-1 items-center justify-center'> <span> No</span> <span class='w-2 h-2 rounded-full bg-red-600'></span></div>" !!}
                             </x-tables.td>
                             <x-tables.td>
                                 <div class="place-items-center flex ">
-                                    <a class="text-yellow-500 " href="/admin/user/edit/{{ $user->id }}"><svg
+                                    <a title="Editar Usuario" class="text-yellow-500 "
+                                        href="/admin/user/edit/{{ $user->id }}"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,8 +80,8 @@
                                     <form class="inline" method="POST"
                                         action="/admin/user/delete/{{ $user->id }}">
                                         @csrf
-                                        <x-button data-tooltip='editar'
-                                            class="text-red-500 tooltip !p-0 bg-transparent hover:bg-transparent  hover:text-red-700 ">
+                                        <x-button title="Borrar Usuario"
+                                            class="text-red-500  !p-0 bg-transparent hover:bg-transparent  hover:text-red-700 ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -94,7 +95,7 @@
                                         <form class="inline" method="POST"
                                             action="/admin/{{ $user->id }}/verify">
                                             @csrf
-                                            <x-button
+                                            <x-button title="Verificar Cuenta"
                                                 class="bg-green-500 !p-0  hover:bg-green-700 focus:bg-green-400 active:bg-green-700 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -114,7 +115,10 @@
         </table>
     </div>
     </div>
+    <div class="my-4">
 
+        {{ $users->links() }}
+    </div>
 
     <x-alert />
 </x-admin>

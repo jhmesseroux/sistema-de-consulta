@@ -18,4 +18,8 @@ class Meeting extends Model
     {
         return Meeting::belongsTo(Consultation::class);
     }
+    public function user()
+    {
+        return Meeting::belongsTo(User::class);
+    }
 }

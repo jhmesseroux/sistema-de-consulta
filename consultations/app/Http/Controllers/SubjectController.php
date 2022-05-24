@@ -15,9 +15,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::latest()->get();
+        $subjects = Subject::latest()->paginate(10);
 
-        return view('subject.index',['subjects' => $subjects]);
+        return view('subject.index', ['subjects' => $subjects]);
     }
 
     /**
@@ -38,12 +38,12 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-         $newSubject = request()->validate([
+        $newSubject = request()->validate([
             'name' => 'required|min:3|unique:subjects,name'
-         ]);
+        ]);
 
-         Subject::create($newSubject);
-         return redirect('admin/subject');
+        Subject::create($newSubject);
+        return redirect('admin/subject');
     }
 
     /**
@@ -82,11 +82,11 @@ class SubjectController extends Controller
         $subject = request()->validate([
             'name' => 'required|min:3|unique:subjects,name',
             'id' => ''
-         ]);
+        ]);
 
-         Subject::where('id', $subject['id'])
+        Subject::where('id', $subject['id'])
             ->update($subject);
-         return redirect('admin/subject');
+        return redirect('admin/subject');
     }
 
     /**

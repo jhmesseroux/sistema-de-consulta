@@ -1,9 +1,32 @@
 <x-admin>
 
-    <div class="mx-auto container bg-white   shadow rounded">
+    <div id="modal-delete-rol" class="fixed top-0 left-0 z-30 h-screen w-screen hidden ">
+        <div class="overflow  z-40 "></div>
+        <div class="content fixed flex w-full text-white !z-50 h-full">
+            <div class="p-6 border-2   m-auto bg-white shadow-md rounded">
+                <div class="">
+                    <form id="delete-rol" action="" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <h3 id="title-delete-rol" class="my-4 text-gray-800"></h3>
+                        <div class="my-4 flex gap-6">
+                            <x-button title="Volver Atras" onclick="closeModalDelete()" type='button'
+                                class="!bg-gray-400">
+                                Cancelar
+                            </x-button>
+                            <x-button title="Borrar Rol" class="!bg-red-500">
+                                Borrar Denifitivamente
+                            </x-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto  container">
         <div class="header p-4 flex place-items-center gap-8">
             <span>Listado de usuarios({{ $roles->count() }})</span>
-            <a href="/admin/role/create">
+            <a title="Agregar un nuevo Rol" href="/admin/role/create">
                 <x-button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -14,23 +37,23 @@
 
         </div>
         <div class="w-full overflow-x-auto xl:overflow-x-hidden">
-            <table class="min-w-full text-gray-800 bg-white">
+            <table class="min-w-full text-gray-800  bg-white   shadow rounded">
                 <thead>
                     <tr class="w-full h-16 border-gray-300 border-b py-8">
-                        <x-tables.th class="pl-4" text='ID' />
-                        <x-tables.th text='Nombre' />
-                        <x-tables.th text='Description' />
+                        {{-- <x-tables.th class="pl-4" text='ID' /> --}}
+                        <x-tables.th class="pl-4" text='Nombre' />
+                        <x-tables.th text='Descripcion' />
                         <x-tables.th text='  ' />
                     </tr>
                 <tbody>
                     @foreach ($roles as $role)
                         <tr class="p-6 border-gray-300 border-b">
 
-                            <x-tables.td class="pl-4">
+                            {{-- <x-tables.td class="pl-4">
 
                                 {{ $role->id }}
-                            </x-tables.td>
-                            <x-tables.td>
+                            </x-tables.td> --}}
+                            <x-tables.td class="pl-4">
 
                                 {{ $role->name }}
                             </x-tables.td>
@@ -38,15 +61,19 @@
 
                                 {{ $role->description }}
                             </x-tables.td>
-                            <x-tables.td class="flex h-10 gap-2 items-center justify-center">
+                            <x-tables.td
+                                class="
+                                flex h-10 gap-2 items-center justify-center">
                                 @if ($role->name !== 'Admin' && $role->name !== 'Profesor' && $role->name !== 'Alumno')
-                                    <a class="text-yellow-500 " href="/admin/role/update/{{ $role->id }}"><svg
+                                    <a title="Editar Rol" class="text-yellow-500 "
+                                        href="/admin/role/update/{{ $role->id }}"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg></a>
-                                    <a class="text-red-500" href="/admin/role/remove/{{ $role->id }}"><svg
+                                    <a title="Borrar Rol" class="text-red-500" href="#deleteRole"
+                                        onclick="deleteRole({{ $role }})"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -61,8 +88,5 @@
             </table>
         </div>
     </div>
-
-
-
 
 </x-admin>
