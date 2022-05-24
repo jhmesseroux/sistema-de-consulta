@@ -26,8 +26,8 @@
     <div class="min-h-screen bg-gray-100">
         <div class="flex">
             <x-SideBarAdmin />
-            <div class="mx-auto overflow-hidden  w-full ">
-                @include('layouts.navigation')
+            <div class="mx-auto overflow-hidden  sm:ml-64 w-full ">
+                @include('layouts.navigationAdmin')
                 <main class="p-4 mt-4">
                     {{ $slot }}
                 </main>

@@ -22,4 +22,8 @@ class Consultation extends Model
     {
         return Consultation::belongsTo(User::class, 'teacher_id');
     }
+    public function subject()
+    {
+        return Consultation::belongsTo(Subject::class);
+    }
 }

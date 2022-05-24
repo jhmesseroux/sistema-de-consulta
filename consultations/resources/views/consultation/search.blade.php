@@ -74,6 +74,8 @@
                 <li
                     class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
                     <div class="flex gap-2 sm:items-center sm:flex-row flex-col sm:space-x-4">
+
+
                         <div class="flex-shrink-0 flex items-center  gap-1">
                             @if ($con->avatar)
                                 <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $con->avatar) }}"
@@ -93,17 +95,17 @@
                             </div>
 
                         </div>
-                        <div class="flex-1 min-w-0">
+                        {{-- <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate">
                                 {{ $con->firstname }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
                                 {{ $con->email }}
                             </p>
-                        </div>
+                        </div> --}}
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium capitalize text-gray-900 truncate">
-                                {{ $con->alternative }}
+                                {{ $con->name }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
                                 {{ $con->dayOfWeek }} |
@@ -149,6 +151,10 @@
 
                 </li>
             @endforeach
+            <div class="my-4 p-2">
+                {{ $consultations->links() }}
+            </div>
+
         </ul>
     @else
         <div class="container flex w-full items-center justify-center p-6 m-4">
@@ -158,5 +164,6 @@
             </p>
         </div>
     @endif
+
 
 </x-app-layout>

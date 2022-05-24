@@ -63,3 +63,22 @@ const PreviewAvatar = (e) => {
         imagePreview.src = URL.createObjectURL(file);
     }
 };
+const deleteRole = (role) => {
+    console.log(role);
+    const form = document.getElementById("delete-rol");
+    const modal = document.getElementById("modal-delete-rol");
+    const title = document.getElementById("title-delete-rol");
+    console.log(title);
+    title.textContent =
+        "Estas seguro de borrar el rol con id " + role.id + " ?";
+    form.setAttribute("action", `/admin/role/delete/${role.id}`);
+    modal.classList.remove("hidden");
+    console.log(form);
+};
+const closeModalDelete = () => {
+    // const form = document.getElementById("delete-rol");
+    const modal = document.getElementById("modal-delete-rol");
+    // form.setAttribute("action", `/admin/role/remove/${role.id}`);
+    modal.classList.add("hidden");
+    // console.log(form);
+};

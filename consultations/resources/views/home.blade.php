@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name='header'></x-slot>
     <!-- Navigation ends -->
-    <div class="container flex flex-col items-center justify-center  mx-auto px-6"
-        style="    min-height: calc(100vh - 20rem);">
+    <div class="flex flex-col mt-6 !h-full  items-center justify-center  mx-auto px-6">
         <div
-            class="content__home lg:w-fit my-4 bg-white sm:flex-row  flex items-center flex-col justify-between  rounded shadow w-75 m-auto">
+            class="content__home lg:w-fit my-4 bg-white sm:flex-row  flex items-center flex-col justify-between  rounded shadow  m-auto">
             <div class="image">
                 <img src="/image 2.png" width="250" alt="LOGO">
             </div>
@@ -19,10 +18,10 @@
                             </svg>
                         </label>
                         <x-input style="border-radius: 0" class="!rounded-0 " type="search"
-                            placeholder="buscar por nombre o materia" name="search" id="search" />
+                            placeholder="Buscar por profesor o materia" class="sm:w-80 w-fit" name="search" id="search" />
                     </div>
                     <div class="form-group mb-3 w-100">
-                        <x-button class="!bg-blue-500">Buscar</x-button>
+                        <x-button class="!bg-blue-500 w-32 !text-center justify-center items-center font-semibold text-md">Buscar</x-button>
                     </div>
                 </form>
             </div>

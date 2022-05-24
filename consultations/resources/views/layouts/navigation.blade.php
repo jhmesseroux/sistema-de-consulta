@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white !h-14 border-b sticky top-0 border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -46,14 +46,16 @@
                                     @if (Auth::user()->avatar)
                                         <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
                                             src="{{ url('storage/' . Auth::user()->avatar) }}"
-                                            alt="{{ Auth::user()->firstname }}">
+                                            alt="{{ Auth::user()->firstname }}" title="{{ Auth::user()->firstname }}">
                                     @else
                                         <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
                                             src="{{ url('storage/avatars/default-avatar.png') }}"
                                             alt="{{ Auth::user()->firstname }}">
                                     @endif
                                     <span>
-                                        {{ Auth::user()->lastname }} | {{ Auth::user()->role->name }}
+                                        {{-- Welcome --}}
+                                        {{ Auth::user()->lastname }}
+                                        {{-- | {{ Auth::user()->role->name }} --}}
 
                                     </span>
                                 </div>
@@ -71,17 +73,17 @@
 
                         <x-slot name="content">
                             @admin
-                            <x-dropdown-link :href="route('admin.dashboard')">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>
-                                    Admin Dashboard
-                                </span>
-                            </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.dashboard')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span>
+                                        Admin Dashboard
+                                    </span>
+                                </x-dropdown-link>
                             @endadmin
                             <x-dropdown-link :href="route('user.profile', ['dni' => Auth::user()->dni])">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -170,7 +172,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden z-10 w-full bg-gray-100 absolute sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Inicio') }}
@@ -181,16 +183,16 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             @auth
                 @admin
-                <x-dropdown-link :href="route('admin.dashboard')">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span>
-                        Admin Dashboard
-                    </span>
-                </x-dropdown-link>
+                    <x-dropdown-link :href="route('admin.dashboard')">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>
+                            Admin Dashboard
+                        </span>
+                    </x-dropdown-link>
                 @endadmin
                 <x-dropdown-link :href="route('user.profile', ['dni' => Auth::user()->dni])">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
