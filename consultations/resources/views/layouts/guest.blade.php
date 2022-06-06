@@ -7,6 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="shortcut icon"
+        href="https://res.cloudinary.com/draxircbk/image/upload/v1653326573/sdc%20utn%202022/logo_lyig5s.png">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -21,7 +24,7 @@
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 antialiased">
+    <div>
         {{ $slot }}
     </div>
 </body>

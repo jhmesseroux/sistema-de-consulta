@@ -3,6 +3,14 @@
 
         <div class=" md:col-span-12">
 
+<<<<<<< HEAD
+=======
+        <fieldset>
+            <label for="name">Nombre</label>
+            <input type="text" id="name" value="{{ isset($subject->name)? $subject->name : '' }}" name="name" id="name" placeholder="Ingrese un nombre">
+            <x-errorInput name='name' />
+        </fieldset>
+>>>>>>> main
 
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">

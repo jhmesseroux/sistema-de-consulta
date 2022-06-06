@@ -1,4 +1,5 @@
 function dothat(data) {
+    console.log(data);
     document
         .querySelector("#confirm-condultation-modal")
         .classList.toggle("hidden");
@@ -6,7 +7,7 @@ function dothat(data) {
     const inputConsultation = document.createElement("input");
     inputConsultation.type = "hidden";
     inputConsultation.name = "consultation_id";
-    inputConsultation.value = data.id;
+    inputConsultation.value = data;
     form.appendChild(inputConsultation);
     console.log(form);
     // console.log(data);
@@ -50,5 +51,34 @@ const updateCounter = (e) => {
             "focus:ring-green-500"
         );
     }
-    console.log(comment.value.length);
+};
+
+const PreviewAvatar = (e) => {
+    console.log(e.files);
+    const [file] = e.files;
+    if (file) {
+        document.querySelector(".preview-box").classList.remove("hidden");
+        const imagePreview = document.querySelector("#imagePreview");
+        document.querySelector(".filename").textContent = file.name;
+        imagePreview.src = URL.createObjectURL(file);
+    }
+};
+const deleteRole = (role) => {
+    console.log(role);
+    const form = document.getElementById("delete-rol");
+    const modal = document.getElementById("modal-delete-rol");
+    const title = document.getElementById("title-delete-rol");
+    console.log(title);
+    title.textContent =
+        "Estas seguro de borrar el rol con id " + role.id + " ?";
+    form.setAttribute("action", `/admin/role/delete/${role.id}`);
+    modal.classList.remove("hidden");
+    console.log(form);
+};
+const closeModalDelete = () => {
+    // const form = document.getElementById("delete-rol");
+    const modal = document.getElementById("modal-delete-rol");
+    // form.setAttribute("action", `/admin/role/remove/${role.id}`);
+    modal.classList.add("hidden");
+    // console.log(form);
 };

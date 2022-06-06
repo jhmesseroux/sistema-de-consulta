@@ -1,1 +1,3 @@
-<img src="https://utn.edu.ar/images/logo-utn.png" width="100" alt="LOGO ">
+<img title="Sistema de Consulta UTN"
+    src="https://res.cloudinary.com/draxircbk/image/upload/v1653326573/sdc%20utn%202022/logo_lyig5s.png" width="80"
+    alt="LOGO ">

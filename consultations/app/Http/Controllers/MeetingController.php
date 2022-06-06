@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConsultationUser;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MeetingController extends Controller
 {
@@ -18,7 +20,9 @@ class MeetingController extends Controller
 
             ]);
             $attr['user_id'] =  Auth::id();
-            Meeting::create($attr);
+            $meet = Meeting::create($attr);
+            // dd($meet->user);
+            Mail::to(Auth::user()->email)->send(new ConsultationUser($meet));
             return redirect('meeting/user');
             // ddd($attr);
         } else {
@@ -30,5 +34,17 @@ class MeetingController extends Controller
         return view('meeting.index ', [
             'meeting' => Meeting::latest()->where('user_id', Auth::id())->get()
         ]);
+    }
+
+    public function information($id)
+    {
+        $inscriptions = Meeting::latest()
+            ->join('consultation as c','c.id','=','consultation_id')       
+                                                        ## ME QUEDE ACA 
+                                                        ## TENGO QUE TRAER A TODOS LOS ALUMNOS DE LA CONSULTA
+            ->join('users as a','p.id','=','alumn_id')
+            ->where('consultation_id',$id);
+        dd($inscriptions);
+        return view('consultation.information',["meetings"=>$inscriptions]);
     }
 }

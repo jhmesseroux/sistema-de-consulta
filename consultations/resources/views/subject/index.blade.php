@@ -1,10 +1,10 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <span class="font-bold text-gray-700">
-          Materias
+            Materias
         </span>
     </x-slot>
-<br/>
+    <br />
     <div class="mx-auto container bg-white   shadow rounded">
         <div class="header-table flex justify-between gap-4 items-center p-4">
             <h3>Listados de Materias</h3>
@@ -61,10 +61,11 @@
                     @endforeach
                 </tbody>
                 </thead>
-            </table >
+            </table>
         </div>
     </div>
+    <div class="my-4">
 
-</x-app-layout>
-
-
+        {{ $subjects->links() }}
+    </div>
+</x-admin>

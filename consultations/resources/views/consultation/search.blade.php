@@ -9,7 +9,7 @@
     {{-- modal confirm --}}
 
     <div id="confirm-condultation-modal" tabindex="-1" aria-hidden="true"
-        class="overflow-y-auto  flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
+        class="overflow-y-auto hidden flex overflow-x-hidden fixed bg-overlay top-0 right-0 left-0 z-50 w-full min-h-screen md:inset-0 h-modal md:h-full justify-center items-center">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-gray-100 shadow-md ">
                 <div class="flex justify-end p-2">
@@ -69,42 +69,43 @@
                 <p class="p-2 text-red-500 my-4">{{ $message }}</p>
             @enderror
             @foreach ($consultations as $con)
-                {{-- {{ dd($con->teacher) }} --}}
+                {{-- {{ dd($con) }} --}}
                 {{-- <li>{{ $con->alternative }}</li> --}}
                 <li
                     class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
                     <div class="flex gap-2 sm:items-center sm:flex-row flex-col sm:space-x-4">
+
+
                         <div class="flex-shrink-0 flex items-center  gap-1">
-                            @if ($con->teacher?->avatar)
-                                <img class="w-8 h-8 rounded-full"
-                                    src="{{ asset('storage/' . $con->teacher?->avatar) }}"
-                                    alt=" {{ $con->teacher->firstname . $con->teacher->lastname }}">
+                            @if ($con->avatar)
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $con->avatar) }}"
+                                    alt=" {{ $con->firstname . $con->lastname }}">
                             @else
                                 <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
                                     src="{{ asset('storage/avatars/default-avatar.png') }}"
-                                    alt=" {{ $con->teacher->firstname . $con->teacher->lastname }}">
+                                    alt=" {{ $con->firstname . $con->lastname }}">
                             @endif
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate">
-                                    {{ $con->teacher->firstname }}
+                                    {{ $con->firstname }}
                                 </p>
                                 <p class="text-sm text-gray-500 truncate ">
-                                    {{ $con->teacher->email }}
+                                    {{ $con->email }}
                                 </p>
                             </div>
 
                         </div>
                         {{-- <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate">
-                                {{ $con->teacher->firstname }}
+                                {{ $con->firstname }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
-                                {{ $con->teacher->email }}
+                                {{ $con->email }}
                             </p>
                         </div> --}}
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium capitalize text-gray-900 truncate">
-                                {{ $con->alternative }}
+                                {{ $con->name }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
                                 {{ $con->dayOfWeek }} |
@@ -112,12 +113,12 @@
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
                                 Salon :
-                                {{ $con->place ?? '--' }}
+                                {{ $con->place }}
                             </p>
                         </div>
                         <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
                             @if ($con->active)
-                                <x-button type='button' onclick="dothat({{ $con }})">
+                                <x-button type='button' onclick="dothat({{ $con->id }})">
                                     Reservar
                                 </x-button>
                             @else
@@ -150,6 +151,10 @@
 
                 </li>
             @endforeach
+            <div class="my-4 p-2">
+                {{ $consultations->links() }}
+            </div>
+
         </ul>
     @else
         <div class="container flex w-full items-center justify-center p-6 m-4">
@@ -159,5 +164,6 @@
             </p>
         </div>
     @endif
+
 
 </x-app-layout>

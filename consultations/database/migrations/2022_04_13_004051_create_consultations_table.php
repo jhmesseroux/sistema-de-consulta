@@ -15,8 +15,8 @@ class CreateConsultationsTable extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id')->constrained('users')->default(null);
-            $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('admin_id')->nullable()->constrained('users')->onUpdate('cascade')->restrictOnDelete();
             $table->foreignId('subject_id')->constrained('subjects');
             $table->string('alternative')->nullable();
             $table->boolean('active')->default(true);

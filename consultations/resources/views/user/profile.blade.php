@@ -16,8 +16,8 @@
                 <x-field>
                     <x-label for=" dni" :value="__('DNI')" />
 
-                    <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" value="{{ Auth::user()->dni }}"
-                        required autofocus />
+                    <x-input readonly id="dni" class="block mt-1 w-full bg-gray-200" type="text" name="dni"
+                        value="{{ Auth::user()->dni }}" required autofocus />
                     @error('dni')
                         <p>{{ $message }}</p>
                     @endError
@@ -25,7 +25,7 @@
                 </x-field>
                 <x-field>
                     <x-label for="legajo" :value="__('Legajo')" />
-                    <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo"
+                    <x-input id="legajo" readonly class="block mt-1 w-full bg-gray-200" type="text" name="legajo"
                         value="{{ Auth::user()->legajo }}" required />
                     @error('legajo')
                         <p>{{ $message }}</p>
@@ -78,7 +78,11 @@
                     <x-label
                         class=" ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         for='avatar' :value="'Cambiar'" />
-                    <input type="file" name="avatar" id="avatar" class="hidden ">
+                    <input type="file" onchange="PreviewAvatar(this)" name="avatar" id="avatar" class="hidden ">
+                </div>
+                <div class="hidden flex p-4 bg-gray-200 items-center my-4 gap-3 preview-box">
+                    <img src="" id="imagePreview" class="imagePreview w-12" alt="previewImage">
+                    <span class="filename"></span>
                 </div>
             </x-field>
 

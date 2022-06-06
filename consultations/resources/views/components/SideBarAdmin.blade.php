@@ -1,18 +1,15 @@
-<div class="flex flex-no-wrap">
-    <!-- Sidebar starts -->
-    <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
+<div class="flex flex-no-wrap fixed ">
     <div
-        class="w-64 sticky top-0 max-h-screen min-h-screen sm:relative bg-blue-500 shadow md:h-full flex-col justify-between hidden sm:flex">
-        {{-- Sidebar --}}
-        <div>
-            <div class="h-16 w-full flex items-center px-8">
-                <x-application-logo />
+        class="w-64 sticky top-0 max-h-screen overflow-auto min-h-screen sm:relative bg-blue-500 shadow  flex-col justify-between hidden sm:flex">
+        <div class="flex !h-full flex-col justify-around">
+            <div class=" w-full flex items-center justify-center ">
+                <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653327438/sdc%20utn%202022/Eco_Home_Real_Estate_Logo_nnwggi.png"
+                    alt="SDC UTN 2022" width="150">
             </div>
             <ul class="mt-12">
                 <li
-                    class="{{ request()->is('admin/dashboard') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-white  cursor-pointer items-center py-3 px-8">
-                    <a href="/admin/dashboard"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    class="{{ request()->is('admin/dashboard') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-white hover:text-white hover:bg-indigo-800 cursor-pointer items-center  py-3 px-8 ">
+                    <a href="/admin/dashboard" class="flex items-center w-full h-full rounded focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -27,23 +24,18 @@
                 </li>
                 <li
                     class=" {{ request()->is('admin/users') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/users"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18"
-                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z"></path>
-                            <path
-                                d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1">
-                            </path>
+                    <a href="/admin/users" class="flex items-center  rounded focus:outline-none w-full h-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 -ml-1" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                         <span class="text-sm ml-2">Usuarios</span>
                     </a>
                 </li>
                 <li
                     class=" {{ request()->is('admin/roles') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/roles"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/roles" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -56,8 +48,7 @@
                 </li>
                 <li
                     class=" {{ request()->is('admin/subjects') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="admin/subjects"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/subjects" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20"
                             height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -70,9 +61,8 @@
                     </a>
                 </li>
                 <li
-                    class=" {{ request()->is('admin/consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="admin/consultations"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    class=" {{ request()->is('consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                    <a href="/consultations" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -87,8 +77,7 @@
 
                 <li
                     class=" {{ request()->is('admin/setting') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/setting"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/setting" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -101,10 +90,11 @@
                     </a>
                 </li>
             </ul>
-            <div class="flex items-center mt-48 mb-4 px-8">
+            <div class="flex items-center  px-8">
                 <div class="w-10 h-10 bg-cover rounded-md mr-3">
                     @if (Auth::user()->avatar)
                         <img class="rounded-full  shadow-sm border-2 border-gray-2"
+                            title="{{ Auth::user()->firstname }}"
                             src="{{ asset('storage/' . Auth::user()->avatar) }}"
                             alt="{{ Auth::user()->firstname }}">
                     @else
@@ -124,39 +114,11 @@
                 </div>
             </div>
         </div>
-        <div class="px-8 sticky top-0  bg-blue-500">
-            <ul class="w-full flex items-center justify-between">
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open notifications" href="/admin/dashboard">
-                        <x-application-logo />
 
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open messages" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg4.svg"
-                            alt="chat">
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open settings" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg5.svg"
-                            alt="settings">
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3 ">
-                    <a aria-label="open archive" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg6.svg"
-                            alt="drawer">
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
-    {{-- Sidebar mobil open --}}
-    <div class="w-64 z-40 fixed sm:relative bg-blue-500 shadow min-h-screen md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out"
+    <div class="w-64  fixed sm:relative z-50 bg-blue-500 shadow min-h-screen md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out"
         id="mobile-nav">
-        <button aria-label="open sidebar" id="openSideBar"
+        <button aria-label="open sidebar" title="Abrir/Cerrar menu" id="openSideBar"
             class="h-10 w-10 bg-blue-600 absolute right-0 mt-16 -mr-6 flex items-center shadow rounded-tr-full rounded-br-full justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900"
             onclick="sidebarHandler(true)">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
@@ -164,8 +126,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
-        <div id="closeSideBar"
-            class="hidden h-10 w-10 bg-white text-red-700 absolute right-8 top-6  flex items-center shadow rounded-full hover:bg-gray-200  justify-center cursor-pointer text-white"
+        <div id="closeSideBar" title="Cerrar Menu"
+            class="hidden h-10 w-10 bg-white text-red-700 absolute right-8 top-6  flex items-center shadow rounded-full hover:bg-gray-200  justify-center cursor-pointer"
             onclick="sidebarHandler(false)">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
@@ -173,18 +135,15 @@
             </svg>
         </div>
         <div class="flex flex-col justify-between p-4  gap-4 min-h-screen">
-            <div class="h-16 w-full flex items-center px-8">
-                <x-application-logo />
+            <div class=" w-full flex items-center justify-center">
+                <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653327438/sdc%20utn%202022/Eco_Home_Real_Estate_Logo_nnwggi.png"
+                    alt="SDC UTN 2022" width="120">
 
             </div>
             <ul class="">
-
-
-
                 <li
                     class="{{ request()->is('admin/dashboard') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-white  cursor-pointer items-center py-3 px-8">
-                    <a href="/admin/dashboard"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/dashboard" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -199,23 +158,18 @@
                 </li>
                 <li
                     class=" {{ request()->is('admin/users') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/users"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18"
-                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z"></path>
-                            <path
-                                d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1">
-                            </path>
+                    <a href="/admin/users" class="flex items-center  rounded focus:outline-none w-full h-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 -ml-1" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                         <span class="text-sm ml-2">Usuarios</span>
                     </a>
                 </li>
                 <li
                     class=" {{ request()->is('admin/roles') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/roles"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/roles" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -228,8 +182,7 @@
                 </li>
                 <li
                     class=" {{ request()->is('admin/subjects') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="admin/subjects"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/subjects" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20"
                             height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -242,9 +195,8 @@
                     </a>
                 </li>
                 <li
-                    class=" {{ request()->is('admin/consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="admin/consultations"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    class=" {{ request()->is('consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                    <a href="/consultations" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -259,8 +211,7 @@
 
                 <li
                     class=" {{ request()->is('admin/setting') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/setting"
-                        class="flex items-center  rounded focus:outline-none focus:ring-2 focus:ring-white">
+                    <a href="/admin/setting" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -299,53 +250,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="px-8 bg-red-800">
-            <ul class="w-full flex items-center justify-between">
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open notifications" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg3.svg"
-                            alt="notifications">
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open messages" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg4.svg"
-                            alt="chat">
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3">
-                    <a aria-label="open settings" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg5.svg"
-                            alt="settings">
-                    </a>
-                </li>
-                <li class="cursor-pointer text-white pt-5 pb-3 ">
-                    <a aria-label="open archive" href="javascript:void(0)">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom_alternate_style-svg6.svg"
-                            alt="drawer">
-                    </a>
-                </li>
-            </ul>
-        </div> --}}
     </div>
-    <!--Mobile responsive sidebar-->
-    <!-- Sidebar ends -->
-    <!-- Remove class [ h-64 ] when adding a card block -->
+
 
 </div>
-{{-- <div class="relative rounded-full w-12 h-12">
-                        @if (Auth::user()->avatar)
-                            <img class="rounded-full  shadow-sm border-2 border-gray-2"
-                                src="{{ asset('storage/' . Auth::user()->avatar) }}"
-                                alt="{{ Auth::user()->firstname }}">
-                        @else
-                            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                        @endif
-                    </div>
-                    <div class="flex-1 ml-4">
-                        <p class="font-medium leading-none">{{ Auth::user()->firstname }}</p>
-                        <a href="#" class="no-underline text-xs text-gray-300 leading-none">Edit Profile</a>
-                    </div> --}}

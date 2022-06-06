@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -14,6 +15,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon"
+        href="https://res.cloudinary.com/draxircbk/image/upload/v1653326573/sdc%20utn%202022/logo_lyig5s.png">
+
 
 
     <!-- Scripts -->
@@ -21,8 +25,8 @@
     <script src="{{ asset('js/main.js') }}" defer></script>
 </head>
 
-<body class="dark font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="bg-gray-200">
+    <div class="">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -33,9 +37,11 @@
         </header>
 
         <!-- Page Content -->
-        <main>
+        <main class="main-app">
             {{ $slot }}
         </main>
+        <x-guest-footer />
+
     </div>
 </body>
 
