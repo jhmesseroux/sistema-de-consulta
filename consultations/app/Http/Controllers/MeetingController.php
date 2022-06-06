@@ -35,4 +35,16 @@ class MeetingController extends Controller
             'meeting' => Meeting::latest()->where('user_id', Auth::id())->get()
         ]);
     }
+
+    public function information($id)
+    {
+        $inscriptions = Meeting::latest()
+            ->join('consultation as c','c.id','=','consultation_id')       
+                                                        ## ME QUEDE ACA 
+                                                        ## TENGO QUE TRAER A TODOS LOS ALUMNOS DE LA CONSULTA
+            ->join('users as a','p.id','=','alumn_id')
+            ->where('consultation_id',$id);
+        dd($inscriptions);
+        return view('consultation.information',["meetings"=>$inscriptions]);
+    }
 }

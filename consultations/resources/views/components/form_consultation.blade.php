@@ -15,25 +15,25 @@
 
                         <x-input type="hidden" value="{{ isset($consultation->id)? $consultation->id : '' }}" name="id"
                             id="id" />
+                        <x-input type="hidden" value="{{ Auth::user()->id}}" name="admin_id" id="admin_id" />
                         <div class="col-span-6 sm:col-span-3" name="teacher_field">
 
                             <label for="teacher_legajo" class="block text-sm font-medium text-gray-700">Profesor</label>
-                                <input type="text" name="teacher_legajo" id="teacher_legajo"
-                                    value="{{ isset($consultation->teacher_legajo)? $consultation->teacher_legajo : '' }}"
-                                    maxlength="510"
-                                    autocomplete="techer_id" list="drawTeachers"
-                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                
-                                    <x-errorInput name='teacher_legajo' />
+                            <input type="text" name="teacher_legajo" id="teacher_legajo"
+                                value="{{ isset($consultation->teacher_legajo)? $consultation->teacher_legajo : '' }}"
+                                maxlength="510" autocomplete="techer_id" list="drawTeachers"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
-                                <datalist id="drawTeachers">
-                                    @foreach ( $teachers as $teacher)
+                            <x-errorInput name='teacher_legajo' />
 
-                                    <option value="{{$teacher->legajo}}" onclick="showTeacherAvatar({{$teacher->avatar}})">
-                                        {{$teacher->firstname.' '.$teacher->lastname}}
-                                    </option>
-                                    @endforeach
-                                </datalist>
+                            <datalist id="drawTeachers">
+                                @foreach ( $teachers as $teacher)
+
+                                <option value="{{$teacher->legajo}}" onclick="showTeacherAvatar({{$teacher->avatar}})">
+                                    {{$teacher->firstname.' '.$teacher->lastname}}
+                                </option>
+                                @endforeach
+                            </datalist>
 
                         </div>
                         @else
@@ -43,15 +43,13 @@
                         @endif
 
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="subject_id" class="block text-sm font-medium text-gray-700">Materia</label>
-                            <x-input type="text" name="subject_id" id="subject_id" list="drawSubject"
-                                value="{{ isset($consultation->subject_id)? $consultation->subject_id : '' }}"
-                                autocomplete="subject_id"
-                                maxlength="255"
-                                spellcheck="false"
+                            <label for="subject_name" class="block text-sm font-medium text-gray-700">Materia</label>
+                            <x-input type="text" name="subject_name" id="subject_name" list="drawSubject"
+                                value="{{ isset($consultation->subject_name)? $consultation->subject_name : '' }}"
+                                autocomplete="subject_name" maxlength="255" spellcheck="false"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                
-                            <x-errorInput name='subject_id' />
+
+                            <x-errorInput name='subject_name' />
 
                             <datalist id="drawSubject">
                                 @foreach ( $subjects as $subject)
@@ -96,9 +94,10 @@
                             <x-errorInput name='dayOfWeek' />
 
                             <datalist id="dayOfWeekList">
-                            @foreach ($week as $day)
+
+                                @foreach ($week as $day)
                                 <option value="{{$day}}"></option>
-                            @endforeach
+                                @endforeach
                             </datalist>
                         </div>
 
@@ -116,8 +115,7 @@
                             <label for="place" class="block text-sm font-medium text-gray-700">
                                 Lugar</label>
                             <x-input type="text" value="{{ isset($consultation->place)? $consultation->place : '' }}"
-                                name="place" id="place" autocomplete="place-consultation"
-                                maxlength="255"
+                                name="place" id="place" autocomplete="place-consultation" maxlength="255"
                                 onchange="dontAllowURL('place')"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             <x-errorInput name='place' />
@@ -126,8 +124,7 @@
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2" id="div_link" style="display: none">
                             <label for="link" class="block text-sm font-medium text-gray-700">Link</label>
                             <input type="text" value="{{ isset($consultation->link)? $consultation->link : '' }}"
-                                name="link" id="link" autocomplete="link-consultation"
-                                maxlength="255"
+                                name="link" id="link" autocomplete="link-consultation" maxlength="255"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             <x-errorInput name='link' />
                         </div>
@@ -145,9 +142,8 @@
                                 consulta</label>
                             <x-input type="text" name="active" id="active"
                                 value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}"
-                                maxlength="1"
                                 autocomplete="" disabled />
-                               
+
                             <x-errorInput name='active' />
                         </div>
                         <div class="col-span-6 sm:col-span-3 lg:col-span-2 ">
@@ -173,9 +169,8 @@
                             <label for="reasonCancel" class="block text-sm font-medium text-gray-700">Razón
                                 cancelada</label>
                             <x-input type="textarea" name="reasonCancel" id="reasonCancel" autocomplete="reasonCancel"
-                            maxlength="255"    
-                            class="mt-1  w-full  " />
-                               
+                                maxlength="255" class="mt-1  w-full  " />
+
                             <x-errorInput name='reasonCancel' />
                         </div>
 
@@ -184,10 +179,9 @@
                                 alternativa</label>
                             <x-input
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                type="textarea" name="" id="alternative" autocomplete="alternative"
-                                maxlength="255"
+                                type="textarea" name="" id="alternative" autocomplete="alternative" maxlength="255"
                                 placeholder="Ingresar dia, horario, lugar o link de la consulta alternativa" />
-                                
+
                             <x-errorInput name='alternative' />
                         </div>
 
