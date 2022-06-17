@@ -5,9 +5,15 @@
         </span>
     </x-slot>
 
-    <body class="bg-white-500">
-        sadas
-    </body>
+    @foreach ($consultations as $consultation)
+        <x-consultation_element 
+        :consultation="$consultation" 
+        {{-- class="!text-white result-search-item p-3 m-3 sm:py-4 bg-blue-500  shadow" --}}
+        modo="edicion"
+        />
+    @endforeach
+  
+    
 
     <div class="w-full overflow-x-auto xl:overflow-x-hidden">
         <table class="min-w-full text-gray-800 bg-white">

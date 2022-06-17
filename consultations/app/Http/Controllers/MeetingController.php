@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultation;
 use App\Mail\ConsultationUser;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
@@ -38,13 +39,24 @@ class MeetingController extends Controller
 
     public function information($id)
     {
+        
+        $consultation = Consultation::
+        join('subjects as s','consultations.subject_id','=','s.id')
+      ->join('users as p','consultations.teacher_id','=','p.id')
+      ->orderByDesc('consultations.created_at')
+      ->where('consultations.id','=',$id) 
+      ->get();
         $inscriptions = Meeting::latest()
             ->join('consultation as c','c.id','=','consultation_id')       
                                                         ## ME QUEDE ACA 
                                                         ## TENGO QUE TRAER A TODOS LOS ALUMNOS DE LA CONSULTA
             ->join('users as a','p.id','=','alumn_id')
-            ->where('consultation_id',$id);
-        dd($inscriptions);
-        return view('consultation.information',["meetings"=>$inscriptions]);
+            ->where('consultation_id','=',$id);
+        
+        
+        return view('consultation.inscriptos',[
+            "meetings"=>$inscriptions,
+            "consultations"=>$consultation
+        ]);
     }
 }
