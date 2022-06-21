@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @include('layouts.navigation')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -22,20 +23,21 @@
 
                 <x-label for="dni" :value="__('DNI')" />
 
-                <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="old('dni')" required
-                    autofocus />
+                <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="old('dni')"
+                    required autofocus />
             </x-field>
             <!-- legajo -->
             <x-field>
                 <x-label for="legajo" :value="__('legajo')" />
-                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="old('legajo')" required />
+                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="old('legajo')"
+                    required />
             </x-field>
             <!-- firstname -->
             <x-field>
                 <x-label for="firstname" :value="__('Nombre')" />
 
-                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required
-                    autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')"
+                    required autofocus />
             </x-field>
 
             <!--lastname-->
@@ -49,8 +51,8 @@
             <x-field>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                    autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autofocus />
             </x-field>
             <!-- Role -->
             <x-field>
@@ -75,14 +77,14 @@
 
             <!-- Password -->
             <x-field>
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('Contraseña')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="current-password" />
             </x-field>
             <!-- Confirm Password -->
             <x-field>
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                     name="password_confirmation" required />
@@ -97,7 +99,7 @@
                         <input id="remember_me" type="checkbox"
                             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             name="remember">
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Recuérdame') }}</span>
                     </label>
                 </x-field>
             @endcannot

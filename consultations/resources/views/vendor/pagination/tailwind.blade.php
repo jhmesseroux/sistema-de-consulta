@@ -39,7 +39,7 @@
                     @endif
                     {!! __('de') !!}
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('results') !!}
+                    {!! __('resultados') !!}
                 </p>
             </div>
 

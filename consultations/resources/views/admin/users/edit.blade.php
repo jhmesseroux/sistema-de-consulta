@@ -17,20 +17,21 @@
             <div class="mt-4">
                 <x-label for="dni" :value="__('DNI')" />
 
-                <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="$user->dni" required
-                    autofocus />
+                <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="$user->dni"
+                    required autofocus />
             </div>
             <!-- legajo -->
             <div class="mt-4">
                 <x-label for="legajo" :value="__('legajo')" />
-                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="$user->legajo" required />
+                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="$user->legajo"
+                    required />
             </div>
             <!-- firstname -->
             <div class="mt-4">
                 <x-label for="firstname" :value="__('Nombre')" />
 
-                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="$user->firstname" required
-                    autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="$user->firstname"
+                    required autofocus />
             </div>
 
             <!--lastname-->
@@ -44,8 +45,8 @@
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$user->email" required
-                    autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$user->email"
+                    required autofocus />
             </div>
             <!-- Role -->
             <div class="mt-4">
@@ -63,9 +64,16 @@
                 {{-- <x-input id="role" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
                     autofocus /> --}}
             </div>
-            <div class="flex items-center justify-end mt-4">
+
+
+            <div class="mt-4 flex justify-end gap-6">
+                <x-button title="Volver Atras" type='button' class="!bg-gray-400">
+                    <a href="/admin/users">
+                        Cancelar
+                    </a>
+                </x-button>
                 <x-button class="!bg-blue-500">
-                    Crear Cuenta
+                    Editar
                 </x-button>
             </div>
         </form>
