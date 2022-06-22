@@ -12,39 +12,10 @@
                 <p class="p-2 text-red-500 my-4">{{ $message }}</p>
             @enderror
             @foreach ($meeting as $meet)
-                {{-- {{ dd($meet->consultation->subject->name) }} --}}
-                {{-- <li>{{ $meet->alternative }}</li> --}}
                 <li
                     class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
                     <div class="flex gap-2 sm:items-center sm:flex-row flex-col sm:space-x-4">
-                        {{-- <div class="flex-shrink-0 flex items-center  gap-1">
-                            @if ($meet->teacher?->avatar)
-                                <img class="w-8 h-8 rounded-full"
-                                    src="{{ asset('storage/' . $meet->teacher?->avatar) }}"
-                                    alt=" {{ $meet->teacher->firstname . $meet->teacher->lastname }}">
-                            @else
-                                <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
-                                    src="{{ asset('storage/avatars/default-avatar.png') }}"
-                                    alt=" {{ $meet->teacher->firstname . $meet->teacher->lastname }}">
-                            @endif
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate">
-                                    {{ $meet->teacher->firstname }}
-                                </p>
-                                <p class="text-sm text-gray-500 truncate ">
-                                    {{ $meet->teacher->email }}
-                                </p>
-                            </div>
 
-                        </div> --}}
-                        {{-- <div class="flex-1 min-w-0">
-                            <p class="text-sm font-medium text-gray-900 truncate">
-                                {{ $meet->teacher->firstname }}
-                            </p>
-                            <p class="text-sm text-gray-500 truncate ">
-                                {{ $meet->teacher->email }}
-                            </p>
-                        </div> --}}
                         <div class="flex-1 min-w-0">
                             <p
                                 class="text-sm my-1 font-medium text-blue-500 flex items-center gap-2 capitalize hover:text-gray-900 truncate">
@@ -111,20 +82,7 @@
                             </span>
                         </p>
                     </div>
-                    {{-- <form class="mt-4 hidden form-meetfirm" action="">
-                        <div class="flex justify-between">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">
-                                Descripcion
-                            </label>
-                    <input type="email" name="email" id="email"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                        placeholder="breve descripcion de la duda" required="">
-                    <button type="submit"
-                        class="w-full text-white flex-1  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center">
-                        meetfirma
-                    </button>
-                    </div>
-                    </form> --}}
+
 
                 </li>
             @endforeach

@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Mail\ConsultationUser;
 use App\Models\Meeting;
+use DateTime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
+use phpDocumentor\Reflection\Types\Null_;
+use PhpOption\None;
 
 class MeetingController extends Controller
 {
@@ -36,15 +41,76 @@ class MeetingController extends Controller
         ]);
     }
 
+
+    // valida si corresponde mostrarle la informacion de la consulta o no
+    // es decir si el usuario es el profesor
+    public function esElUsuario($id)
+    {
+        ## ME QUEDE ACA
+        ## TENGO QUE DEVOLVER EL ID DEL PROFESOR PARA COMPRAR CON EL ID DEL USUARIO:
+        $resultado =  DB::table('consultations')
+        ->where('consultations.id','=',$id)
+        ->select('consultations.teacher_id')
+        ->limit(1)
+        ->get()
+        ;
+
+        return $resultado[0]->teacher_id == Auth::id();
+    }
+
     public function information($id)
     {
-        $inscriptions = Meeting::latest()
-            ->join('consultation as c','c.id','=','consultation_id')       
-                                                        ## ME QUEDE ACA 
-                                                        ## TENGO QUE TRAER A TODOS LOS ALUMNOS DE LA CONSULTA
-            ->join('users as a','p.id','=','alumn_id')
-            ->where('consultation_id',$id);
-        dd($inscriptions);
-        return view('consultation.information',["meetings"=>$inscriptions]);
+
+
+        if($this->esElUsuario($id))
+        {
+
+
+
+        $fechaDeHoy = new DateTime();
+        $fechaProximaSemana = new DateTime();
+        date_add($fechaProximaSemana,date_interval_create_from_date_string('7 days'));
+        $fechaDeHoy = $fechaDeHoy->format('Y-m-d');
+        $fechaProximaSemana = $fechaProximaSemana->format('Y-m-d');
+
+        // dd($fechaProximaSemana);
+
+        $inscriptions = DB::table('meetings')
+            ->distinct()
+            ->join('consultations','consultations.id','=','meetings.consultation_id')
+            ->join('users', 'users.id', '=', 'meetings.user_id')
+            ->select(  'users.firstname', 'users.lastname', 'users.email', 'users.avatar','meetings.id','meetings.comment' )
+            ->where('consultation_id','=',$id)
+            ->where('meetings.dateConsultation','>=',$fechaDeHoy)
+            ->where('meetings.dateConsultation','<',$fechaProximaSemana)
+            ->paginate(10);
+
+        $cantidad = Meeting::
+            where('meetings.dateConsultation','>=',$fechaDeHoy)
+            ->where('meetings.dateConsultation','<',$fechaProximaSemana)
+            ->count();
+
+        $consultation = DB::table('consultations')
+            ->join('subjects as s','consultations.subject_id','=','s.id')
+            ->join('users as p','consultations.teacher_id','=','p.id')
+            ->orderByDesc('consultations.created_at')
+            ->select('consultations.*',
+                'p.firstname','p.avatar', 'p.lastname','p.email',
+                's.name')
+            ->where('consultations.id','=',$id)
+            ->paginate(10);
+            ;
+
+        return view('consultation.inscriptos',[
+            "meetings"=>$inscriptions,
+            "consultations"=>$consultation,
+            "cantidad"=>$cantidad
+        ]);
     }
+    else
+    {
+        redirect()->back();
+    }
+
+}
 }
