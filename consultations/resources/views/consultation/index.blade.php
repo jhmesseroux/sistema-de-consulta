@@ -1,25 +1,23 @@
 
 
-        <div class="mx-auto container bg-white   shadow rounded">
-            <div class="header-table flex justify-between gap-4 items-center p-4">
-                <h3>Listado de consultas</h3>
 
+     <div class="mx-auto  container">
+        <div class="header p-4 flex place-items-center gap-8 ">
+            <span>Listado de consultas ({{ $consultations->count() }})</span>
+            <a title="Agregar una nueva consulta"  href="{{ url('consultation/create') }}">
+                <x-button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                </x-button>
                 <div class="">
 
 
-                    <x-button type="button" title="Agregar otra consulta">
+                    @if (Auth::user()->role_id == 1)
 
+                    @else
 
-                        <a class="flex gap-4 items-center justify-end" href="{{ url('consultation/create') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                            </svg>
-                            <span>
-                                Agregar
-                            </span>
-                        </a>
-                    </x-button>
 
                     <x-button type="button" title="Listar todos los alumnos">
                         <span>
@@ -27,39 +25,44 @@
                         </span>
                         </a>
                     </x-button>
-                    <x-button type="button" tittle="Dar de baja todas las consultas">
+                    <x-button type="button" tittle="Darse de baja todas las consultas">
                         <span>
-                            Dar de baja
+                            Darse de baja
                         </span>
                         </a>
                     </x-button>
-
+                    @endif
                 </div>
+            </a>
+
+        </div>
 
 
+        <div class="mx-auto container bg-white   shadow rounded">
+            <div class="header-table flex justify-between gap-4 items-center p-4">
 
             </div>
             <div class="w-full overflow-x-auto xl:overflow-x-hidden">
                 <table class="min-w-full text-gray-800 bg-white">
                     <thead>
                         <tr class="w-full h-16 border-gray-300 border-b py-8">
-                            @if (!Auth::user()->role_id == 1)
+                            @if (Auth::user()->role_id == 1)
                             <x-tables.th class="pl-4" colspan="2" text='Profesor' />
                             <x-tables.th text='Materia' />
                             @else
 
                             <x-tables.th class="pl-4" text='Materia' />
                             @endif
-                            {{-- <x-tables.th text=' ' /> --}}
 
-                            <x-tables.th text='Admin' />
+
+                            {{-- <x-tables.th text='Admin' /> --}}
                             <x-tables.th text='Dia de la semana' />
-                            <x-tables.th text='Fecha Alternativa' />
-                            <x-tables.th text='Link' />
-                            <x-tables.th text='Lugar' />
-                            <x-tables.th text='Motivo de cancelación' />
                             <x-tables.th text='Hora' />
                             <x-tables.th text='Tipo' />
+                            <x-tables.th text='Lugar' />
+                            <x-tables.th text='Link' />
+                            <x-tables.th text='Motivo de cancelación' />
+                            <x-tables.th text='Fecha Alternativa' />
                             <x-tables.th text='Estado' />
                             <x-tables.th text=' ' />
 
@@ -67,11 +70,11 @@
                     <tbody>
                         @foreach ($consultations as $consultation)
                         <tr class="p-6 border-gray-300 border-b">
-                            @if (!Auth::user()->role_id == 1)
+                            @if (Auth::user()->role_id == 1)
                             <x-tables.td class="pl-4"> {{ $consultation->p_firstname." ".$consultation->p_lastname }}
                             </x-tables.td>
                             <x-tables.td>
-                                <x-avatarIcon img="{{ $consultation->p_avatar }}" alt="icono profesor" />
+                                <x-avatarIcon img="{{ $consultation->p_avatar }}" alt="foto profesor" />
                             </x-tables.td>
                             <x-tables.td> {{ $consultation->subject_name }} </x-tables.td>
                             @else
@@ -79,15 +82,14 @@
                             <x-tables.td class="pl-4"> {{ $consultation->subject_name }} </x-tables.td>
                             @endif
 
-
-                            <x-tables.td> {{ $consultation->a_firstname." ".$consultation->a_lastname }} </x-tables.td>
+                            {{-- <x-tables.td> {{ $consultation->a_firstname." ".$consultation->a_lastname }} </x-tables.td> --}}
                             <x-tables.td> {{ $consultation->dayOfWeek }} </x-tables.td>
-                            <x-tables.td> {{ $consultation->alternative }} </x-tables.td>
-                            <x-tables.td> {{ $consultation->link }} </x-tables.td>
-                            <x-tables.td> {{ $consultation->place }} </x-tables.td>
-                            <x-tables.td> {{ $consultation->reasonCancel }} </x-tables.td>
                             <x-tables.td> {{ $consultation->time }} </x-tables.td>
                             <x-tables.td> {{ $consultation->type }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->place }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->link }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->reasonCancel }} </x-tables.td>
+                            <x-tables.td> {{ $consultation->alternative }} </x-tables.td>
                             <x-tables.td> {{ ($consultation->active)? 'Activada' :'De baja' }} </x-tables.td>
 
 
@@ -145,6 +147,7 @@
                 </table>
             </div>
         </div>
+        <br>
 
 
 

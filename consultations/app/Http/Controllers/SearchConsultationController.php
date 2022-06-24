@@ -77,7 +77,7 @@ class SearchConsultationController extends Controller
         {
             $diaDeConsulta = $this->devolverDiaDeConsulta($row->dayOfWeek);
             $hora = strtotime($row->time);
-            $hora = date('h:i a',$hora);
+            $hora = date('H:i ',$hora);
             $row->time = $hora;
             $row->diaDeConsulta = $diaDeConsulta;
 

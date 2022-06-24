@@ -21,7 +21,7 @@ class MeetingController extends Controller
             // dd(request()->all());
             $attr = request()->validate([
                 'comment' => 'required|max:100',
-                'consultation_id' => ' required',
+                'consultation_id' => ' required'
 
             ]);
             $attr['user_id'] =  Auth::id();
@@ -51,11 +51,13 @@ class MeetingController extends Controller
         $resultado =  DB::table('consultations')
         ->where('consultations.id','=',$id)
         ->select('consultations.teacher_id')
-        ->limit(1)
+        // ->limit(1)
         ->get()
         ;
 
-        return $resultado[0]->teacher_id == Auth::id();
+        // dd($resultado->first()->teacher_id);
+
+        return $resultado->first()->teacher_id == Auth::id() || Auth::user()->role_id == 1 ;
     }
 
     public function information($id)
