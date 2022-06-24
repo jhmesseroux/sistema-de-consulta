@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class ConsultationController extends Controller
 {
@@ -24,16 +25,17 @@ class ConsultationController extends Controller
             $consultation = Consultation::
                       join('subjects as s','consultations.subject_id','=','s.id')
                     ->join('users as p','consultations.teacher_id','=','p.id')
-                    ->join('users as a','consultations.admin_id','=','a.id')
+                    // ->join('users as a','consultations.admin_id','=','a.id')
                     ->orderByDesc('consultations.created_at')
                     ->select('consultations.*',
                         'p.firstname as p_firstname',
                         'p.lastname as p_lastname',
-                        'a.firstname as a_firstname',
+                        // 'a.firstname as a_firstname',
+                        // 'a.lastname as a_lastname',
                         's.name as subject_name'
                         )
                     ->get();
-
+                    // dd($consultation);
             return $consultation;
 
     }
@@ -124,6 +126,7 @@ class ConsultationController extends Controller
      */
     public function create()
     {
+
         if($this->tienePermisos())
         {
 
@@ -154,12 +157,12 @@ class ConsultationController extends Controller
      */
     public function store(Request $request)
     {
+
         $consultationRequest =
         [
-            'teacher_legajo' => 'required|min:1',
             'subject_name' => 'required|min:1',
             'dayOfWeek' => 'required|min:2',
-            'time' => 'required|min:1',
+            'time' => 'required',
             'type' => 'required',
             'place' => '',
             'link' => ''
@@ -168,27 +171,26 @@ class ConsultationController extends Controller
 
         if (Auth::user()->role_id == 1) {
             $consultationRequest = Arr::add($consultationRequest,'admin_id','required|min:1');
-
+            $consultationRequest = Arr::add($consultationRequest,'teacher_legajo','required|min:1');
+            $newConsultation = $request->validate($consultationRequest);
+            $teacher = $this->getTeacherIDByLegajo($newConsultation['teacher_legajo']);
+            $newConsultation =  Arr::add($newConsultation,'teacher_id',$teacher->first()->id);
+            Arr::forget($newConsultation,'teacher_legajo');
         } else {
-            Arr::forget($consultationRequest,'teacher_legajo');
             $consultationRequest = Arr::add($consultationRequest,'teacher_id','required|min:1');
+            $newConsultation = $request->validate($consultationRequest);
         }
 
-       $newConsultation = $request->validate($consultationRequest);
-
-
-       $teacher = $this->getTeacherIDByLegajo($newConsultation['teacher_legajo']);
+        // dd($newConsultation);
        $subject =  $this->getSubject($newConsultation['subject_name']);
+    //    dd($teacher->first());
+       $newConsultation =  Arr::add($newConsultation,'subject_id',$subject->first()->id);
 
-       $newConsultation =  Arr::add($newConsultation,'teacher_id',$teacher[0]->id);
 
-       $newConsultation =  Arr::add($newConsultation,'subject_id',$subject[1]->id);
-
-       Arr::forget($newConsultation,'teacher_legajo');
        Arr::forget($newConsultation,'subject_name');
 
-
-        Consultation::create($newConsultation);
+    //    dd($newConsultation);
+       Consultation::create($newConsultation);
         return redirect('/consultations');
     }
 
@@ -211,13 +213,18 @@ class ConsultationController extends Controller
      */
     public function update(Consultation $consultation)
     {
+
+
+
         $week = $this->getWeek();
         $teachers = $this->getTeachers();
         $subjects = $this->getSubject();
 
         $consultationSubject = $this->getSubject()->where('id','=',$consultation->subject_id);
-        $consultation = Arr::add($consultation,'subject_name', $consultationSubject[1]->name);
 
+        // dd($consultationSubject->first()->name);
+
+        $consultation = Arr::add($consultation,'subject_name', $consultationSubject->first()->name);
 
         //$consultation = Consultation::latest()->get()->where('id','=',$id);
 
@@ -239,41 +246,58 @@ class ConsultationController extends Controller
 
         $consultationRequest =
         [
-            'teacher_legajo' => 'required|min:1',
+            'id' => 'required',
+            // 'teacher_legajo' => 'required|min:1',
             'subject_name' => 'required|min:1',
             'dayOfWeek' => 'required|min:2',
             'time' => 'required|min:1',
             'type' => 'required',
             'place' => '',
             'link' => '',
-            'active'=> ' ',
-            'reason_cancel' =>'required',
-            'alternative' => 'required'
+            'active'=> '',
+            'alternative' => ' ',
+            'reasonCancel' =>''
         ];
 
 
         if (Auth::user()->role_id == 1) {
             $consultationRequest = Arr::add($consultationRequest,'admin_id','required|min:1');
+            $consultationRequest = Arr::add($consultationRequest,'teacher_legajo','required|min:1');
+
+            $newConsultation = request()->validate($consultationRequest);
+            $teacher = $this->getTeacherIDByLegajo($newConsultation['teacher_legajo']);
+            $newConsultation =  Arr::add($newConsultation,'teacher_id',$teacher->first()->id);
+            Arr::forget($newConsultation,'teacher_legajo');
 
         } else {
-            Arr::forget($consultationRequest,'teacher_legajo');
             $consultationRequest = Arr::add($consultationRequest,'teacher_id','required|min:1');
-        }
+            $newConsultation = request()->validate($consultationRequest);
 
-        $newConsultation = request()
-            ->validate($consultationRequest);
-        dd($newConsultation);
-        $newConsultation['active'] = ($newConsultation['active'] == "Activada")? 1 : 0;
-        $teacher = $this->getTeacherIDByLegajo($newConsultation['teacher_legajo']);
+        }
         $subject =  $this->getSubject($newConsultation['subject_name']);
 
-        $newConsultation =  Arr::add($newConsultation,'teacher_id',$teacher[0]->id);
-
-        $newConsultation =  Arr::add($newConsultation,'subject_id',$subject[1]->id);
-
-        Arr::forget($newConsultation,'teacher_legajo');
+        $newConsultation =  Arr::add($newConsultation,'subject_id',$subject->first()->id);
         Arr::forget($newConsultation,'subject_name');
 
+
+        if(!empty(isset($newConsultation['reasonCancel'])))
+        {
+            $newConsultation =  Arr::add($newConsultation,'active',0);
+
+            DB::table('reason_cancel')->insert([
+                'reasonCancel' => $newConsultation['reasonCancel'],
+                'consultation_id'=>$newConsultation['id']
+            ]);
+
+
+        }
+        else
+        {
+            $newConsultation =  Arr::add($newConsultation,'active',1);
+        }
+        Arr::forget($newConsultation,'reasonCancel');
+
+        // dd($newConsultation);
         Consultation::where('id', '=', $newConsultation['id'])->update($newConsultation);
         return redirect('/consultations');
     }

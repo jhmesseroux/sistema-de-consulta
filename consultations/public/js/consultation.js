@@ -21,10 +21,17 @@ function mostrarSegunTipoDeConsulta()
 
 function darDeBajaConsulta()
 {
-    document.getElementById('active').value='Por desactivar';
+    if(document.getElementById('active').value == "Activada")
+    {
+        document.getElementById('active').value='Por desactivar';
+        document.getElementById('div_reasonCancel').style.display = 'block';
+        document.getElementById('div_alternative').style.display = 'block';
+    }
+    else
+    {
+        document.getElementById('active').value='Por activar';
+    }
 
-    document.getElementById('div_reasonCancel').style.display = 'block';
-    document.getElementById('div_alternative').style.display = 'block';
 }
 
 
