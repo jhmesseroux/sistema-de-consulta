@@ -34,7 +34,7 @@
                         </label>
                         <textarea onkeyup="updateCounter()" minlength="5" type="text" name="comment" id="comment" {{-- maxlength="100" --}}
                             class="bg-gray-50 h-20 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            placeholder="breve descripcion de la duda" required=""></textarea>
+                            placeholder="breve descripcion de la duda" required="" focus></textarea>
                         <div class="flex justify-between items-center">
                             <span id="comment-error" class="text-red-300 hidden p-1">Debe entre 5 a 100 caracteres!
                             </span>
@@ -108,7 +108,7 @@
                                 {{ $con->name }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">
-                                {{ $con->dayOfWeek }} |
+                                {{ $con->dayOfWeek }} {{$con->diaDeConsulta}} |
                                 {{ $con->time }}
                             </p>
                             <p class="text-sm text-gray-500 truncate ">

@@ -79,13 +79,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('consultation/information/{consultation:id}', [MeetingController::class, 'information'])->name('consultation.information');
 
+
+
+});
+
+Route::middleware([adminOrTeacher::class])->group(function () {
+
     // consultation routes
     Route::get('consultation', [ConsultationController::class, 'index'])->name('consultation.index');
     Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
-    Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update');
+    Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update')->middleware('adminOrTeacher');
     Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
     Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
     Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
+    Route::get('consultation/information/{consultation:id}',[MeetingController::class,'information'])->name('consultation.information');
 });
 
 
@@ -133,5 +140,4 @@ Route::get('/sendmail', function () {
     // );
 });
 
-
-require __DIR__ . '/auth.php';
+        require __DIR__ . '/auth.php';

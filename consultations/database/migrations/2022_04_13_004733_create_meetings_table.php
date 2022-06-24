@@ -19,6 +19,7 @@ class CreateMeetingsTable extends Migration
             $table->foreignId('consultation_id')->constrained('consultations')->cascadeOnUpdate();
             $table->string('comment')->default(null);
             $table->string('state')->default("pendiente");
+            $table->date('dateConsultation')->default(null);
             $table->dateTime('dateTimeCancelled')->nullable();
             $table->timestamps();
         });

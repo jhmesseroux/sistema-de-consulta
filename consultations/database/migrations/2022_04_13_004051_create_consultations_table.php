@@ -23,7 +23,7 @@ class CreateConsultationsTable extends Migration
             $table->string('dayOfWeek');
             $table->string('link')->nullable();
             $table->string('place')->nullable();
-            $table->string('reasonCancel')->nullable();
+            // $table->int('reasonCancel')->nullable();
             $table->time('time');
             $table->string('type');
             $table->timestamps();
