@@ -8,8 +8,8 @@
 
                 <div class="mt-4">
                     <x-label for="name" :value="__('Nombre')" />
-                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                        autofocus />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                        required autofocus />
                     @error('name')
                         <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                     @enderror
@@ -17,18 +17,23 @@
 
                 <div class="mt-4">
                     <x-label for="description" :value="__('Descripción')" />
-                    <x-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')"
-                        required />
+                    <x-input id="description" class="block mt-1 w-full" type="text" name="description"
+                        :value="old('description')" required />
                     @error('description')
                         <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                     @enderror
                 </div>
-
-                <div class="mt-4">
+                <div class="mt-4 flex justify-end gap-6">
+                    <x-button title="Volver Atras" type='button' class="!bg-gray-400">
+                        <a href="/admin/roles">
+                            Cancelar
+                        </a>
+                    </x-button>
                     <x-button title="Agregar Rols" class="!bg-blue-500">
                         Crear
                     </x-button>
                 </div>
+
             </form>
         </div>
     </div>

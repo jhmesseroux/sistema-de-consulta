@@ -9,19 +9,20 @@
             <li>
                 <a href="/" class="mr-4 hover:underline md:mr-6 ">Inicio</a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6">Privacidad</a>
             </li>
             <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6 ">Acerca de</a>
-            </li>
+            </li> --}}
             <li>
                 <a href="/contact" class="hover:underline">Contacto</a>
             </li>
         </ul>
     </div>
     <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8">
-    <span class="block text-sm  sm:text-center ">© 2022 <a href="/" class="hover:underline">SDC UTN™</a>. Todos los derechos reservados.
+    <span class="block text-sm  sm:text-center ">© 2022 <a href="/" class="hover:underline">SDC UTN™</a>. Todos
+        los derechos reservados.
     </span>
 </footer>
 

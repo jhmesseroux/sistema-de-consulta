@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Null_;
 
-class CreateReasonCancel extends Migration
+class CreateReasonCancelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +16,10 @@ class CreateReasonCancel extends Migration
         Schema::create('reason_cancel', function (Blueprint $table) {
             $table->id();
             $table->string('reasonCancel');
-            $table->date('date')->default(getdate());
             $table->foreignId('consultation_id')->constrained('consultations');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateReasonCancel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reason_cancel');
+            Schema::dropIfExists('reason_cancel');
     }
 }

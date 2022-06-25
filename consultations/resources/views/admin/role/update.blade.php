@@ -9,8 +9,8 @@
 
                 <div class="mt-4">
                     <x-label for="name" :value="__('Nombre')" />
-                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $role->name }}"
-                        required autofocus />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name"
+                        value="{{ $role->name }}" required autofocus />
                     @error('name')
                         <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                     @enderror
@@ -18,14 +18,14 @@
 
                 <div class="mt-4">
                     <x-label for="description" :value="__('Descripción')" />
-                    <x-input id="description" class="block mt-1 w-full" type="text" value="{{ $role->description }}"
-                        name="description" required />
+                    <x-input id="description" class="block mt-1 w-full" type="text"
+                        value="{{ $role->description }}" name="description" required />
                     @error('description')
                         <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mt-4 flex gap-6">
+                <div class="mt-4 flex justify-end gap-6">
                     <x-button title="Volver Atras" type='button' class="!bg-gray-400">
                         <a href="/admin/roles">
                             Cancelar

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @include('layouts.navigation')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -23,8 +24,8 @@
             <x-field>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                    autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autofocus />
             </x-field>
 
 
@@ -44,7 +45,7 @@
                     <input id="remember_me" type="checkbox"
                         class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Mantener sesión iniciada') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Recuérdame') }}</span>
                 </label>
             </x-field>
             <div class="flex w-full my-3">

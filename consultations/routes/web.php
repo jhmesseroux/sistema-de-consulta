@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchConsultationController;
@@ -10,9 +11,11 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingController;
 use App\Mail\ConsultationCancel;
+use App\Mail\ContactAdmin;
 use App\Mail\hello;
 use App\Mail\UserNotifications;
 use App\Mail\Welcome;
+use App\Models\Meeting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -63,8 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::get('user/{dni}', [UserController::class, 'show'])->name('user.profile');
     Route::post('user/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/setting', [UserSettingController::class, 'index'])->name('user.setting');
+
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $nextMeetings = Meeting::where([['state', 'pendiente'], ['user_id', Auth()->user()->id]])->get();
+        return view('dashboard', ['nextMeetings' => $nextMeetings]);
     })->name('dashboard');
 
     // meeting routes
@@ -72,6 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::get('meeting/user', [MeetingController::class, 'index'])->name('meeting.user');
 
 
+    Route::get('consultation/information/{consultation:id}', [MeetingController::class, 'information'])->name('consultation.information');
 
 
 
@@ -110,19 +116,28 @@ Route::get('consultation/delete/{consultation:id}', [ConsultationController::cla
 
 
 Route::get('/search', [SearchConsultationController::class, 'show'])->name('consultation.search');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+Route::post('/admin/contact', [AdminController::class, 'contact'])->name('contact.admin');
+
 Route::get('/sendmail', function () {
-    return new Welcome(Auth::user());
+
+
+    $fullname = 'Heloogfgh';
+    $email = 'Heloo';
+    $message = 'Heloo';
+
+    return new ContactAdmin($fullname, $email, $message);
     // return new hello();
 
     // Mail::to('example@gmail.com')->send(new Welcome(Auth::user()));
     // return new JsonResponse(
-        //     [
-            //         'success' => true,
-            //         'message' => "Thank you for subscribing to our email, please check your inbox"
-            //     ],
-            //     200
-            // );
-        });
-
+    //     [
+    //         'success' => true,
+    //         'message' => "Thank you for subscribing to our email, please check your inbox"
+    //     ],
+    //     200
+    // );
+});
 
         require __DIR__ . '/auth.php';

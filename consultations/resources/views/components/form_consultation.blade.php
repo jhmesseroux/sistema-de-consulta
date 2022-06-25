@@ -11,10 +11,10 @@
 
                     <div class="grid grid-cols-6 gap-6">
 
-                        @if ( isset(Auth::user()->role_id) && Auth::user()->role_id == "1")
-
                         <x-input type="hidden" value="{{ isset($consultation->id)? $consultation->id : '' }}" name="id"
                             id="id" />
+                        @if ( isset(Auth::user()->role_id) && Auth::user()->role_id == "1")
+
                         <x-input type="hidden" value="{{ Auth::user()->id}}" name="admin_id" id="admin_id" />
                         <div class="col-span-6 sm:col-span-3" name="teacher_field">
 
@@ -37,8 +37,11 @@
 
                         </div>
                         @else
-                        <input type="text" name="teacher_id" id="teacher_id"
+                        {{-- <input type="text" name="teacher_id" id="teacher_id"
                             value="{{ isset($consultation->teacher_id)? $consultation->teacher_id : '' }}"
+                            autocomplete="teacher_id" class="hidden"> --}}
+                            <input type="text" name="teacher_id" id="teacher_id"
+                            value="{{ Auth::user()->id }}"
                             autocomplete="teacher_id" class="hidden">
                         @endif
 
@@ -141,8 +144,8 @@
                             <label for="active" class="block text-sm font-medium text-gray-700">Estado de la
                                 consulta</label>
                             <x-input type="text" name="active" id="active"
-                                value="{{ isset($consultation->active)? 'Activada' : 'Desactivida' }}"
-                                autocomplete="" disabled />
+                                value="{{ isset($consultation->active) && $consultation->active? 'Activada' : 'Desactivida' }}" autocomplete=""
+                                disabled/>
 
                             <x-errorInput name='active' />
                         </div>
@@ -179,7 +182,7 @@
                                 alternativa</label>
                             <x-input
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                type="textarea" name="" id="alternative" autocomplete="alternative" maxlength="255"
+                                type="text" name="alternative" id="alternative" autocomplete="alternative" maxlength="255"
                                 placeholder="Ingresar dia, horario, lugar o link de la consulta alternativa" />
 
                             <x-errorInput name='alternative' />

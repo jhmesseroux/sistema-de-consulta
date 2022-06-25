@@ -23,14 +23,15 @@
             <!-- legajo -->
             <div class="mt-4">
                 <x-label for="legajo" :value="__('legajo')" />
-                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="old('legajo')" required />
+                <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="old('legajo')"
+                    required />
             </div>
             <!-- firstname -->
             <div class="mt-4">
                 <x-label for="firstname" :value="__('Nombre')" />
 
-                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required
-                    autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')"
+                    required autofocus />
             </div>
 
             <!--lastname-->
@@ -44,8 +45,8 @@
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                    autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autofocus />
             </div>
             <!-- Role -->
             <div class="mt-4">
@@ -54,13 +55,13 @@
                     class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     name="role_id" id="role_id">
                     @admin
-                    @foreach (App\Models\Role::all() as $role)
-                        <option value="{{ $role->id }}"> {{ $role->name }} </option>
-                    @endforeach
-                @else
-                    @foreach (App\Models\Role::where('name', '<>', 'Admin')->get() as $role)
-                        <option value="{{ $role->id }}"> {{ $role->name }} </option>
-                    @endforeach
+                        @foreach (App\Models\Role::all() as $role)
+                            <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                        @endforeach
+                    @else
+                        @foreach (App\Models\Role::where('name', '<>', 'Admin')->get() as $role)
+                            <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                        @endforeach
                     @endadmin
                 </select>
 
@@ -106,9 +107,18 @@
                         </a>
                     @endif
                 @endcannot
-                <x-button class="!bg-blue-500">
-                    Crear Cuenta
-                </x-button>
+
+                <div class="mt-4 justify-end flex gap-6">
+                    <x-button title="Volver Atras" type='button' class="!bg-gray-400">
+                        <a href="/admin/users">
+                            Cancelar
+                        </a>
+                    </x-button>
+                    <x-button class="!bg-blue-500">
+                        Crear Cuenta
+                    </x-button>
+                </div>
+
             </div>
         </form>
 

@@ -82,3 +82,33 @@ const closeModalDelete = () => {
     modal.classList.add("hidden");
     // console.log(form);
 };
+
+document.querySelector(".form-search").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const search = document.querySelector("#search-consultation").value;
+
+    if (search != "") {
+        this.submit();
+    } else {
+        document
+            .querySelector(".error-consultation")
+            .classList.remove("hidden");
+        setTimeout(() => {
+            document
+                .querySelector(".error-consultation")
+                .classList.add("hidden");
+        }, 5000);
+    }
+});
+document
+    .querySelector("#form-search-top")
+    .addEventListener("submit", function (e) {
+        e.preventDefault();
+        const search = document.querySelector("#search-top").value;
+
+        if (search != "") {
+            this.submit();
+        } else {
+            alert("Campo obligatorio !");
+        }
+    });
