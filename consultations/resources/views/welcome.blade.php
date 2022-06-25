@@ -15,11 +15,16 @@
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
             line-height: 1.15;
-            -webkit-text-size-adjust: 100%
+            -webkit-text-size-adjust: 100%;
+            font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            line-height: 1.5;
         }
 
         body {
-            margin: 0
+            margin: 0;
+            font-family: inherit;
         }
 
         a {
@@ -28,11 +33,6 @@
 
         [hidden] {
             display: none
-        }
-
-        html {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-            line-height: 1.5
         }
 
         *,
@@ -389,14 +389,6 @@
                 color: rgba(203, 213, 224, var(--text-opacity))
             }
         }
-
-    </style>
-
-    <style>
-        body {
-            font-family: 'Nunito';
-        }
-
     </style>
 </head>
 

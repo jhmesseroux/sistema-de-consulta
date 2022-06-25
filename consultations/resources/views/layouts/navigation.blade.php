@@ -16,24 +16,24 @@
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>
-                {{-- search form --}}
             </div>
-            <form class="hidden flex-1 h-auto shrink-1  items-center justify-center md:flex" method="GET"
-                action="/search">
-                <div class="flex">
-                    <x-button class="bg-red-500 rounded-none" type="submit">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </x-button>
-                    <x-input style="border-radius: 0" class="!rounded-0 " type="search"
-                        placeholder="buscar por nombre o materia" name="search" id="search" />
-                </div>
-
-            </form>
+            {{-- Search form --}}
+            @unless (request()->routeIs('home'))
+                <form class="hidden flex-1 h-auto shrink-1  items-center justify-center md:flex" method="GET"
+                    action="/search">
+                    <div class="flex">
+                        <x-button class="bg-red-500 rounded-none" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </x-button>
+                        <x-input style="border-radius: 0" class="!rounded-0 " type="search"
+                            placeholder="Buscar por profesor o materia" name="search" id="search" required />
+                    </div>
+                </form>
+            @endunless
 
             <!-- Settings Dropdown -->
             @auth
@@ -144,20 +144,24 @@
             @endauth
             @guest
                 <div class="login-register hidden sm:flex-row flex-col items-center justify-center  sm:flex gap-4">
-                    <a href="/login"
-                        class="text-blue-500 hover:underline  hover:text-blue-700 duration-500 font-medium bg-transparent">Inicia
-                        Sesion
-                    </a>
-                    <a href="/register"
-                        class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-600 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
-                        Crear cuenta
-                    </a>
+                    @unless (request()->routeIs('login'))
+                        <a href="/login"
+                            class="text-blue-500 hover:underline  hover:text-blue-700 duration-500 font-medium bg-transparent">Iniciar
+                            sesión
+                        </a>
+                    @endunless
+                    @unless (request()->routeIs('register'))
+                        <a href="/register"
+                            class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-600 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
+                            Crear cuenta
+                        </a>
+                    @endunless
                 </div>
             @endguest
 
             <!-- Hamburger -->
             <div class=" -mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open"
+                <button @click="open = !open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"

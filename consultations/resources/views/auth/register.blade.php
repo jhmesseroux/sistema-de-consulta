@@ -27,7 +27,7 @@
             </x-field>
             <!-- legajo -->
             <x-field>
-                <x-label for="legajo" :value="__('legajo')" />
+                <x-label for="legajo" :value="__('Legajo')" />
                 <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="old('legajo')" required />
             </x-field>
             <!-- firstname -->
@@ -75,14 +75,14 @@
 
             <!-- Password -->
             <x-field>
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('Contraseña')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="current-password" />
             </x-field>
             <!-- Confirm Password -->
             <x-field>
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('Confirmar contraseña')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                     name="password_confirmation" required />
@@ -97,20 +97,20 @@
                         <input id="remember_me" type="checkbox"
                             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             name="remember">
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Mantener sesión iniciada') }}</span>
                     </label>
                 </x-field>
             @endcannot
-            <x-button class="!bg-blue-500 my-3">
-                Crear Cuenta
+            <x-button class="!bg-blue-500 my-3 normal-case text-base font-normal">
+                Crear cuenta
             </x-button>
 
             <div class="flex items-center justify-center gap-3 mt-4">
                 @if (Route::has('password.request'))
                     <div class="flex gap-1 text-sm place-items-center">
                         <span>¿Ya tiene una cuenta?</span>
-                        <a class="underline  text-gray-600 hover:text-blue-600" href="{{ route('login') }}">
-                            {{ __('Inicia Sesion?') }}
+                        <a class="underline text-gray-600 hover:text-blue-600" href="{{ route('login') }}">
+                            {{ __('Iniciar sesión') }}
                         </a>
                     </div>
                 @endif
