@@ -88,5 +88,5 @@
             </table>
         </div>
     </div>
-
+    <x-alert />
 </x-admin>

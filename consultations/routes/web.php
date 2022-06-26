@@ -47,14 +47,14 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/user/add', [AdminUserController::class, 'create'])->name('user.create');
 
     Route::post('admin/user/create', [AdminUserController::class, 'store'])->name('admin.store.user');
-    Route::post('admin/user/delete/{{ $users->links() }}{user:id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
+    Route::post('admin/user/delete/{user:id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
 
     Route::post('admin/user/update/{user:id}', [AdminUserController::class, 'update'])->name('admin.user.update');
     Route::get('admin/user/edit/{user:id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
     Route::post('admin/{user:id}/verify', [AdminUserController::class, 'verify'])->name('admin.user.verify');
 
     // subject routes
-    Route::get('admin/subject/', [SubjectController::class, 'index']);
+    Route::get('admin/subject/', [SubjectController::class, 'index'])->name('admin.subjects');
     Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
     Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
     Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/setting', [UserSettingController::class, 'index'])->name('user.setting');
 
     Route::get('/dashboard', function () {
-        $nextMeetings = Meeting::where([['state', 'pendiente'], ['user_id', Auth()->user()->id]])->get();
+        $nextMeetings = Meeting::where([['dateConsultation', '>=' , date('c') ], ['user_id', Auth()->user()->id]])->get();
         return view('dashboard', ['nextMeetings' => $nextMeetings]);
     })->name('dashboard');
 
@@ -99,6 +99,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
 Route::get('admin/subjects/', [SubjectController::class, 'index']);
 Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
 Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
+Route::delete('admin/subject/delete/{subject:id}', [SubjectController::class, 'delete'])->name('subject.delete');
 Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
 Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
 

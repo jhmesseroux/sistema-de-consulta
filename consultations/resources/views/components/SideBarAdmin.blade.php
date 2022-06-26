@@ -107,7 +107,7 @@
                 <div>
                     <p class="text-gray-200 text-sm font-medium">{{ Auth::user()->firstname }}</p>
                     <p class="text-gray-200 text-xs">
-                        <a href="/users/{{ Auth::user()->dni }}">
+                        <a href="/user/{{ Auth::user()->dni }}">
                             Ver Perfil
                         </a>
                     </p>
@@ -247,7 +247,7 @@
                 <div>
                     <p class="text-gray-200 text-sm font-medium">{{ Auth::user()->firstname }}</p>
                     <p class="text-gray-200 text-xs">
-                        <a href="/users/{{ Auth::user()->dni }}">
+                        <a href="/user/{{ Auth::user()->dni }}">
                             Ver Perfil
                         </a>
                     </p>

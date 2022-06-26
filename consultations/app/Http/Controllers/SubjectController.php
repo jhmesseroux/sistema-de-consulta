@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
-use Psy\Sudo;
 
 class SubjectController extends Controller
 {
@@ -43,7 +42,7 @@ class SubjectController extends Controller
         ]);
 
         Subject::create($newSubject);
-        return redirect('admin/subject');
+        return redirect()->route('admin.subjects')->with('success', 'Materia guardada con exito!');
     }
 
     /**
@@ -86,7 +85,12 @@ class SubjectController extends Controller
 
         Subject::where('id', $subject['id'])
             ->update($subject);
-        return redirect('admin/subject');
+       return redirect()->route('admin.subjects')->with('success', 'Materia guardada con exito!');
+    }
+    public function delete(Subject $subject)
+    {
+       $subject->delete();
+        return redirect()->route('admin.subjects')->with('success', 'Materia borrada con exito!');
     }
 
     /**
