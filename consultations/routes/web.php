@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ReasonCancelController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
@@ -47,18 +48,24 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/user/add', [AdminUserController::class, 'create'])->name('user.create');
 
     Route::post('admin/user/create', [AdminUserController::class, 'store'])->name('admin.store.user');
-    Route::post('admin/user/delete/{{ $users->links() }}{user:id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
+    Route::post('admin/user/delete/{user:id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
 
     Route::post('admin/user/update/{user:id}', [AdminUserController::class, 'update'])->name('admin.user.update');
     Route::get('admin/user/edit/{user:id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
     Route::post('admin/{user:id}/verify', [AdminUserController::class, 'verify'])->name('admin.user.verify');
 
     // subject routes
-    Route::get('admin/subject/', [SubjectController::class, 'index']);
+    Route::get('admin/subject/', [SubjectController::class, 'index'])->name('admin.subjects');
     Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
     Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
     Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
     Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
+
+
+    // Reason Cancel routes
+    Route::get('admin/reasonCancel/',[ReasonCancelController::class,'index']);
+    Route::get('admin/reasonCancel/{id}',[ReasonCancelController::class,'show']);
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -68,7 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/setting', [UserSettingController::class, 'index'])->name('user.setting');
 
     Route::get('/dashboard', function () {
-        $nextMeetings = Meeting::where([['state', 'pendiente'], ['user_id', Auth()->user()->id]])->get();
+        $nextMeetings = Meeting::where([['dateConsultation', '>=' , date('c') ], ['user_id', Auth()->user()->id]])->get();
         return view('dashboard', ['nextMeetings' => $nextMeetings]);
     })->name('dashboard');
 
@@ -90,6 +97,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
     Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
     Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update')->middleware('adminOrTeacher');
     Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
+    Route::get('consultation/baja/{teacher_id}', [ConsultationController::class, 'darDeBaja']);
     Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
     Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
     Route::get('consultation/information/{consultation:id}',[MeetingController::class,'information'])->name('consultation.information');
@@ -99,6 +107,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
 Route::get('admin/subjects/', [SubjectController::class, 'index']);
 Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
 Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
+Route::delete('admin/subject/delete/{subject:id}', [SubjectController::class, 'delete'])->name('subject.delete');
 Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
 Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
 

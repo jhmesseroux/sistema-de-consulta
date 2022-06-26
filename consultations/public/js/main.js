@@ -1,5 +1,5 @@
-function dothat(data) {
-    console.log(data);
+function dothat(id,date) {
+    // console.log(data);
     document
         .querySelector("#confirm-condultation-modal")
         .classList.toggle("hidden");
@@ -7,10 +7,13 @@ function dothat(data) {
     const inputConsultation = document.createElement("input");
     inputConsultation.type = "hidden";
     inputConsultation.name = "consultation_id";
-    inputConsultation.value = data;
+    inputConsultation.value = id;
+    inputDate = document.querySelector("#dateConsultation");
+    inputDate.value = date;
+
     form.appendChild(inputConsultation);
     console.log(form);
-    // console.log(data);
+    // console.log(date);
 }
 const closeModal = () => {
     document
@@ -75,6 +78,29 @@ const deleteRole = (role) => {
     modal.classList.remove("hidden");
     console.log(form);
 };
+
+
+const darDeBaja = (id) => {
+    // console.log(role);
+    const form = document.getElementById("dar-baja");
+    const modal = document.getElementById("modal-dar-baja");
+    const title = document.getElementById("title-dar-baja");
+    console.log(title);
+    title.textContent =
+        "¿Estas seguro de darse de baja de TODAS las consultas por 1 semana?";
+    form.setAttribute("action", `/consultation/baja/${id}`);
+    modal.classList.remove("hidden");
+    console.log(form);
+};
+
+const closeModalBaja = () => {
+    // const form = document.getElementById("delete-rol");
+    const modal = document.getElementById("modal-dar-baja");
+    // form.setAttribute("action", `/admin/role/remove/${role.id}`);
+    modal.classList.add("hidden");
+    // console.log(form);
+};
+
 const closeModalDelete = () => {
     // const form = document.getElementById("delete-rol");
     const modal = document.getElementById("modal-delete-rol");

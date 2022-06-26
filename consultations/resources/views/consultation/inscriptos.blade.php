@@ -74,11 +74,11 @@
                         @foreach ($meetings as $meet)
                         <tr class="p-6  border-gray-300 border-b">
 
-                            <x-tables.td class="pl-4 pb-3"  >
-                                <x-avatarIcon img="{{ $meet->avatar }}" alt="icono profesor" />
+                            <x-tables.td class="pl-4 pb-3"   >
+                                <x-avatarIcon avatar="{{$meet->avatar}}" alternative="icono profesor" />
                             </x-tables.td>
-                            <x-tables.td class=" pb-3" > {{ $meet->firstname }} </x-tables.td>
-                            <x-tables.td class=" pb-3" > {{ $meet->lastname }} </x-tables.td>
+                            <x-tables.td class=" pb-3" colspan="2" >  {{ $meet->firstname }}  {{ $meet->lastname }} </x-tables.td>
+                            {{-- <x-tables.td class=" pb-3" > </x-tables.td> --}}
                             <x-tables.td class=" pb-3 ">
                                 <p class="text-base">{{ $meet->comment }}</p>
                             </x-tables.td>

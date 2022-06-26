@@ -13,7 +13,7 @@
                 clip-rule="evenodd"></path>
         </svg>
         <div>
-            <span class="font-medium">Great Job!</span> {{ session('success') }}
+            <span class="font-medium">Buen trabajo! </span> {{ session('success') }}
         </div>
     </div>
 @endif

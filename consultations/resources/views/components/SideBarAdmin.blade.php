@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li
-                    class=" {{ request()->is('consultations') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                    class=" {{  request()->is('consultations')  ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
                     <a href="/consultations" class="flex items-center  rounded focus:outline-none w-full h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack"
                             width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5"
@@ -74,21 +74,17 @@
                         <span class="text-sm ml-2">Consultas</span>
                     </a>
                 </li>
+                <li
+                class=" {{ request()->is('admin/reasonCancel') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
+                <a href="/admin/reasonCancel" class="flex items-center  rounded focus:outline-none w-full h-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" fill="none" width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                      </svg>
+                    <span class="text-sm ml-2">Consultas canceladas</span>
+                </a>
+            </li>
 
-                {{-- <li
-                    class=" {{ request()->is('admin/setting') ? 'bg-indigo-800 ' : ' ' }} flex w-full justify-between text-gray-200 hover:text-white hover:bg-indigo-800 cursor-pointer items-center px-8 py-3">
-                    <a href="/admin/setting" class="flex items-center  rounded focus:outline-none w-full h-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
-                            width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        <span class="text-sm ml-2">Settings</span>
-                    </a>
-                </li> --}}
+
             </ul>
             <div class="flex items-center  px-8">
                 <div class="w-10 h-10 bg-cover rounded-md mr-3">
@@ -107,7 +103,7 @@
                 <div>
                     <p class="text-gray-200 text-sm font-medium">{{ Auth::user()->firstname }}</p>
                     <p class="text-gray-200 text-xs">
-                        <a href="/users/{{ Auth::user()->dni }}">
+                        <a href="/user/{{ Auth::user()->dni }}">
                             Ver Perfil
                         </a>
                     </p>
@@ -247,7 +243,7 @@
                 <div>
                     <p class="text-gray-200 text-sm font-medium">{{ Auth::user()->firstname }}</p>
                     <p class="text-gray-200 text-xs">
-                        <a href="/users/{{ Auth::user()->dni }}">
+                        <a href="/user/{{ Auth::user()->dni }}">
                             Ver Perfil
                         </a>
                     </p>

@@ -200,9 +200,12 @@ class ConsultationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function darDeBaja($teacher_id)
     {
-        //
+        Consultation::where('teacher_id','=',$teacher_id)
+            ->update(['active'=>0]);
+
+            return redirect('consultation');
     }
 
     /**
@@ -286,7 +289,8 @@ class ConsultationController extends Controller
 
             DB::table('reason_cancel')->insert([
                 'reasonCancel' => $newConsultation['reasonCancel'],
-                'consultation_id'=>$newConsultation['id']
+                'consultation_id'=>$newConsultation['id'],
+                'created_at'=> date('c')
             ]);
 
 
