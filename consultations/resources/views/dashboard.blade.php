@@ -16,7 +16,7 @@
                 <ul class="flex gap-4 p-4 bg-gray-100 items-center justify-center">
                     @foreach ($nextMeetings as $meet)
                         <li
-                            class="flex border-b-2  overflow-hidden !w-60 cursor-pointer border-b-blue-500 flex-col p-6 gap-2  hover:bg-blue-500 hover:text-white  rounded shadow-md bg-white hover:shadow-lg
+                            class="flex border-b-2  overflow-hidden !w-60 cursor-pointer border-b-blue-500 flex-col p-6 gap-2  hover:bg-blue-600 hover:text-white  rounded shadow-md bg-white hover:shadow-lg
                      transition-shadow text-gray-900 duration-300 ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500 " viewBox="0 0 20 20"
                                 fill="currentColor">

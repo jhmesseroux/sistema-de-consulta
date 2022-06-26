@@ -14,7 +14,7 @@
                 Cancelar
             </a>
         </x-button>
-        <x-button title="Editar Materia" class="!bg-blue-500">
+        <x-button title="Editar Materia" class="!bg-blue-600">
             {{ isset($subject->name) ? 'Editar' : 'Crear' }}
         </x-button>
     </div>

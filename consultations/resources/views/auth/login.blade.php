@@ -1,5 +1,4 @@
 <x-guest-layout>
-    @include('layouts.navigation')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -48,7 +47,7 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Recuérdame') }}</span>
                 </label>
             </x-field>
-            <div class="flex w-full my-3">
+            <div class="flex w-full my-3 justify-end">
                 <x-button class=" place-items-center !text-center normal-case text-base font-normal">
                     Iniciar sesión
                 </x-button>

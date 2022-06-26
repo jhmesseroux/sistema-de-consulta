@@ -5,7 +5,7 @@
 
         <div class="lg:flex h-fit">
             <div
-                class="xl:w-2/5 lg:w-2/5 !min-h-full via-blue-500 bg-blue-500 py-16 xl:rounded-bl rounded-tl rounded-tr xl:rounded-tr-none">
+                class="xl:w-2/5 lg:w-2/5 !min-h-full via-blue-500 bg-blue-600 py-16 xl:rounded-bl rounded-tl rounded-tr xl:rounded-tr-none">
                 <div class="xl:w-5/6 xl:px-0 px-8 mx-auto">
                     <h1 class="xl:text-4xl text-3xl pb-4 text-white font-bold">Contacto</h1>
                     <p class="text-xl text-white pb-8 leading-relaxed font-normal lg:pr-4">

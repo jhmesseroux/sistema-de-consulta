@@ -1,6 +1,6 @@
 <div class="flex flex-no-wrap fixed ">
     <div
-        class="w-64 sticky top-0 max-h-screen overflow-auto min-h-screen sm:relative bg-blue-500 shadow  flex-col justify-between hidden sm:flex">
+        class="w-64 sticky top-0 max-h-screen overflow-auto min-h-screen sm:relative bg-blue-600 shadow  flex-col justify-between hidden sm:flex">
         <div class="flex !h-full flex-col justify-around">
             <div class=" w-full flex items-center justify-center ">
                 <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653327438/sdc%20utn%202022/Eco_Home_Real_Estate_Logo_nnwggi.png"
@@ -112,7 +112,7 @@
         </div>
 
     </div>
-    <div class="w-64  fixed sm:relative z-50 bg-blue-500 shadow min-h-screen md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out"
+    <div class="w-64  fixed sm:relative z-50 bg-blue-600 shadow min-h-screen md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out"
         id="mobile-nav">
         <button aria-label="open sidebar" title="Abrir/Cerrar menu" id="openSideBar"
             class="h-10 w-10 bg-blue-600 absolute right-0 mt-16 -mr-6 flex items-center shadow rounded-tr-full rounded-br-full justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900"

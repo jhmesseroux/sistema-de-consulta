@@ -1,7 +1,7 @@
 @props(['firstname','lastname','avatar','email','name','dayOfWeek','time','place','active','id'])
 
 <li
-    class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-500 hover:!text-white ">
+    class="result-search-item p-3 sm:py-4 bg-white shadow hover:shadow-lg hover:rounded-sm cursor-pointer duration-300 hover:bg-blue-600 hover:!text-white ">
     <div class="flex gap-2 sm:items-center sm:flex-row flex-col sm:space-x-4">
 
 

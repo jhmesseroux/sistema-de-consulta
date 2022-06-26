@@ -1,5 +1,4 @@
 <x-guest-layout>
-    @include('layouts.navigation')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -103,9 +102,11 @@
                     </label>
                 </x-field>
             @endcannot
-            <x-button class="!bg-blue-600 my-3 normal-case text-base font-normal">
-                Crear cuenta
-            </x-button>
+            <div class="flex w-full my-3 justify-end">
+                <x-button class=" place-items-center !text-center normal-case text-base font-normal">
+                    Crear cuenta
+                </x-button>
+            </div>
 
             <div class="flex items-center justify-center gap-3 mt-4">
                 @if (Route::has('password.request'))
