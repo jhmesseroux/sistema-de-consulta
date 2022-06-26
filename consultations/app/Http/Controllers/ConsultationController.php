@@ -224,12 +224,12 @@ class ConsultationController extends Controller
         $subjects = $this->getSubject();
 
 
-        if(Auth::user()->role->name =='Admin')
-        {
+        // if(Auth::user()->role->name =='Admin')
+        // {
             // $teacher =
 
             $legajo = $consultation->teacher->legajo;
-        }
+        // }
 
         // dd($consultation->subject->name);
 
