@@ -27,6 +27,7 @@
                 <form action="/meeting/save" method="POST" id="reserva-consultation"
                     class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
                     @csrf
+                    <input type="hidden" name="dateConsultation" id="dateConsultation">
                     <h3 class="text-xl font-medium text-gray-900 ">Confirma tu consulta</h3>
                     <div>
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 ">
@@ -55,6 +56,7 @@
                         <x-button id="confirm" type="submit">
                             Confirma
                         </x-button>
+
                     </div>
 
                 </form>
@@ -117,8 +119,9 @@
                             </p>
                         </div>
                         <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                            {{-- {{ddd($con);}} --}}
                             @if ($con->active)
-                                <x-button type='button' onclick="dothat({{ $con->id }})">
+                                <x-button type='button' onclick="dothat({{$con->id}},'{{$con->dateConsultation}}')">
                                     Reservar
                                 </x-button>
                             @else

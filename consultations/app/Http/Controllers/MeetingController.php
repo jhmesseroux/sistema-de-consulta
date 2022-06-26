@@ -21,9 +21,12 @@ class MeetingController extends Controller
             // dd(request()->all());
             $attr = request()->validate([
                 'comment' => 'required|max:100',
-                'consultation_id' => ' required'
+                'consultation_id' => ' required',
+                'dateConsultation'=> ''
 
             ]);
+
+
             $attr['user_id'] =  Auth::id();
             $meet = Meeting::create($attr);
             // dd($meet->user);

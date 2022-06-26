@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ReasonCancelController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
@@ -59,6 +60,12 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
     Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
     Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
+
+
+    // Reason Cancel routes
+    Route::get('admin/reasonCancel/',[ReasonCancelController::class,'index']);
+    Route::get('admin/reasonCancel/{id}',[ReasonCancelController::class,'show']);
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -90,6 +97,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
     Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
     Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update')->middleware('adminOrTeacher');
     Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
+    Route::get('consultation/baja/{teacher_id}', [ConsultationController::class, 'darDeBaja']);
     Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
     Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
     Route::get('consultation/information/{consultation:id}',[MeetingController::class,'information'])->name('consultation.information');
