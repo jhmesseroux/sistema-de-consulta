@@ -50,7 +50,7 @@ class SearchConsultationController extends Controller
 
             if($diaDeSemana == $dayOfWeek)
             {
-            $diaDeConsulta = $date->format('d-m');
+            $diaDeConsulta = $date;
             break;
 
             }
@@ -75,11 +75,12 @@ class SearchConsultationController extends Controller
 
         foreach($results as $row)
         {
-            $diaDeConsulta = $this->devolverDiaDeConsulta($row->dayOfWeek);
+            $diaDeConsulta = $this->devolverDiaDeConsulta($row->dayOfWeek)->format('d-m');
             $hora = strtotime($row->time);
             $hora = date('H:i ',$hora);
             $row->time = $hora;
             $row->diaDeConsulta = $diaDeConsulta;
+            $row->dateConsultation = $this->devolverDiaDeConsulta($row->dayOfWeek)->format('Y-m-d');
 
         }
 
