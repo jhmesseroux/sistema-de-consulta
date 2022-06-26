@@ -103,7 +103,7 @@
                     </label>
                 </x-field>
             @endcannot
-            <x-button class="!bg-blue-500 my-3 normal-case text-base font-normal">
+            <x-button class="!bg-blue-600 my-3 normal-case text-base font-normal">
                 Crear cuenta
             </x-button>
 

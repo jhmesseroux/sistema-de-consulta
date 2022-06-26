@@ -89,8 +89,10 @@
         </ul>
     @else
         <div class="meettainer flex w-full items-center justify-center p-6 m-4">
-            <p class="bg-gray-200 border-l-4 border-red-500 p-4 w-4/5">No hay resultado para <strong>
-                    {{ request('search') }}. </strong>
+            <p class="bg-gray-200 border-l-4 border-red-500 p-4 w-4/5">
+                Aquí aparecerán las consultas que reserves.
+            </p>
+            <p>
                 Volver al <x-nav-link class="text-blue-500" href="/">Inicio</x-nav-link>
             </p>
         </div>

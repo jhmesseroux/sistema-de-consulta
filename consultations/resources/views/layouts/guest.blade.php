@@ -24,6 +24,8 @@
 </head>
 
 <body>
+    @include('layouts.navigation')
+
     <div>
         {{ $slot }}
     </div>

@@ -1,4 +1,4 @@
-<footer class="p-4 bg-blue-500 text-white shadow md:px-6 md:py-8 ">
+<footer class="p-4 bg-blue-600 text-white shadow md:px-6 md:py-8 ">
     <div class="sm:flex sm:items-center sm:justify-between">
         <a href="/" class="flex items-center mb-4 sm:mb-0">
             <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653327438/sdc%20utn%202022/Eco_Home_Real_Estate_Logo_nnwggi.png"

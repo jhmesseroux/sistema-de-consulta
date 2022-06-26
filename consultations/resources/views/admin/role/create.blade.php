@@ -24,12 +24,12 @@
                     @enderror
                 </div>
                 <div class="mt-4 flex justify-end gap-6">
-                    <x-button title="Volver Atras" type='button' class="!bg-gray-400">
+                    <x-button title="Volver atrás" type='button' class="!bg-gray-400">
                         <a href="/admin/roles">
                             Cancelar
                         </a>
                     </x-button>
-                    <x-button title="Agregar Rols" class="!bg-blue-500">
+                    <x-button title="Crear rol">
                         Crear
                     </x-button>
                 </div>

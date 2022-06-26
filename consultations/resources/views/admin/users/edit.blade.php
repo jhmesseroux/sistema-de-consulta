@@ -22,7 +22,7 @@
             </div>
             <!-- legajo -->
             <div class="mt-4">
-                <x-label for="legajo" :value="__('legajo')" />
+                <x-label for="legajo" :value="__('Legajo')" />
                 <x-input id="legajo" class="block mt-1 w-full" type="text" name="legajo" :value="$user->legajo"
                     required />
             </div>
@@ -65,14 +65,13 @@
                     autofocus /> --}}
             </div>
 
-
             <div class="mt-4 flex justify-end gap-6">
-                <x-button title="Volver Atras" type='button' class="!bg-gray-400">
+                <x-button title="Volver atrás" type='button' class="!bg-gray-400">
                     <a href="/admin/users">
                         Cancelar
                     </a>
                 </x-button>
-                <x-button class="!bg-blue-500">
+                <x-button title="Editar cuenta">
                     Editar
                 </x-button>
             </div>

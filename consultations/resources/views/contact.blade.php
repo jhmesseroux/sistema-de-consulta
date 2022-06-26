@@ -9,7 +9,7 @@
                 <div class="xl:w-5/6 xl:px-0 px-8 mx-auto">
                     <h1 class="xl:text-4xl text-3xl pb-4 text-white font-bold">Contacto</h1>
                     <p class="text-xl text-white pb-8 leading-relaxed font-normal lg:pr-4">
-                        Tiene alguna duda ? No dudes en contactarnos o escribirnos un mensaje.
+                        ¿Tiene alguna duda? No dudes en contactarnos o escribirnos un mensaje.
                     </p>
                     <div class="flex pb-4 items-center">
                         <div aria-label="phone icon" role="img">
@@ -41,7 +41,7 @@
             </div>
             <div class="xl:w-3/5 lg:w-3/5 bg-gray-200 h-full xl:pl-0 rounded-tr rounded-br">
                
-                <form id="contact" action="/admin/contact" method="POSt"
+                <form id="contact" action="/admin/contact" method="POST"
                     class="bg-white  py-4 px-8 rounded-tr rounded-br">
 
                     @csrf
@@ -73,7 +73,7 @@
                                 <label for="email"
                                     class="text-gray-800  text-sm font-semibold leading-tight tracking-normal mb-2">Mail</label>
                                 <input required id="email" name="email" type="email"
-                                    :value="Auth::user() ? Auth::user() - > email : old('email')"
+                                    :value="Auth::user() ? Auth::user()->email : old('email')"
                                     class=" focus:outline-none focus:border focus:border-indigo-700 font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                     placeholder="example@gmail.com" aria-label="enter your phone number input" />
                                 @error('email')

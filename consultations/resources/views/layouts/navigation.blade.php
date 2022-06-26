@@ -23,7 +23,7 @@
                     id="form-search-top" action="/search">
 
                     <div class="flex w-4/5 m-auto">
-                        <x-button class="bg-red-500 hover:bg-red-600 rounded-none" type="submit">
+                        <x-button class="bg-red-500 hover:bg-red-600 rounded-none" type="submit" aria-label="Buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -147,8 +147,8 @@
                 <div class="login-register hidden sm:flex-row flex-col items-center justify-center  sm:flex gap-4">
                     @unless (request()->routeIs('login'))
                         <a href="/login"
-                            class="text-blue-500 hover:underline  hover:text-blue-700 duration-500 font-medium bg-transparent">Iniciar
-                            sesión
+                            class="text-blue-600 hover:underline  hover:text-blue-800 duration-500 font-medium bg-transparent">
+                            Iniciar sesión
                         </a>
                     @endunless
                     @unless (request()->routeIs('register'))

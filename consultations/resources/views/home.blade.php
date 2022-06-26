@@ -13,7 +13,7 @@
                     <div class="error-consultation hidden  text-sm text-red-500 bg-red-100 w-full p-3 mb-2">Campo
                         obligatorio</div>
                     <div class="flex mb-3">
-                        <label class="bg-red-500 hidden sm:flex p-2 px-3 text-white " for="search">
+                        <label class="bg-red-500 hidden sm:flex p-2 px-3 text-white " for="search" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -26,7 +26,7 @@
                     <div class="form-group mb-3 w-100">
                         <x-button
                             class="!bg-blue-600 w-32 rounded-none sm:rounded-full font-normal capitalize !text-base !text-center justify-center">
-                            Buscar
+                        Buscar
                         </x-button>
                     </div>
                 </form>

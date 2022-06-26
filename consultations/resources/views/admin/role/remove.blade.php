@@ -47,7 +47,7 @@
                             Cancelar
                         </a>
                     </x-button>
-                    <x-button title="Editar Rol" class="!bg-blue-500">
+                    <x-button title="Editar Rol">
                         Editar
                     </x-button>
                 </div>
