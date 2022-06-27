@@ -223,19 +223,35 @@ class ConsultationController extends Controller
         $teachers = $this->getTeachers();
         $subjects = $this->getSubject();
 
-        $consultationSubject = $this->getSubject()->where('id','=',$consultation->subject_id);
+
+        // if(Auth::user()->role->name =='Admin')
+        // {
+            // $teacher =
+
+            $legajo = $consultation->teacher->legajo;
+        // }
+
+        // dd($consultation->subject->name);
+
+        // $consultationSubject = $this->getSubject()->where('id','=',$consultation->subject_id);
 
         // dd($consultationSubject->first()->name);
 
-        $consultation = Arr::add($consultation,'subject_name', $consultationSubject->first()->name);
-
+        // $consultation = Arr::add($consultation,'subject_name', $consultationSubject->first()->name);
+        $consultation = Arr::add($consultation,'subject_name', $consultation->subject->name);
+        $consultation = Arr::add($consultation,'teacher_legajo', $legajo);
         //$consultation = Consultation::latest()->get()->where('id','=',$id);
+
+
+        // dd(Auth::user()->role->name);
+
 
         return view('consultation.update', [
 
             'teachers' => $teachers,
             'subjects' => $subjects,
             'consultation' => $consultation,
+            // 'legajo' => $legajo,
             'week' => $week
         ]);
     }
@@ -257,7 +273,7 @@ class ConsultationController extends Controller
             'type' => 'required',
             'place' => '',
             'link' => '',
-            'active'=> '',
+            'active'=> 'required',
             'alternative' => ' ',
             'reasonCancel' =>''
         ];
@@ -282,10 +298,11 @@ class ConsultationController extends Controller
         $newConsultation =  Arr::add($newConsultation,'subject_id',$subject->first()->id);
         Arr::forget($newConsultation,'subject_name');
 
+        // dd($newConsultation);
 
-        if(!empty(isset($newConsultation['reasonCancel'])))
+        if(!empty(isset($newConsultation['reasonCancel'])) && $newConsultation['active'] == 0)
         {
-            $newConsultation =  Arr::add($newConsultation,'active',0);
+            // $newConsultation =  Arr::add($newConsultation,'active',0);
 
             DB::table('reason_cancel')->insert([
                 'reasonCancel' => $newConsultation['reasonCancel'],
@@ -295,10 +312,7 @@ class ConsultationController extends Controller
 
 
         }
-        else
-        {
-            $newConsultation =  Arr::add($newConsultation,'active',1);
-        }
+
         Arr::forget($newConsultation,'reasonCancel');
 
         // dd($newConsultation);

@@ -31,26 +31,35 @@ class SearchConsultationController extends Controller
     {
 
         $date = new DateTime();
+
         $date = $date->format('Y-m-d');
         // $input = "2022-06-06";
         $date = date_create($date);
+
+
+
         $dayOfWeek= $this->traducirDia($diaDeLaSemana);
         $bandera = 1;
         $diaDeConsulta = Null;
         while($bandera <= 7)
         {
-            date_add($date,date_interval_create_from_date_string("1 days"));
+
             $format =  $date->format('Y-m-d');
                 $dia = date_parse($format)['day'];
                 $mes = date_parse($format)['month'];
                 $year = date_parse($format)['year'];
 
-            $jd=gregoriantojd($mes,$dia,$year);
-            $diaDeSemana = jddayofweek($jd,1);
+            // $jd=gregoriantojd($mes,$dia,$year);
+            // $diaDeSemana = jddayofweek($jd,1);
+            // dd($diaDeSemana);
+            $diaDeSemana = date('l',mktime(0,0,0,$mes,$dia,$year));
+
+
 
             if($diaDeSemana == $dayOfWeek)
             {
             $diaDeConsulta = $date;
+            // dd($diaDeConsulta);
             break;
 
             }
@@ -59,7 +68,7 @@ class SearchConsultationController extends Controller
             $bandera++;
             }
 
-
+            date_add($date,date_interval_create_from_date_string("1 days"));
         }
         return $diaDeConsulta;
     }
