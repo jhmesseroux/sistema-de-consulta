@@ -23,7 +23,7 @@ class ReasonCancelController extends Controller
         $consultasCanceladas = DB::table('reason_cancel as rc')
         ->join('consultations as c','c.id','=','rc.consultation_id')
         ->join('users as t','t.id','=','c.teacher_id')
-        ->select('t.firstname','t.lastname','c.teacher_id','c.id','t.avatar')
+        ->select('t.firstname','t.lastname','c.teacher_id','c.id','t.avatar','t.id')
         ->groupBy('t.id')
         ->get();
 
