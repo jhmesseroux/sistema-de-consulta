@@ -58,9 +58,8 @@ Route::middleware('admin')->group(function () {
 
 
     // Reason Cancel routes
-    Route::get('admin/reasonCancel/',[ReasonCancelController::class,'index']);
-    Route::get('admin/reasonCancel/{id}',[ReasonCancelController::class,'show']);
-
+    Route::get('admin/reasonCancel/', [ReasonCancelController::class, 'index']);
+    Route::get('admin/reasonCancel/{id}', [ReasonCancelController::class, 'show']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -71,7 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/avatar/delete', [UserSettingController::class, 'deleteAvatar'])->name('user.deleteavatar');
 
     Route::get('/dashboard', function () {
-        $nextMeetings = Meeting::where([['dateConsultation', '>=' , date('c') ], ['user_id', Auth()->user()->id]])->get();
+        $nextMeetings = Meeting::where([['dateConsultation', '>=', date('c')], ['user_id', Auth()->user()->id]])->get();
         return view('dashboard', ['nextMeetings' => $nextMeetings]);
     })->name('dashboard');
 
@@ -81,7 +80,6 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('consultation/information/{consultation:id}', [MeetingController::class, 'information'])->name('consultation.information');
-
 });
 
 Route::middleware([adminOrTeacher::class])->group(function () {
@@ -94,7 +92,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
     Route::get('consultation/baja/{teacher_id}', [ConsultationController::class, 'darDeBaja']);
     Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
     Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
-    Route::get('consultation/information/{consultation:id}',[MeetingController::class,'information'])->name('consultation.information');
+    Route::get('consultation/information/{consultation:id}', [MeetingController::class, 'information'])->name('consultation.information');
 });
 
 // user routes
