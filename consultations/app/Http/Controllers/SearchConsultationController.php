@@ -31,9 +31,13 @@ class SearchConsultationController extends Controller
     {
 
         $date = new DateTime();
+
         $date = $date->format('Y-m-d');
         // $input = "2022-06-06";
         $date = date_create($date);
+
+
+
         $dayOfWeek= $this->traducirDia($diaDeLaSemana);
         $bandera = 1;
         $diaDeConsulta = Null;
@@ -45,8 +49,10 @@ class SearchConsultationController extends Controller
                 $mes = date_parse($format)['month'];
                 $year = date_parse($format)['year'];
 
-            $jd=gregoriantojd($mes,$dia,$year);
-            $diaDeSemana = jddayofweek($jd,1);
+            // $jd=gregoriantojd($mes,$dia,$year);
+            // $diaDeSemana = jddayofweek($jd,1);
+            // dd($diaDeSemana);
+            $diaDeSemana = date('l',mktime(0,0,0,$mes,$dia,$year));
 
             if($diaDeSemana == $dayOfWeek)
             {
