@@ -12,31 +12,24 @@
                         ¿Tiene alguna duda? No dudes en contactarnos o escribirnos un mensaje.
                     </p>
                     <div class="flex pb-4 items-center">
-                        <div aria-label="phone icon" role="img">
+                        <div aria-hidden="true">
                             <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/contact_indigo-svg1.svg"
-                                alt="phone" />
-
+                                alt="Teléfono" />
                         </div>
-                        <p class="pl-4 text-white text-base">+54 9 341 101 1010</p>
+                        <span aria-label="Teléfono" class="pl-4 text-white text-base">+54 9 341 101 1010</span>
                     </div>
                     <div class="flex items-center">
-                        <div aria-label="email icon" role="img">
+                        <div aria-hidden="true">
                             <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/contact_indigo-svg2.svg"
-                                alt="email" />
-
+                                alt="Email" />
                         </div>
-                        <p class="pl-4 text-white text-base">sdcutn2022@gmail.com</p>
+                        <span aria-label="Email" class="pl-4 text-white text-base">sdcutn2022@gmail.com</span>
                     </div>
-                    <p class="text-lg text-white pt-10 tracking-wide">
+                    <span aria-label="Dirección" class="text-lg text-white pt-10 tracking-wide">
                         Zeballos 1247
                         <br />
                         Rosario , Santa Fe
-                    </p>
-                    {{-- <div class=" pt-16">
-                        <a href="javascript:void(0)"
-                            class="text-white font-bold tracking-wide underline focus:outline-none focus:ring-2 focus:ring-white ">View
-                            Job Openings</a>
-                    </div> --}}
+                    </span>
                 </div>
             </div>
             <div class="xl:w-3/5 lg:w-3/5 bg-gray-200 h-full xl:pl-0 rounded-tr rounded-br">
@@ -46,11 +39,10 @@
 
                     @csrf
 
-                     @if (Session::get('success'))
-                    <div
+                    @if (Session::get('success'))
+                    <div role="alert"
                         class="text-green-600 p-4 border  my-4 rounded-sm shadow-sm bg-green-200">{{ Session::get('success') }}</div>
-                @endif
-                    {{-- <h1 class="text-4xl text-gray-800  font-extrabold mb-6">..</h1> --}}
+                    @endif
                     <div class="block xl:flex flex-col w-full flex-wrap justify-between mb-6">
                         <div class="w-2/4 max-w-xs mb-6 xl:mb-0">
                             <div class="flex flex-col">
@@ -89,7 +81,7 @@
                                     class="text-gray-800  text-sm font-semibold leading-tight tracking-normal mb-2">Celular</label>
                                 <input required id="phone" name="phone" type="tel"
                                     class=" focus:outline-none focus:border focus:border-indigo-700 font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="+54 9 341 111 0990" aria-label="Ingrese su numero de telefono" />
+                                    placeholder="+54 9 341 111 0990" aria-label="Ingrese su número de telefono" />
                                 @error('phone')
                                     <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                                 @enderror
@@ -98,10 +90,10 @@
                     </div>
                     <div class="w-full mt-6">
                         <div class="flex flex-col">
-                            <label class="text-sm font-semibold   mb-2" for="message">Message</label>
-                            <textarea placeholder="" name="message"
+                            <label class="text-sm font-semibold   mb-2" for="message">Mensaje</label>
+                            <textarea name="message"
                                 class="border-gray-300 border mb-4 rounded py-2 text-sm outline-none resize-none px-3 focus:border focus:border-indigo-700"
-                                rows="6" id="message" aria-label="enter your message input"></textarea>
+                                rows="6" id="message" aria-label="Ingrese su mensaje"></textarea>
                             @error('message')
                                 <p class="text-red-400 text-xs p-1">{{ $message }}</p>
                             @enderror

@@ -14,7 +14,7 @@
                     <span class="text-2xl font-bold text-gray-800">{{$users->count()}}</span>
                 </div>
                 <x-nav-link
-href="/admin/users"
+href="/admin/user"
                     class="flex items-center justify-center place-items-center cursor-pointer hover:text-blue-600 gap-2">
                     <span>
                         Ver todos...
@@ -37,7 +37,7 @@ href="/admin/users"
                     <span class="text-2xl font-bold text-gray-800">{{$consultations->count()}}</span>
                 </div>
                 <x-nav-link
-                href="/consultations"
+                href="/consultation"
                     class="flex items-center justify-center place-items-center cursor-pointer hover:text-blue-600 gap-2">
                     <span>
                         Ver todos...
@@ -60,7 +60,7 @@ href="/admin/users"
                     <span class="text-2xl font-bold text-gray-800">{{$subjects->count()}}</span>
                 </div>
                 <x-nav-link
-                href="/admin/subjects"
+                href="/admin/subject"
                     class="flex items-center justify-center place-items-center cursor-pointer hover:text-blue-600 gap-2">
                     <span>
                         Ver todos...

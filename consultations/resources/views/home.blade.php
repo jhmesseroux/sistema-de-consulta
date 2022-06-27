@@ -5,7 +5,7 @@
         <div
             class="content__home lg:w-fit my-4 bg-white sm:flex-row flex-1 flex items-center flex-col justify-between  rounded shadow  m-auto">
             <div style="    flex-basis: fit-content;" class="image">
-                <img src="showcase.png" alt="DSC-UTN 2022">
+                <img src="showcase.png" alt="Sistema de Consulta UTN">
             </div>
             <div class="content__left-side p-6   w-full">
                 <form method="GET" id="form-search" class="form-search" action="/search">

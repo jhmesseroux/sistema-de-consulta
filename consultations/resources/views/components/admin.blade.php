@@ -36,20 +36,31 @@
     </div>
     </div>
     <script>
-        var sideBar = document.getElementById("mobile-nav");
-        var openSidebar = document.getElementById("openSideBar");
-        var closeSidebar = document.getElementById("closeSideBar");
-        sideBar.style.transform = "translateX(-260px)";
+        var sidebar = document.getElementById("sidebar");
+        var toggleSidebar = document.getElementById("sidebar-toggle");
+        var contentSidebar = document.getElementById("sidebar-content");
+        var openClassList = ["bg-blue-600", "text-white", "right-0", "mt-16", "-mr-6", "rounded-tr-full", "rounded-br-full", "focus:outline-none", "focus:ring-2", "focus:ring-offset-2", "focus:ring-indigo-900"];
+        var closeClassList = ["bg-white", "text-red-700", "right-8", "top-6", "rounded-full", "hover:bg-gray-200"];
 
-        function sidebarHandler(flag) {
-            if (flag) {
-                sideBar.style.transform = "translateX(0px)";
-                openSidebar.classList.add("hidden");
-                closeSidebar.classList.remove("hidden");
+        function sidebarToggle() {
+            if (toggleSidebar.title == "Abrir menú") {
+                sidebar.style.transform = "translateX(0px)";
+                toggleSidebar.classList.remove(...openClassList);
+                toggleSidebar.classList.add(...closeClassList);
+                toggleSidebar.querySelector("svg path").setAttribute("d", "M6 18L18 6M6 6l12 12");
+                contentSidebar.querySelectorAll('a').forEach(sidebarLink => sidebarLink.removeAttribute('tabindex'));
+                contentSidebar.setAttribute("aria-hidden", false);
+                toggleSidebar.setAttribute("aria-expanded", true);
+                toggleSidebar.setAttribute("aria-label", toggleSidebar.title = "Cerrar menú");
             } else {
-                sideBar.style.transform = "translateX(-260px)";
-                closeSidebar.classList.add("hidden");
-                openSidebar.classList.remove("hidden");
+                sidebar.style.transform = "translateX(-260px)";
+                toggleSidebar.classList.remove(...closeClassList);
+                toggleSidebar.classList.add(...openClassList);
+                toggleSidebar.querySelector("svg path").setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+                contentSidebar.querySelectorAll('a').forEach(sidebarLink => sidebarLink.setAttribute('tabindex', -1));
+                contentSidebar.setAttribute("aria-hidden", true);
+                toggleSidebar.setAttribute("aria-expanded", false);
+                toggleSidebar.setAttribute("aria-label", toggleSidebar.title = "Abrir menú");
             }
         }
     </script>

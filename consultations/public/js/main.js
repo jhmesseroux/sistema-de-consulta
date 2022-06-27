@@ -67,16 +67,15 @@ const PreviewAvatar = (e) => {
     }
 };
 const deleteRole = (role) => {
-    console.log(role);
-    const form = document.getElementById("delete-rol");
     const modal = document.getElementById("modal-delete-rol");
+    const form = document.getElementById("delete-rol");
     const title = document.getElementById("title-delete-rol");
-    console.log(title);
-    title.textContent =
-        "Estas seguro de borrar el rol con id " + role.id + " ?";
     form.setAttribute("action", `/admin/role/delete/${role.id}`);
+    title.textContent =
+        "¿Estás seguro de borrar el rol con id " + role.id + " ?";
     modal.classList.remove("hidden");
-    console.log(form);
+    modal.setAttribute("role", "dialog");
+    document.getElementById("modal-button").focus();
 };
 
 

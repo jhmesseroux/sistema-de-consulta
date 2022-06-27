@@ -178,9 +178,9 @@ class ConsultationController extends Controller
 
         Arr::forget($newConsultation, 'subject_name');
 
-        //    dd($newConsultation);
-        Consultation::create($newConsultation);
-        return redirect('/consultations');
+    //    dd($newConsultation);
+       Consultation::create($newConsultation);
+        return redirect('/consultation');
     }
 
     /**
@@ -325,7 +325,7 @@ class ConsultationController extends Controller
 
         // dd($newConsultation);
         Consultation::where('id', '=', $newConsultation['id'])->update($newConsultation);
-        return redirect('/consultations');
+        return redirect('/consultation');
     }
 
     /**
@@ -337,6 +337,6 @@ class ConsultationController extends Controller
     public function destroy($id)
     {
         Consultation::where('id', '=', $id)->delete();
-        return redirect('/consultations');
+        return redirect('/consultation');
     }
 }

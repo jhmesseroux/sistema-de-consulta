@@ -67,7 +67,7 @@
 
             <div class="mt-4 flex justify-end gap-6">
                 <x-button title="Volver atrás" type='button' class="!bg-gray-400">
-                    <a href="/admin/users">
+                    <a href="/admin/user">
                         Cancelar
                     </a>
                 </x-button>

@@ -25,7 +25,7 @@
                 </div>
                 <div class="mt-4 flex justify-end gap-6">
                     <x-button title="Volver atrás" type='button' class="!bg-gray-400">
-                        <a href="/admin/roles">
+                        <a href="/admin/role">
                             Cancelar
                         </a>
                     </x-button>

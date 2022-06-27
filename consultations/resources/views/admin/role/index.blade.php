@@ -1,31 +1,31 @@
-<x-admin>
+<x-admin aria-haspopup="dialog">
 
-    <div id="modal-delete-rol" class="fixed top-0 left-0 z-30 h-screen w-screen hidden ">
-        <div class="overflow  z-40 "></div>
+    <div id="modal-delete-rol" role="dialog" aria-modal="true"
+        aria-labelledby="title-delete-rol" aria-live="assertive"
+        class="fixed top-0 left-0 z-30 h-screen w-screen hidden">
+        <div aria-hidden="true" class="overflow z-40"></div>
         <div class="content fixed flex w-full text-white !z-50 h-full">
-            <div class="p-6 border-2   m-auto bg-white shadow-md rounded">
-                <div class="">
-                    <form id="delete-rol" action="" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <h3 id="title-delete-rol" class="my-4 text-gray-800"></h3>
-                        <div class="my-4 flex gap-6">
-                            <x-button title="Volver Atras" onclick="closeModalDelete()" type='button'
-                                class="!bg-gray-400">
-                                Cancelar
-                            </x-button>
-                            <x-button title="Borrar Rol" class="!bg-red-500">
-                                Borrar Denifitivamente
-                            </x-button>
-                        </div>
-                    </form>
-                </div>
+            <div class="p-6 border-2 m-auto bg-white shadow-md rounded">
+                <form id="delete-rol" action="" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <h3 id="title-delete-rol" class="my-4 text-gray-800"></h3>
+                    <div class="my-4 flex gap-6">
+                        <x-button title="Cancelar" onclick="closeModalDelete()" type="button"
+                            class="!bg-gray-400">
+                            Cancelar
+                        </x-button>
+                        <x-button id="modal-button" title="Borrar rol" class="!bg-red-500">
+                            Borrar denifitivamente
+                        </x-button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="mx-auto  container">
+    <div class="mx-auto container">
         <div class="header p-4 flex place-items-center gap-8">
-            <span>Listado de usuarios({{ $roles->count() }})</span>
+            <span>Listado de roles ({{ $roles->count() }})</span>
             <a title="Agregar un nuevo Rol" href="/admin/role/create">
                 <x-button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

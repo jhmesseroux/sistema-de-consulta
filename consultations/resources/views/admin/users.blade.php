@@ -1,12 +1,12 @@
 <x-admin>
 
     <x-slot name="header" class="">
-        Admin /users
+        Admin /user
     </x-slot>
 
     <div class="mx-auto  container">
         <div class="header p-4 flex place-items-center gap-8 ">
-            <span>Listado de usuarios({{ $users->count() }})</span>
+            <span>Listado de usuarios ({{ $users->count() }})</span>
             <a title="Agregar un nuevo Usuario" href="/admin/user/add">
                 <x-button>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

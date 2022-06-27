@@ -10,14 +10,13 @@
         <form method="POST" enctype="multipart/form-data" class="" action="/user/update">
             @csrf
 
-
             <!-- DNI -->
             <div class="dni-legajo flex gap-4 flex-col sm:flex-row justify-between sm:gap-6">
                 <x-field>
                     <x-label for=" dni" :value="__('DNI')" />
 
                     <x-input readonly id="dni" class="block mt-1 w-full bg-gray-200" type="text" name="dni"
-                        value="{{ Auth::user()->dni }}" required autofocus />
+                        value="{{ Auth::user()->dni }}" required />
                     @error('dni')
                         <p>{{ $message }}</p>
                     @endError
@@ -41,7 +40,7 @@
                     <x-label for="firstname" :value="__('Nombre')" />
 
                     <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname"
-                        value="{{ Auth::user()->firstname }}" required />
+                        value="{{ Auth::user()->firstname }}" required autofocus />
                     @error('furstname')
                         <p>{{ $message }}</p>
                     @endError

@@ -60,13 +60,6 @@ class RoleController extends Controller
         return redirect()->route('admin.roles')->with('success', 'Rol actualizado con exito!');
     }
 
-    public function remove(Role $role)
-    {
-        return view('admin.role.remove', [
-            'role' => $role
-        ]);
-    }
-
     public function delete(Role $role)
     {
         $role->delete();
