@@ -1,8 +1,8 @@
 <footer class="p-4 bg-blue-600 text-white shadow md:px-6 md:py-8 ">
     <div class="sm:flex sm:items-center sm:justify-between">
-        <a href="/" class="flex items-center mb-4 sm:mb-0">
+        <a href="/" title="Ir al inicio" class="flex items-center mb-4 sm:mb-0 w-[fit-content]">
             <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653327438/sdc%20utn%202022/Eco_Home_Real_Estate_Logo_nnwggi.png"
-                alt="SDC UTN 2022" width="200">
+                alt="Sistema de Consulta UTN" width="200">
             {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap ">SDC UTN</span> --}}
         </a>
         <ul class="flex flex-wrap items-center mb-6 mr-4 text-sm  sm:mb-0 ">

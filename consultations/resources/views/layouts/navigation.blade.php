@@ -9,17 +9,10 @@
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Inicio') }}
-                    </x-nav-link>
-                </div> --}}
             </div>
             {{-- Search form --}}
             @unless (request()->routeIs('home'))
-                <form class="hidden flex-1 flex-col h-auto shrink-1 w-40  items-center justify-center md:flex" method="GET"
+                <form class="flex-1 flex-col h-auto shrink-1 w-40  items-center justify-center md:flex" method="GET"
                     id="form-search-top" action="/search">
 
                     <div class="flex w-4/5 m-auto">
@@ -153,7 +146,7 @@
                     @endunless
                     @unless (request()->routeIs('register'))
                         <a href="/register"
-                            class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-600 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
+                            class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-300 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
                             Crear cuenta
                         </a>
                     @endunless
@@ -161,10 +154,11 @@
             @endguest
 
             <!-- Hamburger -->
-            <div class=" -mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = !open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                    :aria-expanded="open" :aria-label="open ? 'Cerrar menú': 'Mostrar menú'" aria-controls="responsive-menu">
+                    <svg focusable="false" aria-hidden="true" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
@@ -177,7 +171,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden z-10 w-full bg-gray-100 absolute sm:hidden">
+    <div id="responsive-menu" :class="{ 'block': open, 'hidden': !open }" class="hidden z-10 w-full bg-gray-100 absolute sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Inicio') }}

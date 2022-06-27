@@ -11,22 +11,17 @@ use App\Http\Controllers\SearchConsultationController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingController;
-use App\Mail\ConsultationCancel;
-use App\Mail\ContactAdmin;
-use App\Mail\hello;
-use App\Mail\UserNotifications;
-use App\Mail\Welcome;
+// use App\Mail\ContactAdmin;
+// use App\Mail\hello;
+// use App\Mail\Welcome;
 use App\Models\Meeting;
-use Illuminate\Http\JsonResponse;
+// use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-
-    // dd(Gate::allows('admin'));
     return view('home');
 })->name('home');
 
@@ -35,16 +30,15 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 
-    Route::get('admin/roles', [RoleController::class, 'index'])->name('admin.roles');
+    Route::get('admin/role', [RoleController::class, 'index'])->name('admin.roles');
     Route::get('admin/role/create', [RoleController::class, 'create'])->name('role.create');
     Route::post('admin/role', [RoleController::class, 'store'])->name('role.store');
     Route::get('admin/role/update/{role:id}', [RoleController::class, 'update']);
     Route::post('admin/role/save/{role:id}', [RoleController::class, 'save'])->name('role.save');
-    Route::get('admin/role/remove/{role:id}', [RoleController::class, 'remove']);
     Route::delete('admin/role/delete/{role:id}', [RoleController::class, 'delete']);
 
 
-    Route::get('admin/users', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::get('admin/user', [AdminUserController::class, 'index'])->name('admin.users');
     Route::get('admin/user/add', [AdminUserController::class, 'create'])->name('user.create');
 
     Route::post('admin/user/create', [AdminUserController::class, 'store'])->name('admin.store.user');
@@ -60,6 +54,7 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
     Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
     Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
+    Route::delete('admin/subject/delete/{subject:id}', [SubjectController::class, 'delete'])->name('subject.delete');
 
 
     // Reason Cancel routes
@@ -86,8 +81,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('consultation/information/{consultation:id}', [MeetingController::class, 'information'])->name('consultation.information');
 
-
-
 });
 
 Route::middleware([adminOrTeacher::class])->group(function () {
@@ -95,7 +88,7 @@ Route::middleware([adminOrTeacher::class])->group(function () {
     // consultation routes
     Route::get('consultation', [ConsultationController::class, 'index'])->name('consultation.index');
     Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
-    Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update')->middleware('adminOrTeacher');
+    Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update');
     Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
     Route::get('consultation/baja/{teacher_id}', [ConsultationController::class, 'darDeBaja']);
     Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
@@ -103,33 +96,12 @@ Route::middleware([adminOrTeacher::class])->group(function () {
     Route::get('consultation/information/{consultation:id}',[MeetingController::class,'information'])->name('consultation.information');
 });
 
-
-Route::get('admin/subjects/', [SubjectController::class, 'index']);
-Route::get('admin/subject/create', [SubjectController::class, 'create'])->name('subject.create');
-Route::get('admin/subject/update/{subject:id}', [SubjectController::class, 'update'])->name('subject.update');
-Route::delete('admin/subject/delete/{subject:id}', [SubjectController::class, 'delete'])->name('subject.delete');
-Route::post('admin/subject', [SubjectController::class, 'store'])->name('subject.store');
-Route::patch('admin/subject/save', [SubjectController::class, 'save'])->name('subject.save');
-
-Route::get('consultations', [ConsultationController::class, 'index'])->name('consultation.index');
-Route::get('consultation/create', [ConsultationController::class, 'create'])->name('consultation.create');
-Route::get('consultation/update/{consultation:id}', [ConsultationController::class, 'update'])->name('consultation.update');
-Route::post('consultation', [ConsultationController::class, 'store'])->name('consultation.store');
-Route::patch('consultation/save', [ConsultationController::class, 'save'])->name('consultation.save');
-Route::get('consultation/delete/{consultation:id}', [ConsultationController::class, 'destroy'])->name('consultation.delete');
-
-
 // user routes
-
-
-
-
 Route::get('/search', [SearchConsultationController::class, 'show'])->name('consultation.search');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-
 Route::post('/admin/contact', [AdminController::class, 'contact'])->name('contact.admin');
 
-Route::get('/sendmail', function () {
+/* Route::get('/sendmail', function () {
 
 
     $fullname = 'Heloogfgh';
@@ -147,6 +119,6 @@ Route::get('/sendmail', function () {
     //     ],
     //     200
     // );
-});
+}); */
 
-        require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';

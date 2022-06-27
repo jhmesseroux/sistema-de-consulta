@@ -10,7 +10,7 @@
     </div>
     <div class="mt-4 flex justify-end gap-6">
         <x-button title="Volver Atras" type='button' class="!bg-gray-400">
-            <a href="/admin/subjects">
+            <a href="/admin/subject">
                 Cancelar
             </a>
         </x-button>

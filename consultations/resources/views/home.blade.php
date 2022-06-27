@@ -3,10 +3,10 @@
     <!-- Navigation ends -->
     <div class="flex flex-col mt-6 !h-full  items-center justify-center  mx-auto px-6">
         <div
-            class="content__home lg:w-fit my-4 bg-white sm:flex-row flex-1 flex items-center flex-col justify-between  rounded shadow  m-auto">
-            <div style="    flex-basis: fit-content;" class="image">
+            class="lg:w-fit my-4 bg-white sm:flex-row flex-1 flex items-center flex-col justify-between  rounded shadow  m-auto">
+            <div style="flex-basis: fit-content;" class="image">
                 <img src="https://res.cloudinary.com/draxircbk/image/upload/v1655779122/sdc%20utn%202022/happy-young-curly-beautiful-woman-sitting-floor-with-crossed-legs-using-laptop-red-wall_buvznm.jpg"
-                    alt="DSC-UTN 2022">
+                    alt="Sistema de Consulta UTN">
             </div>
             <div class="content__left-side p-6   w-full">
                 <form method="GET" id="form-search" class="form-search" action="/search">
