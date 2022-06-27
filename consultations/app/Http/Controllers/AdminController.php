@@ -33,7 +33,6 @@ class AdminController extends Controller
             'message' => 'required|max:500'
         ]);
 
-        // ddd($contact);
         $fullname = $contact['fullname'];
         $email = $contact['email'];
         $message = $contact['message'];

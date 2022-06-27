@@ -84,7 +84,7 @@ class SearchConsultationController extends Controller
 
         foreach($results as $row)
         {
-            $diaDeConsulta = $this->devolverDiaDeConsulta($row->dayOfWeek)->format('d-m');
+            $diaDeConsulta = $this->devolverDiaDeConsulta($row->dayOfWeek)->format('d/m');
             $hora = strtotime($row->time);
             $hora = date('H:i ',$hora);
             $row->time = $hora;

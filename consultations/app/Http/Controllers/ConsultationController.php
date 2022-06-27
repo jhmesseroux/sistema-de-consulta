@@ -214,7 +214,6 @@ class ConsultationController extends Controller
 
         if (!empty($results)) {
             foreach ($results as $r) {
-                var_dump($r['email']);
                 Mail::to($r['email'])->send(new ConsultationCancel($r['name'], $r['dateConsultation']));
             }
         }
