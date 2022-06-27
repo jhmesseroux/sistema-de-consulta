@@ -87,7 +87,7 @@ const darDeBaja = (id) => {
     const title = document.getElementById("title-dar-baja");
     console.log(title);
     title.textContent =
-        "¿Estas seguro de darse de baja de TODAS las consultas por 1 semana?";
+        "¿Estas seguro de darse de baja de TODAS las consultas?";
     form.setAttribute("action", `/consultation/baja/${id}`);
     modal.classList.remove("hidden");
     console.log(form);
