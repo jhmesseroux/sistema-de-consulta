@@ -10,15 +10,19 @@ use Illuminate\Queue\SerializesModels;
 class ConsultationCancel extends Mailable
 {
     use Queueable, SerializesModels;
+    public $dateCon ;
+    public $subject ;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($subject, $dateCon)
     {
-        //
+        $this->dateCon = $dateCon ;
+        $this->subject = $subject ;
     }
 
     /**

@@ -26,12 +26,12 @@
                 </div>
 
                 <div class="mt-4 flex justify-end gap-6">
-                    <x-button title="Volver Atras" type='button' class="!bg-gray-400">
-                        <a href="/admin/roles">
+                    <x-button title="Volver atrás" type='button' class="!bg-gray-400">
+                        <a href="/admin/role">
                             Cancelar
                         </a>
                     </x-button>
-                    <x-button title="Editar Rol">
+                    <x-button title="Editar rol">
                         Editar
                     </x-button>
                 </div>

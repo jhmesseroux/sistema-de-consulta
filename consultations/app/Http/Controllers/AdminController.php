@@ -33,12 +33,11 @@ class AdminController extends Controller
             'message' => 'required|max:500'
         ]);
 
-        // ddd($contact);
         $fullname = $contact['fullname'];
         $email = $contact['email'];
         $message = $contact['message'];
 
-        Mail::to('sdcutn2022@gmail.com')->send(new ContactAdmin($fullname, $email, $message));
-        return Redirect::back()->with('success', 'Email enviado con exito!!');
+        Mail::to('sdcutn@gmail.com')->send(new ContactAdmin($fullname, $email, $message));
+        return Redirect::back()->with('success', '¡Email enviado con éxito!');
     }
 }

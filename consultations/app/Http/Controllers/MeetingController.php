@@ -29,10 +29,8 @@ class MeetingController extends Controller
 
             $attr['user_id'] =  Auth::id();
             $meet = Meeting::create($attr);
-            // dd($meet->user);
             Mail::to(Auth::user()->email)->send(new ConsultationUser($meet));
             return redirect('meeting/user');
-            // ddd($attr);
         } else {
             ddd('error');
         }

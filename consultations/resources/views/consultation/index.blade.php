@@ -188,4 +188,6 @@
             @endforeach--}}
         </div>
     </div>
+
+    <x-alert />
     <br>

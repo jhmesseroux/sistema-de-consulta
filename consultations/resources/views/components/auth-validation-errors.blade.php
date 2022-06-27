@@ -1,7 +1,7 @@
 @props(['errors'])
 
 @if ($errors->any())
-    <div {{ $attributes }}>
+    <div {{ $attributes }} role="alert">
         <div class="font-medium text-red-600">
             {{ __('Los datos enviados no son válidos:') }}
         </div>

@@ -1471,12 +1471,10 @@ select {
         rgba(9, 109, 177, 1) 91%
     );
 }
-.result-search-item:hover p {
-    color: white;
-}
-.result-search-item:hover button {
+.result-search-item:hover button:not([disabled]):not(:hover) {
     background-color: #fff;
     color: rgb(32, 88, 194);
+    border-color: rgb(32, 88, 194);
 }
 .bg-overlay {
     background-color: rgba(0, 0, 0, 0.466);

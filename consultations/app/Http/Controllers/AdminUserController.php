@@ -31,7 +31,7 @@ class AdminUserController extends Controller
 
         User::where('id', $attributes['id'])
             ->update($attributes);
-        return redirect()->route('admin.users')->with('success', 'Usuario actualizado con exito!!!✅✅');
+        return redirect()->route('admin.users')->with('success', '¡Usuario actualizado con éxito!');
     }
     public function edit(User $user)
     {
@@ -71,21 +71,21 @@ class AdminUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('admin.users')->with('success', 'usuario agregado con exito!!!✅✅');
+        return redirect()->route('admin.users')->with('success', '¡Usuario agregado con éxito!');
     }
 
 
     public function delete(User $user)
     {
         $user->delete();
-        return back()->with('success', 'Usuario borrado con exito!!!✅✅');
+        return back()->with('success', '¡Usuario borrado con éxito!');
     }
 
     public function verify(User $user)
     {
         $res = $user->update(['verified' => true]);
         if ($res) {
-            return back()->with('success', 'Cuenta verificada exitosamente!!!✅✅');
+            return back()->with('success', '¡Cuenta verificada exitosamente!');
         }
     }
 }

@@ -89,7 +89,8 @@ class SubjectController extends Controller
     }
     public function delete(Subject $subject)
     {
-       $subject->delete();
+       Subject::where('id', $subject['id'])
+            ->delete($subject);
         return redirect()->route('admin.subjects')->with('success', 'Materia borrada con exito!');
     }
 

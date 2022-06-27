@@ -10,14 +10,13 @@
         <form method="POST" enctype="multipart/form-data" class="" action="/user/update">
             @csrf
 
-
             <!-- DNI -->
-            <div class="dni-legajo flex justify-between gap-6">
+            <div class="dni-legajo flex gap-4 flex-col sm:flex-row justify-between sm:gap-6">
                 <x-field>
                     <x-label for=" dni" :value="__('DNI')" />
 
                     <x-input readonly id="dni" class="block mt-1 w-full bg-gray-200" type="text" name="dni"
-                        value="{{ Auth::user()->dni }}" required autofocus />
+                        value="{{ Auth::user()->dni }}" required />
                     @error('dni')
                         <p>{{ $message }}</p>
                     @endError
@@ -35,13 +34,13 @@
             <!-- legajo -->
 
             <!-- firstname -->
-            <div class="lastname-firstname flex justify-between gap-6">
+            <div class="lastname-firstname gap-4 flex-col sm:flex-row flex justify-between sm:gap-6">
 
                 <x-field>
                     <x-label for="firstname" :value="__('Nombre')" />
 
                     <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname"
-                        value="{{ Auth::user()->firstname }}" required />
+                        value="{{ Auth::user()->firstname }}" required autofocus />
                     @error('furstname')
                         <p>{{ $message }}</p>
                     @endError
@@ -61,7 +60,7 @@
             <!-- Avatar -->
             <x-field>
                 <x-label for="foto" :value="__('Foto')" />
-                <div class="mt-1 flex items-center">
+                <div class="mt-1 flex flex-col gap-4 sm:flex-row justify-start sm:items-center ">
                     <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
                         @if (Auth::user()->avatar)
                             <img class="rounded-full  shadow-sm border-2 border-gray-2"
@@ -76,9 +75,14 @@
 
                     </span>
                     <x-label
-                        class=" ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        class=" sm:ml-5 bg-white py-2 px-3 w-fit border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         for='avatar' :value="'Cambiar'" />
                     <input type="file" onchange="PreviewAvatar(this)" name="avatar" id="avatar" class="hidden ">
+                    @if (Auth::user()?->avatar)
+                        <a href="/user/avatar/delete"
+                            class="py-1 px-2 text-gray-600  w-fit rounded border-2 border-red-500">Borrar
+                            Avatar</a>
+                    @endif
                 </div>
                 <div class="hidden flex p-4 bg-gray-200 items-center my-4 gap-3 preview-box">
                     <img src="" id="imagePreview" class="imagePreview w-12" alt="previewImage">
@@ -86,7 +90,6 @@
                 </div>
             </x-field>
 
-            <!-- Email Address -->
             <x-field class="mt-4">
                 <x-label for="email" :value="__('Email')" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email"
@@ -95,7 +98,6 @@
                     <p>{{ $message }}</p>
                 @endError
             </x-field>
-            <!-- Role -->
             @if (Auth::user()->role->name === 'Admin')
                 <x-field class="mt-4">
                     <x-label for="role_id" :value="__('Rol')" />
@@ -112,13 +114,13 @@
             @endif
 
 
-            <x-field>
+            <div class="!justify-end !flex mt-6">
                 <x-button>
                     {{ __('Guardar') }}
                 </x-button>
-            </x-field>
+            </div>
         </form>
     </div>
-
+    <x-alert />
 
 </x-app-layout>

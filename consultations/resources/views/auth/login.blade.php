@@ -1,11 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653326573/sdc%20utn%202022/logo_lyig5s.png"
-                    alt="SDC UTN 2022" width="200">
-
-            </a>
+            <img src="https://res.cloudinary.com/draxircbk/image/upload/v1653326573/sdc%20utn%202022/logo_lyig5s.png"
+                alt="Sistema de Consulta UTN" width="170">
         </x-slot>
 
         <!-- Session Status -->

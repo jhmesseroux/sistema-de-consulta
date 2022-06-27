@@ -9,22 +9,15 @@
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Inicio') }}
-                    </x-nav-link>
-                </div> --}}
             </div>
             {{-- Search form --}}
             @unless (request()->routeIs('home'))
-                <form class="hidden flex-1 flex-col h-auto shrink-1 w-40  items-center justify-center md:flex" method="GET"
+                <form class="flex-1 flex-col h-auto shrink-1 w-40  items-center justify-center md:flex" method="GET"
                     id="form-search-top" action="/search">
 
                     <div class="flex w-4/5 m-auto">
                         <x-button class="bg-red-500 hover:bg-red-600 rounded-none" type="submit" aria-label="Buscar">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -97,17 +90,35 @@
                                     Perfil
                                 </span>
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('meeting.user')">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>
 
-                                    Mis Consultas
-                                </span>
-                            </x-dropdown-link>
+                            @if (Auth::user()->role->name != 'Admin')
+                                @if (Auth::user()->role->name == 'Alumno')
+                                    <x-dropdown-link :href="route('meeting.user')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @else
+                                    <x-dropdown-link :href="route('consultation.index')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @endif
+                            @endif
+
                             <x-dropdown-link :href="route('user.setting')">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
@@ -145,15 +156,15 @@
             @endauth
             @guest
                 <div class="login-register hidden sm:flex-row flex-col items-center justify-center  sm:flex gap-4">
-                    @unless (request()->routeIs('login'))
+                    @unless(request()->routeIs('login'))
                         <a href="/login"
                             class="text-blue-600 hover:underline  hover:text-blue-800 duration-500 font-medium bg-transparent">
                             Iniciar sesión
                         </a>
                     @endunless
-                    @unless (request()->routeIs('register'))
+                    @unless(request()->routeIs('register'))
                         <a href="/register"
-                            class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-600 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
+                            class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-300 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
                             Crear cuenta
                         </a>
                     @endunless
@@ -161,10 +172,11 @@
             @endguest
 
             <!-- Hamburger -->
-            <div class=" -mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = !open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                    :aria-expanded="open" :aria-label="open ? 'Cerrar menú': 'Mostrar menú'" aria-controls="responsive-menu">
+                    <svg focusable="false" aria-hidden="true" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
@@ -177,7 +189,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden z-10 w-full bg-gray-100 absolute sm:hidden">
+    <div id="responsive-menu" :class="{ 'block': open, 'hidden': !open }" class="hidden z-10 w-full bg-gray-100 absolute sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Inicio') }}
@@ -210,17 +222,33 @@
                         Perfil
                     </span>
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('meeting.user')">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>
+               @if (Auth::user()->role->name != 'Admin')
+                                @if (Auth::user()->role->name == 'Alumno')
+                                    <x-dropdown-link :href="route('meeting.user')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
 
-                        Mis Consultas
-                    </span>
-                </x-dropdown-link>
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @else
+                                    <x-dropdown-link :href="route('consultation.index')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @endif
+                            @endif
                 <x-dropdown-link :href="route('user.setting')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">

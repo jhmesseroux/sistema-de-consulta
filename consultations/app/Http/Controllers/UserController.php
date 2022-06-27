@@ -36,7 +36,7 @@ class UserController extends Controller
 
         User::where('id', auth()->id())
             ->update($attributes);
-        return back()->with('success', 'usuario actualizado con exito!!!✅✅');
+        return back()->with('success', '¡Usuario actualizado con éxito!');
     }
 
    
