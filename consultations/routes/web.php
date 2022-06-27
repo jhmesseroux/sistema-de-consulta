@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::get('user/{dni}', [UserController::class, 'show'])->name('user.profile');
     Route::post('user/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/setting', [UserSettingController::class, 'index'])->name('user.setting');
+    Route::get('/user/avatar/delete', [UserSettingController::class, 'deleteAvatar'])->name('user.deleteavatar');
 
     Route::get('/dashboard', function () {
         $nextMeetings = Meeting::where([['dateConsultation', '>=' , date('c') ], ['user_id', Auth()->user()->id]])->get();

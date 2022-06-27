@@ -18,7 +18,7 @@
                 </div> --}}
             </div>
             {{-- Search form --}}
-            @unless (request()->routeIs('home'))
+            @unless(request()->routeIs('home'))
                 <form class="hidden flex-1 flex-col h-auto shrink-1 w-40  items-center justify-center md:flex" method="GET"
                     id="form-search-top" action="/search">
 
@@ -97,17 +97,35 @@
                                     Perfil
                                 </span>
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('meeting.user')">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>
 
-                                    Mis Consultas
-                                </span>
-                            </x-dropdown-link>
+                            @if (Auth::user()->role->name != 'Admin')
+                                @if (Auth::user()->role->name == 'Alumno')
+                                    <x-dropdown-link :href="route('meeting.user')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @else
+                                    <x-dropdown-link :href="route('consultation.index')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @endif
+                            @endif
+
                             <x-dropdown-link :href="route('user.setting')">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
@@ -145,13 +163,13 @@
             @endauth
             @guest
                 <div class="login-register hidden sm:flex-row flex-col items-center justify-center  sm:flex gap-4">
-                    @unless (request()->routeIs('login'))
+                    @unless(request()->routeIs('login'))
                         <a href="/login"
                             class="text-blue-600 hover:underline  hover:text-blue-800 duration-500 font-medium bg-transparent">
                             Iniciar sesión
                         </a>
                     @endunless
-                    @unless (request()->routeIs('register'))
+                    @unless(request()->routeIs('register'))
                         <a href="/register"
                             class="mx-2  sm:flex my-2 bg-indigo-700 gradient transition duration-150 ease-in-out hover:bg-indigo-600 rounded-full text-white px-6 py-2 text-md focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
                             Crear cuenta
@@ -210,17 +228,33 @@
                         Perfil
                     </span>
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('meeting.user')">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>
+               @if (Auth::user()->role->name != 'Admin')
+                                @if (Auth::user()->role->name == 'Alumno')
+                                    <x-dropdown-link :href="route('meeting.user')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
 
-                        Mis Consultas
-                    </span>
-                </x-dropdown-link>
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @else
+                                    <x-dropdown-link :href="route('consultation.index')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>
+
+                                            Mis Consultas
+                                        </span>
+                                    </x-dropdown-link>
+                                @endif
+                            @endif
                 <x-dropdown-link :href="route('user.setting')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">

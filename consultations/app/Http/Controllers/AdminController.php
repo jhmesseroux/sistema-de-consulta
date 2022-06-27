@@ -38,7 +38,7 @@ class AdminController extends Controller
         $email = $contact['email'];
         $message = $contact['message'];
 
-        Mail::to('sdcutn2022@gmail.com')->send(new ContactAdmin($fullname, $email, $message));
+        Mail::to('sdcutn@gmail.com')->send(new ContactAdmin($fullname, $email, $message));
         return Redirect::back()->with('success', 'Email enviado con exito!!');
     }
 }

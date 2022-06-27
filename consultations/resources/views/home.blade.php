@@ -5,8 +5,7 @@
         <div
             class="content__home lg:w-fit my-4 bg-white sm:flex-row flex-1 flex items-center flex-col justify-between  rounded shadow  m-auto">
             <div style="    flex-basis: fit-content;" class="image">
-                <img src="https://res.cloudinary.com/draxircbk/image/upload/v1655779122/sdc%20utn%202022/happy-young-curly-beautiful-woman-sitting-floor-with-crossed-legs-using-laptop-red-wall_buvznm.jpg"
-                    alt="DSC-UTN 2022">
+                <img src="showcase.png" alt="DSC-UTN 2022">
             </div>
             <div class="content__left-side p-6   w-full">
                 <form method="GET" id="form-search" class="form-search" action="/search">
@@ -26,7 +25,7 @@
                     <div class="form-group mb-3 w-100">
                         <x-button
                             class="!bg-blue-600 w-32 rounded-none sm:rounded-full font-normal capitalize !text-base !text-center justify-center">
-                        Buscar
+                            Buscar
                         </x-button>
                     </div>
                 </form>
