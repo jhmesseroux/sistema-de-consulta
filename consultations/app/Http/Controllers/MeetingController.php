@@ -93,6 +93,7 @@ class MeetingController extends Controller
         $cantidad = Meeting::
             where('meetings.dateConsultation','>=',$fechaDeHoy)
             ->where('meetings.dateConsultation','<',$fechaProximaSemana)
+            ->where('meetings.consultation_id','=',$id)
             ->count();
 
         $consultation = DB::table('consultations')
