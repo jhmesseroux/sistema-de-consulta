@@ -251,7 +251,7 @@ class ConsultationController extends Controller
             'teachers' => $teachers,
             'subjects' => $subjects,
             'consultation' => $consultation,
-            'legajo' => $legajo,
+            // 'legajo' => $legajo,
             'week' => $week
         ]);
     }
@@ -273,7 +273,7 @@ class ConsultationController extends Controller
             'type' => 'required',
             'place' => '',
             'link' => '',
-            'active'=> '',
+            'active'=> 'required',
             'alternative' => ' ',
             'reasonCancel' =>''
         ];
@@ -298,10 +298,11 @@ class ConsultationController extends Controller
         $newConsultation =  Arr::add($newConsultation,'subject_id',$subject->first()->id);
         Arr::forget($newConsultation,'subject_name');
 
+        // dd($newConsultation);
 
-        if(!empty(isset($newConsultation['reasonCancel'])))
+        if(!empty(isset($newConsultation['reasonCancel'])) && $newConsultation['active'] == 0)
         {
-            $newConsultation =  Arr::add($newConsultation,'active',0);
+            // $newConsultation =  Arr::add($newConsultation,'active',0);
 
             DB::table('reason_cancel')->insert([
                 'reasonCancel' => $newConsultation['reasonCancel'],
@@ -311,10 +312,7 @@ class ConsultationController extends Controller
 
 
         }
-        else
-        {
-            $newConsultation =  Arr::add($newConsultation,'active',1);
-        }
+
         Arr::forget($newConsultation,'reasonCancel');
 
         // dd($newConsultation);
