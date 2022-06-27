@@ -166,13 +166,14 @@
                             @if ($consultation->active)
                             <x-button id="darDeBajaButton" class="!bg-red-500 hover:!bg-red-700 " type="button"
                                 {{-- @click="baja = ! baja" --}}
+                                aria-controls="active_visible"
                                 onclick="darDeBajaConsulta({{$consultation->active}})">
                                 Dar de baja
                             </x-button>
 
                             @else
 
-                            <x-button type="button" onclick="darDeBajaConsulta(0)">
+                            <x-button type="button" id="darDeBajaButton" onclick="darDeBajaConsulta(0)" aria-controls="active_visible">
                                 Dar de alta
                             </x-button>
 
@@ -186,7 +187,7 @@
                                 cancelada</label>
                             <x-input type="textarea" name="reasonCancel" id="reasonCancel" autocomplete="reasonCancel"
                                 maxlength="255" class="mt-1  w-full  "
-                                {{-- :required="baja" --}}
+
                                 />
 
                             <x-errorInput name='reasonCancel' />
