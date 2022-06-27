@@ -1,7 +1,6 @@
 @component('mail::message')
-    # Introduction
-    @component('mail::button', ['url' => ''])
-        Button Text
-    @endcomponent
-    hanks,<br>
+# Cancelacion de consulta
+La consulta de {{$subject}} del dia {{$dateCon}} fue cancelada . 
+Gracias,<br>
+{{ config('app.name') }}
 @endcomponent
