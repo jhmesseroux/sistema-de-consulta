@@ -21,6 +21,7 @@ function darDeBajaConsulta(estabaActivada) {
     const reasonCancel_element = document.getElementById('reasonCancel');
     const alternative_element = document.getElementById('alternative');
 
+
     switch (document.getElementById('active_visible').value) {
         case 'Activada': // ESTADO POSTER: DESACTIVADA
 
@@ -30,10 +31,18 @@ function darDeBajaConsulta(estabaActivada) {
                 console.log('estaba desactivada y quiere desactivar');
                 document.getElementById('div_reasonCancel').style.display = 'block';
                 document.getElementById('div_alternative').style.display = 'block';
+
+                document.getElementById('darDeBajaButton').textContent = 'X';
+                document.getElementById('darDeBajaButton').title = 'Activar nuevamente';
                 reasonCancel_element.required = true;
-                reasonCancel_element.required = false;
+                alternative_element.required = true;
 
                 // console.log(reasonCancel_element);
+            }
+            else
+            {
+                document.getElementById('darDeBajaButton').textContent = 'DAR DE ALTA';
+                document.getElementById('darDeBajaButton').title = 'Dar de alta a la consulta'
             }
 
             break;
@@ -46,9 +55,15 @@ function darDeBajaConsulta(estabaActivada) {
 
                 document.getElementById('div_reasonCancel').style.display = 'none';
                 document.getElementById('div_alternative').style.display = 'none';
-
+                document.getElementById('darDeBajaButton').textContent = 'DAR DE BAJA';
+                document.getElementById('darDeBajaButton').title = 'Dar de baja a la consulta'
                 reasonCancel_element.required = false;
-                reasonCancel_element.required = false;
+                alternative_element.required = false;
+            }
+            else
+            {
+                document.getElementById('darDeBajaButton').textContent = 'X';
+                document.getElementById('darDeBajaButton').title = 'Desactivar nuevamente';
             }
 
 
