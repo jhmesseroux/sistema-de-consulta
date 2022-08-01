@@ -82,9 +82,9 @@ class SearchConsultationController extends Controller
             ->join('subjects', 'subjects.id', '=', 'consultations.subject_id')
             ->join('users', 'users.id', '=', 'consultations.teacher_id')
             // https://stackoverflow.com/a/65896997 (https://stackoverflow.com/questions/51497890/how-to-search-case-insensitive-in-eloquent-model/65896997#65896997)
-            ->where(DB::raw('LOWER(`subjects`.`name`)'), 'like', '%' . strtolower(request('search')) . '%')
-            ->orWhere(DB::raw('LOWER(`users`.`firstname`)'), 'like', '%' . strtolower(request('search')) . '%')
-            ->orWhere(DB::raw('LOWER(`users`.`lastname`)'), 'like', '%' . strtolower(request('search')) . '%')
+            ->where(DB::raw('LOWER(subjects.name)'), 'like', '%' . strtolower(request('search')) . '%')
+            ->orWhere(DB::raw('LOWER(users.firstname)'), 'like', '%' . strtolower(request('search')) . '%')
+            ->orWhere(DB::raw('LOWER(users.lastname)'), 'like', '%' . strtolower(request('search')) . '%')
             ->select('consultations.*', 'users.firstname', 'users.lastname', 'users.email', 'users.avatar', 'subjects.name')
             ->paginate(10);
 
