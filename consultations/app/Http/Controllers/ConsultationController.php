@@ -178,8 +178,8 @@ class ConsultationController extends Controller
 
         Arr::forget($newConsultation, 'subject_name');
 
-    //    dd($newConsultation);
-       Consultation::create($newConsultation);
+        //    dd($newConsultation);
+        Consultation::create($newConsultation);
         return redirect('/consultation');
     }
 
@@ -318,6 +318,28 @@ class ConsultationController extends Controller
                 'consultation_id' => $newConsultation['id'],
                 'created_at' => date('c')
             ]);
+            $fechaDeHoy = new DateTime();
+            $fechaProximaSemana = new DateTime();
+            date_add($fechaProximaSemana, date_interval_create_from_date_string('7 days'));
+            $fechaDeHoy = $fechaDeHoy->format('Y-m-d');
+            $fechaProximaSemana = $fechaProximaSemana->format('Y-m-d');
+
+            $results             = DB::table('meetings')
+                ->distinct()
+                ->join('consultations', 'consultations.id', '=', 'meetings.consultation_id')
+                ->join('users', 'users.id', '=', 'meetings.user_id')
+                ->join('subjects as s', 'consultations.subject_id', '=', 's.id')
+                ->where('consultation_id', '=', $newConsultation['id'])
+                ->where('meetings.dateConsultation', '>=', $fechaDeHoy)
+                ->where('meetings.dateConsultation', '<', $fechaProximaSemana)
+                ->select('users.email', 's.name', 'meetings.dateConsultation')
+                ->get();
+
+            if (!empty($results)) {
+                foreach ($results as $r) {
+                    Mail::to($r->email)->send(new ConsultationCancel($r->name, $r->dateConsultation));
+                }
+            }
         }
 
         Arr::forget($newConsultation, 'reasonCancel');

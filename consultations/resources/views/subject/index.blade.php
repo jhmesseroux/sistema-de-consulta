@@ -49,8 +49,7 @@
                                     </svg></a>
 
 
-                                <form class="inline" method="POST"
-                                    action="/admin/subject/delete/{{ $subject->id }}}">
+                                <form class="inline" method="POST" action="/admin/subject/delete/{{ $subject->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <x-button title="Borrar Materia"

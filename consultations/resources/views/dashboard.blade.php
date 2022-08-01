@@ -40,11 +40,9 @@
                 @else
                     <div class="container w-full items-center justify-center p-6 m-4">
                         <p class="border-l-4 border-red-500 p-4 w-4/5">
-                            Aquí aparecerán las consultas que reserves.
+                            Aquí aparecerán las consultas que reserves. <x-nav-link class="text-blue-500" href="/">Volver al inicio</x-nav-link>
                         </p>
-                        <p>
-                            <x-nav-link class="text-blue-500" href="/">Volver al inicio</x-nav-link>
-                        </p>
+                           
                     </div>
                 @endif
             </div>
