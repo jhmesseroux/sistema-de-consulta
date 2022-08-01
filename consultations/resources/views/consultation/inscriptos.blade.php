@@ -27,7 +27,7 @@
                     <div class="flex-shrink-0 flex items-center  gap-1">
                         @if ($item->avatar)
                         <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $item->avatar) }}"
-                            alt="{{ $item->firstname . $item->$lastname }}">
+                            alt="{{ $item->firstname . $item->lastname }}">
                         @else
                         <img class="rounded-full  shadow-sm border-2 border-gray-2 w-9 h-9"
                             src="{{ asset('storage/avatars/default-avatar.png') }}"
